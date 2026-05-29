@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Partnership Proposal — Janhavi Panwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:         #0D0D0D;
+    --paper:       #F6F2EA;
+    --paper-dark:  #EDE8DC;
+    --paper-mid:   #F0EBE0;
+    --rule:        rgba(13,13,13,0.12);
+    --rule-strong: rgba(13,13,13,0.30);
+    --accent:      #B8341B;
+    --accent-soft: rgba(184,52,27,0.07);
+    --gold:        #A07828;
+    --gold-soft:   rgba(160,120,40,0.10);
+    --muted:       #7A7268;
+    --white:       #FFFFFF;
+    --green:       #2A6B3C;
+    --green-soft:  rgba(42,107,60,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid var(--accent);
+  }
+  .masthead-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    color: var(--paper);
+  }
+  .masthead-brand span { color: var(--accent); }
+
+  /* COVER */
+  .cover {
+    background: var(--paper);
+    padding: 72px 48px 64px;
+    border-bottom: 2px solid var(--ink);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .cover-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .cover-kicker::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule-strong);
+    max-width: 180px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .cover h1 em { font-style: italic; color: var(--accent); }
+  .cover-deck {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 680px;
+    margin: 20px 0 36px;
+  }
+  .cover-rule { border: none; border-top: 2px solid var(--ink); margin: 0 0 28px; }
+  .cover-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule-strong);
+    background: var(--white);
+    margin-top: 8px;
+  }
+  .cover-stat {
+    padding: 20px 24px;
+    border-right: 1px solid var(--rule-strong);
+  }
+  .cover-stat:last-child { border-right: none; }
+  .cover-stat-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .cover-stat-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* LAYOUT */
+  .wrapper { max-width: 1000px; margin: 0 auto; padding: 0 48px; }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* OPPORTUNITY */
+  .opportunity { padding: 64px 0 56px; border-bottom: 1px solid var(--rule-strong); }
+  .opportunity h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .opportunity h2 em { font-style: italic; color: var(--accent); }
+  .opp-intro {
+    font-size: 15.5px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 680px;
+    margin-bottom: 40px;
+  }
+  .gap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule-strong);
+    border: 1px solid var(--rule-strong);
+    margin-bottom: 32px;
+  }
+  .gap-item { background: var(--white); padding: 28px 28px 24px; }
+  .gap-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .gap-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .gap-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+  .gap-desc em {
+    font-style: italic;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .highlight-bar {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 20px 28px;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    border-left: 4px solid var(--accent);
+  }
+  .highlight-bar strong { font-style: normal; font-weight: 700; color: #F6C87A; }
+
+  /* BREAKDOWN */
+  .breakdown { padding: 64px 0 56px; border-bottom: 1px solid var(--rule-strong); }
+  .breakdown h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .breakdown-deck { font-size: 14px; color: var(--muted); margin-bottom: 36px; font-weight: 300; }
+  .table-wrap { border: 1px solid var(--rule-strong); overflow: hidden; margin-bottom: 16px; }
+  .table-head {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    background: var(--ink);
+    padding: 10px 20px;
+    gap: 16px;
+  }
+  .table-head span {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(246,242,234,0.5);
+  }
+  .table-row {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    padding: 18px 20px;
+    gap: 16px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--white);
+    align-items: start;
+  }
+  .table-row:nth-child(odd) { background: var(--paper-mid); }
+  .table-row:last-child { border-bottom: none; }
+  .row-service {
+    font-family: 'Playfair Display', serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .row-includes { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+  .row-rate { text-align: right; }
+  .row-rate-unit { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--muted); line-height: 1.4; margin-bottom: 3px; }
+  .row-rate-monthly { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--gold); line-height: 1.3; }
+  .total-bar {
+    background: var(--paper-dark);
+    border: 1px solid var(--rule-strong);
+    border-top: 2px solid var(--ink);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .total-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .total-val { font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500; color: var(--ink); }
+
+  /* PERFORMANCE */
+  .performance {
+    padding: 64px 48px 56px;
+    border-bottom: 1px solid var(--rule-strong);
+    background: var(--paper-dark);
+    margin: 0 -48px;
+  }
+  .performance h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .performance-deck { font-size: 14px; color: var(--muted); margin-bottom: 36px; font-weight: 300; max-width: 680px; }
+  .perf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+  .perf-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 24px 24px 20px;
+    border-top: 2px solid var(--ink);
+  }
+  .perf-card-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+  .perf-card-desc { font-size: 12.5px; color: var(--muted); line-height: 1.65; margin-bottom: 12px; }
+  .perf-card-rate { font-family: 'DM Mono', monospace; font-size: 11.5px; color: var(--gold); font-weight: 500; }
+  .perf-card-note { font-size: 11px; color: var(--muted); line-height: 1.5; margin-top: 6px; border-top: 1px solid var(--rule); padding-top: 8px; }
+  .grand-total {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 22px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .grand-total-label { font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(246,242,234,0.5); }
+  .grand-total-val { font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; color: #F6C87A; }
+
+  /* LEAD MAGNET CALLOUT */
+  .lm-callout {
+    background: var(--accent-soft);
+    border: 1px solid rgba(184,52,27,0.2);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px;
+    margin-top: 12px;
+  }
+  .lm-callout-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .lm-callout p { font-size: 13px; color: var(--ink); line-height: 1.7; }
+  .lm-callout p strong { font-weight: 600; }
+
+  /* PRICING */
+  .pricing { padding: 64px 0 56px; border-bottom: 1px solid var(--rule-strong); }
+  .pricing h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .pricing-deck { font-size: 14px; color: var(--muted); margin-bottom: 40px; font-weight: 300; }
+  .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .option-card { border: 1px solid var(--rule-strong); background: var(--white); overflow: hidden; }
+  .option-card.recommended { border: 2px solid var(--ink); }
+  .option-header { background: var(--paper-dark); padding: 16px 24px 14px; border-bottom: 1px solid var(--rule); }
+  .option-header.dark { background: var(--ink); }
+  .option-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .option-header.dark .option-tag { color: rgba(246,242,234,0.45); }
+  .option-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+  .option-header.dark .option-title { color: var(--paper); }
+  .option-body { padding: 24px 24px 20px; }
+  .market-rate { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); text-decoration: line-through; text-decoration-color: var(--accent); margin-bottom: 8px; }
+  .option-price { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: var(--ink); letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+  .option-price-sub { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 20px; }
+  .option-divider { border: none; border-top: 1px solid var(--rule); margin: 16px 0; }
+  .option-includes { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .option-includes li { font-size: 13px; color: var(--ink); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+  .option-includes li::before { content: '—'; color: var(--muted); flex-shrink: 0; font-family: 'DM Mono', monospace; font-size: 11px; margin-top: 2px; }
+  .option-includes li.highlight::before { color: var(--accent); }
+  .option-upside { background: var(--gold-soft); border: 1px solid rgba(160,120,40,0.2); padding: 10px 14px; margin-top: 16px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gold); line-height: 1.5; }
+  .option-savings { background: var(--accent-soft); border: 1px solid rgba(184,52,27,0.15); padding: 10px 14px; margin-top: 16px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); line-height: 1.5; }
+  .pricing-note { font-size: 12.5px; color: var(--muted); line-height: 1.65; font-style: italic; max-width: 680px; }
+
+  /* FUTURE VISION */
+  .vision { padding: 64px 0 56px; border-bottom: 1px solid var(--rule-strong); }
+  .vision h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .vision h2 em { font-style: italic; color: var(--accent); }
+  .vision-deck { font-size: 14px; color: var(--muted); margin-bottom: 36px; font-weight: 300; max-width: 680px; }
+  .vision-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--rule-strong); border: 1px solid var(--rule-strong); margin-bottom: 28px; }
+  .vision-item { background: var(--white); padding: 24px 22px 20px; }
+  .vision-phase { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .vision-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; line-height: 1.3; }
+  .vision-desc { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+  .vision-note {
+    background: var(--paper-dark);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    padding: 20px 24px;
+  }
+  .vision-note p { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+  .vision-note p strong { color: var(--ink); font-weight: 600; }
+
+  /* GUARANTEE */
+  .guarantee {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 72px 48px 64px;
+    margin: 0 -48px;
+  }
+  .guarantee .section-label { color: rgba(246,242,234,0.4); }
+  .guarantee .section-label::before { background: rgba(246,242,234,0.2); }
+  .guarantee h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+  .guarantee h2 em { font-style: italic; color: #F6C87A; }
+  .guarantee-deck { font-size: 15px; font-weight: 300; color: rgba(246,242,234,0.55); max-width: 620px; margin: 20px 0 48px; line-height: 1.7; }
+  .guarantee-rule { border: none; border-top: 1px solid rgba(246,242,234,0.15); margin-bottom: 40px; }
+  .guarantee-terms {
+    background: rgba(246,242,234,0.04);
+    border: 1px solid rgba(246,242,234,0.12);
+    border-left: 3px solid #F6C87A;
+    padding: 28px 28px 24px;
+    max-width: 680px;
+    margin-bottom: 40px;
+  }
+  .guarantee-terms p { font-size: 14.5px; line-height: 1.75; color: rgba(246,242,234,0.75); }
+  .guarantee-terms p strong { color: var(--paper); font-weight: 600; }
+  .guarantee-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(246,242,234,0.1);
+    border: 1px solid rgba(246,242,234,0.1);
+  }
+  .pillar { background: rgba(13,13,13,0.6); padding: 24px 22px 20px; }
+  .pillar-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #F6C87A; margin-bottom: 8px; }
+  .pillar-desc { font-size: 12.5px; color: rgba(246,242,234,0.5); line-height: 1.6; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--paper-dark);
+    border-top: 2px solid var(--ink);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--ink); }
+  .footer-meta { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-align: right; line-height: 1.7; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .masthead, .cover, .wrapper, .guarantee, .footer { padding-left: 24px; padding-right: 24px; }
+    .performance { padding-left: 24px; padding-right: 24px; margin: 0 -24px; }
+    .guarantee { margin: 0 -24px; }
+    .cover-stats { grid-template-columns: 1fr 1fr; }
+    .gap-grid, .options-grid, .perf-grid, .vision-grid { grid-template-columns: 1fr; }
+    .guarantee-pillars { grid-template-columns: 1fr; }
+    .table-head { display: none; }
+    .table-row { grid-template-columns: 1fr; gap: 4px; }
+    .row-rate { text-align: left; }
+    .total-bar, .grand-total { flex-direction: column; gap: 4px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-brand">J Curve by Avi <span>×</span> Janhavi Panwar</div>
+</header>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-kicker">Content Partnership Proposal</div>
+  <h1>
+    You have the audience.<br>
+    <em>The system hasn't</em><br>
+    caught up yet.
+  </h1>
+  <p class="cover-deck">
+    You're 13,000 followers from 1 million on Instagram. 2.43M on YouTube. A private limited company. 
+    Courses live. TEDx done. This proposal is about making those numbers actually work harder — 
+    with a content and conversion system built for what you've already built.
+  </p>
+  <hr class="cover-rule">
+  <div class="cover-stats">
+    <div class="cover-stat">
+      <div class="cover-stat-val">987K</div>
+      <div class="cover-stat-lbl">Instagram</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-val">2.43M</div>
+      <div class="cover-stat-lbl">YouTube Subs</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-val">733</div>
+      <div class="cover-stat-lbl">Videos Live</div>
+    </div>
+    <div class="cover-stat">
+      <div class="cover-stat-val">10+</div>
+      <div class="cover-stat-lbl">Years Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- THE GAP -->
+<div class="wrapper">
+  <section class="opportunity">
+    <div class="section-label">The Gap</div>
+    <h2>Five things we noticed<br><em>right away.</em></h2>
+    <p class="opp-intro">
+      The audience is there. The authority is there. What's missing is the infrastructure 
+      that converts reach into consistent revenue — and these are the places where it's currently leaking.
+    </p>
+
+    <div class="gap-grid">
+
+      <div class="gap-item">
+        <div class="gap-num">01</div>
+        <div class="gap-title">Instagram is undermonetised</div>
+        <div class="gap-desc">987K followers with no structured CTA funnel, no lead magnet in bio, and no system pushing followers into a course purchase journey. The audience is warm. It's just not being directed anywhere.</div>
+      </div>
+
+      <div class="gap-item">
+        <div class="gap-num">02</div>
+        <div class="gap-title">YouTube is coasting on legacy</div>
+        <div class="gap-desc">733 videos and 2.43M subs — but no modern hook structure, no consistent thumbnail system, and no Shorts strategy compounding reach. The channel built its subscriber base years ago. It hasn't been optimised since.</div>
+      </div>
+
+      <div class="gap-item">
+        <div class="gap-num">03</div>
+        <div class="gap-title">Ads are running — but not efficiently</div>
+        <div class="gap-desc">The webinar-to-course funnel is a smart structure. The problem is in the execution — too many campaigns, creatives that are too long, and spend that likely isn't being tracked against actual course revenue. <em>More ads isn't the answer. Better ads is.</em></div>
+      </div>
+
+      <div class="gap-item">
+        <div class="gap-num">04</div>
+        <div class="gap-title">No consistent brand identity</div>
+        <div class="gap-desc">At 987K Instagram and 2.43M YouTube, there's no cohesive visual language tying both platforms together — no consistent colour palette, typography, thumbnail style, or content format that screams <em>Janhavi Panwar</em> before someone even reads the name. A brand at this scale deserves a brand system to match.</div>
+      </div>
+
+      <div class="gap-item" style="grid-column: 1 / -1;">
+        <div class="gap-num">05</div>
+        <div class="gap-title">No signature IP on either platform</div>
+        <div class="gap-desc">IP — Intellectual Property — in content terms means a specific format or series that <em>only you make</em>, that people recognise instantly, and that creates brand recall every time it appears. Think MrBeast's challenge format, or Tanmay Bhat's roast structure. Right now both your Instagram and YouTube are collections of individual videos — there's no recurring series, no signature format, nothing that makes a new viewer say "oh, this is the Janhavi Panwar thing." That's the gap between a creator and a brand. At your audience size, this is the highest-leverage thing you're missing.</div>
+      </div>
+
+    </div>
+
+    <div class="highlight-bar">
+      You're 13,000 followers from 1 Million on Instagram. 
+      <strong>Most creators never convert that milestone into money. We make sure you do.</strong>
+    </div>
+  </section>
+</div>
+
+<!-- BREAKDOWN -->
+<div class="wrapper">
+  <section class="breakdown">
+    <div class="section-label">Service Breakdown</div>
+    <h2>Every deliverable.<br>What it costs on the open market.</h2>
+    <p class="breakdown-deck">Market rates pulled from standard agency and freelancer pricing in India. Every number is defensible.</p>
+
+    <div class="table-wrap">
+      <div class="table-head">
+        <span>Service</span>
+        <span>What's Included</span>
+        <span style="text-align:right">Market Rate</span>
+      </div>
+      <div class="table-row">
+        <div class="row-service">Scripting</div>
+        <div class="row-includes">8 long-form scripts + 16 short scripts/month. Research, hooks, story arc, CTA — all written. The most underpriced deliverable in any content package.</div>
+        <div class="row-rate">
+          <div class="row-rate-unit">Rs.1,200–1,800 per script</div>
+          <div class="row-rate-monthly">Rs.28,800 – 43,200/mo</div>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="row-service">Long-form Video Editing</div>
+        <div class="row-includes">8 YouTube videos/month. Full edit, captions, colour grade, motion graphics, background music. Delivered to upload-ready standard.</div>
+        <div class="row-rate">
+          <div class="row-rate-unit">Rs.2,500–4,000 per video</div>
+          <div class="row-rate-monthly">Rs.20,000 – 32,000/mo</div>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="row-service">Shorts Editing</div>
+        <div class="row-includes">16 Shorts/month — optimised for both Instagram Reels and YouTube Shorts separately. Format, aspect ratio, captions, hooks — all platform-native.</div>
+        <div class="row-rate">
+          <div class="row-rate-unit">Rs.800–1,200 per short</div>
+          <div class="row-rate-monthly">Rs.12,800 – 19,200/mo</div>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="row-service">Thumbnail Design</div>
+        <div class="row-includes">8 CTR-optimised thumbnails/month. Face-forward composition, editorial type, tested contrast. The single biggest lever on YouTube click-through rate.</div>
+        <div class="row-rate">
+          <div class="row-rate-unit">Rs.600–1,000 per thumbnail</div>
+          <div class="row-rate-monthly">Rs.4,800 – 8,000/mo</div>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="row-service">YouTube SEO</div>
+        <div class="row-includes">Full metadata for all 8 videos — title, description, tags, chapters. Keyword research included. Most creators skip this entirely and lose thousands of monthly views to it.</div>
+        <div class="row-rate">
+          <div class="row-rate-unit">Rs.800–1,200 per video</div>
+          <div class="row-rate-monthly">Rs.6,400 – 9,600/mo</div>
+        </div>
+      </div>
+      <div class="table-row">
+        <div class="row-service">Posting & Scheduling</div>
+        <div class="row-includes">End-to-end upload management across YouTube and Instagram. Calendar planning, optimal posting times, caption copy. Fully handled.</div>
+        <div class="row-rate">
+          <div class="row-rate-unit">Flat retainer</div>
+          <div class="row-rate-monthly">Rs.5,000 – 8,000/mo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="total-bar">
+      <span class="total-label">Organic Services Total — Market Rate</span>
+      <span class="total-val">Rs.77,800 – Rs.1,20,000 / month</span>
+    </div>
+  </section>
+</div>
+
+<!-- PERFORMANCE MARKETING -->
+<div class="wrapper">
+  <section class="performance">
+    <div class="section-label">Performance Marketing</div>
+    <h2>Better ads.<br><em>Not more of them.</em></h2>
+    <p class="performance-deck">
+      The webinar-to-course funnel is the right structure. What we focus on is making the spend inside it more efficient — sharper creatives, cleaner attribution, and campaigns that are actually tracked against revenue. Plus a lead magnet layer that turns your free content into a list you own.
+    </p>
+
+    <div class="perf-grid">
+      <div class="perf-card">
+        <div class="perf-card-title">Ad Audit & Restructure</div>
+        <div class="perf-card-desc">Review of current campaigns — identifying what's spending without converting, what creatives are too long, and what audiences are overlapping or redundant. Clean slate, tighter structure.</div>
+        <div class="perf-card-rate">Rs.15,000 – 25,000 / month</div>
+        <div class="perf-card-note">Most agencies add campaigns on top of existing ones. We cut what isn't working first. Fewer ads, better results.</div>
+      </div>
+
+      <div class="perf-card">
+        <div class="perf-card-title">Ad Copywriting & Short-form Creatives</div>
+        <div class="perf-card-desc">Hook-led, short ad scripts built for the webinar funnel. 15–30 second creatives that get to the point — tested against what's currently running to prove the difference.</div>
+        <div class="perf-card-rate">Rs.8,000 – 15,000 / month</div>
+        <div class="perf-card-note">Long ads work in limited contexts. For a ₹47 webinar entry point, the job of the ad is just to get the click — not tell the whole story.</div>
+      </div>
+
+      <div class="perf-card">
+        <div class="perf-card-title">Lead Magnet Creation & Landing Page</div>
+        <div class="perf-card-desc">A lead magnet is a free, high-value resource you give away in exchange for an email address. Think of how <em>English With Lucy</em> puts a free vocabulary PDF in every video description — people download it, she captures the email, and that email becomes a course sale later. We build yours: the resource, the landing page, and the follow-up sequence.</div>
+        <div class="perf-card-rate">Rs.12,000 – 20,000 / month</div>
+        <div class="perf-card-note">Your content already drives massive traffic. A lead magnet turns that traffic into an email list you own — permanently, independent of any algorithm.</div>
+      </div>
+
+      <div class="perf-card">
+        <div class="perf-card-title">UTM Tracking & Revenue Attribution</div>
+        <div class="perf-card-desc">Dedicated coupon codes and UTM links per platform. Monthly report showing which channel — YouTube, Instagram, ads, email — is actually driving course purchases. No more guessing.</div>
+        <div class="perf-card-rate">Rs.5,000 – 8,000 / month</div>
+        <div class="perf-card-note">This is also what makes the 10% commission structure in Option 2 clean and dispute-free. Every sale is traceable to a source.</div>
+      </div>
+    </div>
+
+    <div class="lm-callout">
+      <div class="lm-callout-label">On Lead Magnets</div>
+      <p>
+        <strong>English With Lucy</strong> — one of the biggest English learning channels on YouTube — puts a free downloadable PDF (vocabulary list, grammar guide, pronunciation chart) in the description of nearly every video. Viewers get immediate value, she captures their email, and that email list becomes her highest-converting sales channel for paid courses. 
+        <strong>You have a bigger audience than she started with.</strong> The same system, built for your niche, is one of the highest-ROI things we can build together.
+      </p>
+    </div>
+
+    <div class="grand-total" style="margin-top:24px;">
+      <span class="grand-total-label">Grand Total — All Services at Market Rate</span>
+      <span class="grand-total-val">Rs.1,17,800 – Rs.1,88,000 / month</span>
+    </div>
+  </section>
+</div>
+
+<!-- PRICING -->
+<div class="wrapper">
+  <section class="pricing">
+    <div class="section-label">Our Price</div>
+    <h2>What we're actually<br><em>charging you.</em></h2>
+    <p class="pricing-deck">Two structures. Pick the one that fits how you want to work together.</p>
+
+    <div class="options-grid">
+      <div class="option-card">
+        <div class="option-header">
+          <div class="option-tag">Option 01 · Organic Only</div>
+          <div class="option-title">The Content Engine</div>
+        </div>
+        <div class="option-body">
+          <div class="market-rate">Market rate: Rs.77,800 – Rs.1,20,000/mo</div>
+          <div class="option-price">Rs.60,000</div>
+          <div class="option-price-sub">per month, flat retainer</div>
+          <hr class="option-divider">
+          <ul class="option-includes">
+            <li>8 YouTube long-form edits per month</li>
+            <li>16 Shorts per month (IG + YT)</li>
+            <li>Full scripting for all content</li>
+            <li>8 thumbnails per month</li>
+            <li>YouTube SEO — all 8 videos</li>
+            <li>Posting & scheduling</li>
+          </ul>
+          <div class="option-savings">You save Rs.17,800–Rs.60,000/mo vs market rate</div>
+        </div>
+      </div>
+
+      <div class="option-card recommended">
+        <div class="option-header dark">
+          <div class="option-tag">Option 02 · Recommended</div>
+          <div class="option-title">The Growth Engine</div>
+        </div>
+        <div class="option-body">
+          <div class="market-rate">Market rate: Rs.1,17,800 – Rs.1,88,000/mo</div>
+          <div class="option-price">Rs.45,000</div>
+          <div class="option-price-sub">per month + 10% of attributed course revenue</div>
+          <hr class="option-divider">
+          <ul class="option-includes">
+            <li class="highlight">Everything in Option 01</li>
+            <li>Ad audit, restructure & management</li>
+            <li>Short-form ad creatives for webinar funnel</li>
+            <li>Lead magnet + landing page build</li>
+            <li>Email nurture sequence</li>
+            <li>UTM + coupon code attribution tracking</li>
+            <li>Monthly revenue attribution report</li>
+          </ul>
+          <div class="option-upside">Realistic total: Rs.75,000–Rs.1,45,000/mo as course sales scale</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="pricing-note">
+      Ad spend is a separate budget controlled entirely by you. We manage the campaigns. 
+      Attribution is tracked via dedicated UTM links and coupon codes — clean, verifiable, no disputes.
+    </p>
+  </section>
+</div>
+
+<!-- FUTURE VISION -->
+<div class="wrapper">
+  <section class="vision">
+    <div class="section-label">The Bigger Picture</div>
+    <h2>Janhavi Panwar<br><em>as a full brand.</em></h2>
+    <p class="vision-deck">
+      What we're building together in the first months is the foundation. But where this goes — with the audience you already have — is significantly larger than a content retainer.
+    </p>
+
+    <div class="vision-grid">
+      <div class="vision-item">
+        <div class="vision-phase">Phase 01 · Now</div>
+        <div class="vision-title">Content System & Conversion</div>
+        <div class="vision-desc">Consistent content engine running across YouTube and Instagram. Ads cleaned up and performing. Lead magnet capturing emails. Cohesive brand identity across all touchpoints.</div>
+      </div>
+      <div class="vision-item">
+        <div class="vision-phase">Phase 02 · 3–6 Months</div>
+        <div class="vision-title">Owned Audience & Premium Offers</div>
+        <div class="vision-desc">An email list that converts. A newsletter that builds weekly authority. Higher-ticket course tiers or a live cohort. Signature IP series running on both platforms creating recall, not just views.</div>
+      </div>
+      <div class="vision-item">
+        <div class="vision-phase">Phase 03 · 6–12 Months</div>
+        <div class="vision-title">The Janhavi Panwar Brand</div>
+        <div class="vision-desc">A paid community. Multiple course products at different price points. Brand partnerships that reflect your positioning. A business that isn't dependent on any single platform's algorithm or a single ₹47 entry point.</div>
+      </div>
+    </div>
+
+    <div class="vision-note">
+      <p>
+        The infrastructure for all of this — <strong>landing pages, lead magnet assets, email sequences, course funnels, community platforms</strong> — is something we can build and manage as the engagement deepens. 
+        We're not just a content team. We're the growth partner that builds what comes after the content.
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- GUARANTEE -->
+<div class="wrapper">
+  <section class="guarantee">
+    <div class="section-label">The Guarantee</div>
+    <h2>10X your views<br>in 3 months.<br><em>Or we work free.</em></h2>
+    <p class="guarantee-deck">
+      We don't just execute — we're accountable for outcomes. 
+      That's what makes this different from hiring a freelancer or an agency.
+    </p>
+    <hr class="guarantee-rule">
+    <div class="guarantee-terms">
+      <p>
+        If we don't <strong>10X your combined views within 3 months</strong>, we continue working — 
+        <strong>at no charge</strong> — until that benchmark is hit. 
+        No fine print. No conditions. No exit clause that lets us disappear when results don't come. 
+        We stay until the number is there.
+      </p>
+    </div>
+    <div class="guarantee-pillars">
+      <div class="pillar">
+        <div class="pillar-title">Zero Risk</div>
+        <div class="pillar-desc">You only pay while results are being delivered. If the benchmark isn't hit, we keep working — for free.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">Full Commitment</div>
+        <div class="pillar-desc">We don't take the money and disappear. We are accountable to a specific, measurable number.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">Skin in the Game</div>
+        <div class="pillar-desc">We win only when you win. The commission structure in Option 2 is built on exactly this principle.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">J Curve by Avi</div>
+  <div class="footer-meta">
+    Avi Sharma · Lucknow, India<br>
+    Confidential — Prepared for Janhavi Panwar
+  </div>
+</footer>
+
+</body>
+</html>
