@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Vision v2 — Janhavi Panwar × J Curve by Avi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#F5F0E8;color:#1A1714;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;}
+
+/* ── NAV ───────────────────────── */
+.nav{position:sticky;top:0;z-index:200;background:#111111;padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:2px solid #535366;}
+.nav-brand{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:#EAE6E0;letter-spacing:0.04em;}
+.nav-brand span{color:#535366;}
+.nav-tabs{display:flex;gap:3px;}
+.nav-tab{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;padding:8px 14px;border:1px solid transparent;color:rgba(234,230,224,0.35);cursor:pointer;transition:all .2s;background:transparent;}
+.nav-tab:hover{color:rgba(234,230,224,0.7);border-color:rgba(234,230,224,0.15);}
+.nav-tab.active{color:#EAE6E0;border-color:rgba(234,230,224,0.25);background:rgba(234,230,224,0.06);}
+
+/* ── SELECTOR ──────────────────── */
+.selector{padding:64px 48px 80px;max-width:1100px;margin:0 auto;}
+.sel-kicker{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.24em;text-transform:uppercase;color:#535366;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.sel-kicker::after{content:'';flex:1;height:1px;background:rgba(26,23,20,0.15);max-width:120px;}
+.sel-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,5vw,60px);font-weight:300;line-height:1.05;letter-spacing:-0.02em;color:#111111;margin-bottom:8px;}
+.sel-h1 em{font-style:italic;color:#535366;}
+.sel-deck{font-size:14px;font-weight:300;color:#888;margin-bottom:48px;max-width:560px;line-height:1.7;}
+.sel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.sel-card{cursor:pointer;border:1.5px solid rgba(26,23,20,0.12);transition:all .25s;position:relative;overflow:hidden;background:#fff;}
+.sel-card:hover{transform:translateY(-3px);border-color:rgba(26,23,20,0.25);}
+.sel-card.chosen{border-color:#535366;border-width:2px;}
+.preview{height:260px;display:flex;flex-direction:column;overflow:hidden;}
+.sel-card-footer{padding:16px 18px;background:#FAFAFA;border-top:1px solid rgba(26,23,20,0.08);}
+.sel-card-name{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:700;color:#111111;margin-bottom:2px;}
+.sel-card-sub{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:0.14em;text-transform:uppercase;color:#AAAAAA;}
+.sel-choose-btn{display:inline-flex;align-items:center;gap:5px;margin-top:10px;padding:6px 14px;font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;border:1px solid rgba(26,23,20,0.18);color:#444;background:transparent;cursor:pointer;transition:all .2s;}
+.sel-choose-btn:hover{background:#111;color:#EAE6E0;border-color:#111;}
+.sel-card.chosen .sel-choose-btn{background:#535366;border-color:#535366;color:#EAE6E0;}
+.chosen-badge{position:absolute;top:10px;right:10px;background:#535366;color:#EAE6E0;font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:0.14em;text-transform:uppercase;padding:3px 8px;display:none;}
+.sel-card.chosen .chosen-badge{display:block;}
+
+/* ── PREVIEW A — Monotone evolved ── */
+.pa-hero{background:#111111;padding:20px 20px 16px;flex:1;}
+.pa-tag{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(234,230,224,0.35);margin-bottom:10px;}
+.pa-h{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:26px;font-weight:700;line-height:1.0;color:#FFFFFF;letter-spacing:-0.03em;}
+.pa-h span{color:rgba(255,255,255,0.25);}
+.pa-swatches{display:flex;height:40px;}
+.pa-info{padding:12px 16px;background:#F5F5F5;display:flex;gap:6px;align-items:center;}
+.pa-kw{font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:10px;font-weight:600;color:#111;padding:3px 8px;border:1px solid rgba(17,17,17,0.18);letter-spacing:-0.01em;}
+
+/* ── PREVIEW B — Charcoal Canvas Slate ── */
+.pb-hero{background:#1C1C1C;padding:20px 20px 16px;flex:1;}
+.pb-tag{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(234,230,224,0.3);margin-bottom:10px;}
+.pb-h{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;line-height:1.05;color:#EAE6E0;}
+.pb-h em{font-style:italic;color:#535366;}
+.pb-swatches{display:flex;height:40px;}
+.pb-info{padding:12px 16px;background:#EAE6E0;display:flex;gap:6px;align-items:center;}
+.pb-kw{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:#1C1C1C;padding:3px 10px;border:1px solid rgba(28,28,28,0.2);}
+
+/* ── PREVIEW C — Navy Periwinkle ── */
+.pc-hero{background:#374375;padding:20px 20px 16px;flex:1;}
+.pc-tag{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,252,245,0.35);margin-bottom:10px;}
+.pc-h{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;line-height:1.05;color:#FFFCF5;letter-spacing:-0.01em;}
+.pc-h em{font-style:italic;font-weight:400;color:#BABDE2;}
+.pc-swatches{display:flex;height:40px;}
+.pc-info{padding:12px 16px;background:#FFFCF5;display:flex;gap:6px;align-items:center;}
+.pc-kw{font-family:'DM Mono',monospace;font-size:9px;color:#374375;padding:3px 8px;border:1px solid rgba(55,67,117,0.2);letter-spacing:0.08em;text-transform:uppercase;}
+
+/* ── PREVIEW D — Eggplant Lavender ── */
+.pd-hero{background:#2D2C38;padding:20px 20px 16px;flex:1;}
+.pd-tag{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(237,232,245,0.3);margin-bottom:10px;}
+.pd-h{font-family:'Libre Baskerville',serif;font-size:24px;font-weight:400;font-style:italic;line-height:1.1;color:#EDE8F5;letter-spacing:-0.01em;}
+.pd-h strong{font-style:normal;font-weight:700;color:#B2A6D9;}
+.pd-swatches{display:flex;height:40px;}
+.pd-info{padding:12px 16px;background:#EDE8F5;display:flex;gap:6px;align-items:center;}
+.pd-kw{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;color:#2D2C38;padding:4px 10px;border-radius:20px;border:1px solid rgba(45,44,56,0.18);}
+
+/* ── BOARD SHELL ───────────────── */
+.board{display:none;}
+.board.active{display:block;}
+.board-hero{padding:80px 56px 72px;position:relative;overflow:hidden;}
+.board-page{max-width:1100px;margin:0 auto;padding:0 56px 80px;}
+.sec-label{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.24em;text-transform:uppercase;display:flex;align-items:center;gap:12px;padding:48px 0 20px;}
+.sec-label::before{content:'';width:20px;height:2px;flex-shrink:0;}
+.palette-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;overflow:hidden;}
+.sw{display:flex;flex-direction:column;justify-content:flex-end;padding:16px 18px;height:180px;border-right:1px solid rgba(255,255,255,0.06);}
+.sw:last-child{border-right:none;}
+.sw-name{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:3px;font-weight:500;}
+.sw-hex{font-family:'DM Mono',monospace;font-size:10px;opacity:0.5;}
+.sw-role{font-size:10.5px;margin-top:4px;opacity:0.45;line-height:1.4;}
+.type-cols{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;}
+.type-box{padding:32px 28px 24px;}
+.type-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:18px;}
+.type-scale{border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;display:flex;flex-direction:column;gap:9px;}
+.type-row{display:flex;align-items:baseline;gap:14px;}
+.type-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.12em;text-transform:uppercase;width:50px;flex-shrink:0;}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.pillar{padding:30px 26px;border-right:1px solid rgba(26,23,20,0.1);}
+.pillar:last-child{border-right:none;}
+.pillar-num{font-size:64px;font-weight:300;opacity:0.06;line-height:1;margin-bottom:-8px;}
+.pillar-tag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;}
+.pillar-title{font-size:19px;font-weight:600;line-height:1.2;margin-bottom:8px;letter-spacing:-0.01em;}
+.pillar-desc{font-size:12.5px;line-height:1.65;font-weight:300;}
+.pillar-tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:5px;}
+.ptag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 9px;border:1px solid;}
+.voice-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.vcard{padding:26px 24px 22px;border:1px solid;}
+.v-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;}
+.vlist{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.vlist li{font-size:13px;line-height:1.55;display:flex;align-items:flex-start;gap:9px;}
+.vlist li::before{font-family:'DM Mono',monospace;font-size:10px;flex-shrink:0;margin-top:2px;}
+.dontdo{display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden;}
+.dd{padding:24px 24px 20px;border:1px solid;}
+.dd:first-child{border-right:none;}
+.dd-hd{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;}
+.ddlist{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.ddlist li{font-size:12.5px;line-height:1.5;display:flex;align-items:flex-start;gap:8px;}
+.ddlist li span{flex-shrink:0;font-size:10px;font-weight:700;margin-top:1px;}
+.vis-block{padding:52px 56px;position:relative;overflow:hidden;}
+.vis-q{font-size:clamp(19px,2.3vw,28px);font-weight:300;line-height:1.55;max-width:760px;margin-bottom:20px;position:relative;}
+.vis-attr{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;opacity:0.28;}
+footer{padding:22px 56px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(26,23,20,0.1);}
+.ft-brand{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;}
+.ft-meta{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#AAA;text-align:right;line-height:1.7;}
+
+/* ═══ BOARD A — Monotone Evolved ═══ */
+#ba{background:#F5F5F5;}
+#ba .board-hero{background:#111111;}
+#ba .h-kick{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(234,230,224,0.3);margin-bottom:20px;}
+#ba .h-hl{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:clamp(50px,7vw,84px);font-weight:700;line-height:0.96;letter-spacing:-0.038em;color:#FFFFFF;margin-bottom:4px;}
+#ba .h-hl em{font-style:normal;color:rgba(255,255,255,0.22);}
+#ba .h-sub{font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px;color:rgba(255,255,255,0.2);letter-spacing:0.01em;margin-top:24px;}
+#ba .board-page{background:#F5F5F5;}
+#ba .sec-label{color:#555555;}
+#ba .sec-label::before{background:#555555;}
+#ba .pillar{background:#FFFFFF;border-color:rgba(0,0,0,0.08);}
+#ba .pillar:nth-child(2){background:#EEEEEE;}
+#ba .pillar:nth-child(3){background:#111111;}
+#ba .pillar-tag{color:#888;}
+#ba .pillar:nth-child(3) .pillar-tag{color:rgba(255,255,255,0.3);}
+#ba .pillar-title{font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#111;}
+#ba .pillar:nth-child(3) .pillar-title{color:#FFF;}
+#ba .pillar-desc{color:#777;}
+#ba .pillar:nth-child(3) .pillar-desc{color:rgba(255,255,255,0.4);}
+#ba .ptag{border-color:rgba(0,0,0,0.1);color:#888;}
+#ba .pillar:nth-child(3) .ptag{border-color:rgba(255,255,255,0.12);color:rgba(255,255,255,0.35);}
+#ba .vcard{background:#FFF;border-color:rgba(0,0,0,0.1);}
+#ba .vcard:last-child{background:#EEEEEE;}
+#ba .v-label{color:#555;}
+#ba .vcard:last-child .v-label{color:#777;}
+#ba .vlist li{color:#333;}
+#ba .vlist li::before{content:'—';color:#AAA;}
+#ba .vcard:last-child .vlist li::before{color:#BBB;}
+#ba .dontdo{border:1px solid rgba(0,0,0,0.1);}
+#ba .dd{border-color:rgba(0,0,0,0.08);background:#FFF;}
+#ba .dd:last-child{background:#EEEEEE;}
+#ba .dd-hd{color:#555;}
+#ba .dd:last-child .dd-hd{color:#777;}
+#ba .ddlist li{color:#444;}
+#ba .ddlist li span.x{color:#999;}
+#ba .ddlist li span.c{color:#111;}
+#ba .vis-block{background:#111;}
+#ba .vis-q{font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-weight:600;color:#FFF;letter-spacing:-0.025em;line-height:1.25;}
+#ba .vis-q em{font-style:normal;color:rgba(255,255,255,0.3);}
+#ba .vis-q strong{color:#FFF;}
+#ba footer{background:#F0F0F0;}
+
+/* ═══ BOARD B — Charcoal Canvas Slate ═══ */
+#bb{background:#EAE6E0;}
+#bb .board-hero{background:#1C1C1C;}
+#bb .h-kick{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(234,230,224,0.3);margin-bottom:20px;}
+#bb .h-hl{font-family:'Cormorant Garamond',serif;font-size:clamp(50px,7vw,84px);font-weight:300;line-height:1.0;letter-spacing:-0.025em;color:#EAE6E0;margin-bottom:4px;}
+#bb .h-hl em{font-style:italic;color:#535366;}
+#bb .h-hl strong{font-weight:600;font-style:normal;color:#EAE6E0;}
+#bb .h-sub{font-family:'DM Mono',monospace;font-size:11px;color:rgba(234,230,224,0.2);letter-spacing:0.12em;text-transform:uppercase;margin-top:24px;}
+#bb .board-page{background:#EAE6E0;}
+#bb .sec-label{color:#535366;}
+#bb .sec-label::before{background:#535366;}
+#bb .pillar{background:#F2EEE8;border-color:rgba(28,28,28,0.1);}
+#bb .pillar:nth-child(2){background:#EAE6E0;}
+#bb .pillar:nth-child(3){background:#1C1C1C;}
+#bb .pillar-tag{color:#535366;}
+#bb .pillar:nth-child(3) .pillar-tag{color:rgba(234,230,224,0.3);}
+#bb .pillar-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:#1C1C1C;}
+#bb .pillar:nth-child(3) .pillar-title{color:#EAE6E0;}
+#bb .pillar-desc{color:#7A7268;}
+#bb .pillar:nth-child(3) .pillar-desc{color:rgba(234,230,224,0.4);}
+#bb .ptag{border-color:rgba(28,28,28,0.12);color:#888;}
+#bb .pillar:nth-child(3) .ptag{border-color:rgba(234,230,224,0.12);color:rgba(234,230,224,0.35);}
+#bb .vcard{background:#F2EEE8;border-color:rgba(28,28,28,0.1);}
+#bb .vcard:last-child{background:#EAE6E0;}
+#bb .v-label{color:#535366;}
+#bb .vcard:last-child .v-label{color:#888;}
+#bb .vlist li{color:#2E2A25;}
+#bb .vlist li::before{content:'—';color:#535366;}
+#bb .vcard:last-child .vlist li::before{color:#AAA;}
+#bb .dontdo{border:1px solid rgba(28,28,28,0.1);}
+#bb .dd{border-color:rgba(28,28,28,0.08);background:#F2EEE8;}
+#bb .dd:last-child{background:#EAE6E0;}
+#bb .dd-hd{color:#535366;}
+#bb .dd:last-child .dd-hd{color:#888;}
+#bb .ddlist li{color:#2E2A25;}
+#bb .ddlist li span.x{color:#C15B3A;}
+#bb .ddlist li span.c{color:#535366;}
+#bb .vis-block{background:#1C1C1C;}
+#bb .vis-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:#EAE6E0;letter-spacing:-0.01em;}
+#bb .vis-q strong{font-weight:600;font-style:normal;color:#535366;}
+#bb footer{background:#E2DDD5;}
+
+/* ═══ BOARD C — Navy Periwinkle ═══ */
+#bc{background:#FFFCF5;}
+#bc .board-hero{background:#374375;border-bottom:1px solid rgba(186,189,226,0.2);}
+#bc .h-kick{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(255,252,245,0.3);margin-bottom:20px;}
+#bc .h-hl{font-family:'Playfair Display',serif;font-size:clamp(48px,7vw,82px);font-weight:700;line-height:1.0;letter-spacing:-0.02em;color:#FFFCF5;margin-bottom:4px;}
+#bc .h-hl em{font-style:italic;font-weight:400;color:#BABDE2;}
+#bc .h-hl strong{font-style:normal;color:#FFFCF5;}
+#bc .h-sub{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,252,245,0.2);letter-spacing:0.12em;text-transform:uppercase;margin-top:24px;}
+#bc .board-page{background:#FFFCF5;}
+#bc .sec-label{color:#374375;}
+#bc .sec-label::before{background:#374375;}
+#bc .pillar{background:#FFFCF5;border-color:rgba(55,67,117,0.1);}
+#bc .pillar:nth-child(2){background:#F0F2FA;}
+#bc .pillar:nth-child(3){background:#374375;}
+#bc .pillar-tag{color:#374375;}
+#bc .pillar:nth-child(3) .pillar-tag{color:#BABDE2;}
+#bc .pillar-title{font-family:'Playfair Display',serif;color:#1A1714;}
+#bc .pillar:nth-child(3) .pillar-title{color:#FFFCF5;}
+#bc .pillar-desc{color:#6B7280;}
+#bc .pillar:nth-child(3) .pillar-desc{color:rgba(255,252,245,0.5);}
+#bc .ptag{border-color:rgba(55,67,117,0.15);color:#6B7280;}
+#bc .pillar:nth-child(3) .ptag{border-color:rgba(186,189,226,0.25);color:#BABDE2;}
+#bc .vcard{background:#FFFCF5;border-color:rgba(55,67,117,0.1);}
+#bc .vcard:last-child{background:#F0F2FA;}
+#bc .v-label{color:#374375;}
+#bc .vcard:last-child .v-label{color:#6B7280;}
+#bc .vlist li{color:#1A1714;}
+#bc .vlist li::before{content:'·';color:#BABDE2;font-size:16px;}
+#bc .vcard:last-child .vlist li::before{color:#374375;}
+#bc .dontdo{border:1px solid rgba(55,67,117,0.1);}
+#bc .dd{border-color:rgba(55,67,117,0.08);background:#FFFCF5;}
+#bc .dd:last-child{background:#F0F2FA;}
+#bc .dd-hd{color:#374375;}
+#bc .dd:last-child .dd-hd{color:#6B7280;}
+#bc .ddlist li{color:#1A1714;}
+#bc .ddlist li span.x{color:#895159;}
+#bc .ddlist li span.c{color:#374375;}
+#bc .vis-block{background:#374375;}
+#bc .vis-q{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;color:#FFFCF5;letter-spacing:-0.01em;}
+#bc .vis-q strong{font-weight:700;font-style:normal;color:#BABDE2;}
+#bc footer{background:#F0F2FA;}
+
+/* ═══ BOARD D — Eggplant Lavender ═══ */
+#bd{background:#F7F5FB;}
+#bd .board-hero{background:#2D2C38;}
+#bd .h-kick{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:rgba(237,232,245,0.28);margin-bottom:20px;}
+#bd .h-hl{font-family:'Libre Baskerville',serif;font-size:clamp(46px,6.5vw,78px);font-weight:400;font-style:italic;line-height:1.02;letter-spacing:-0.02em;color:#EDE8F5;margin-bottom:4px;}
+#bd .h-hl strong{font-weight:700;font-style:normal;color:#B2A6D9;}
+#bd .h-hl em{font-style:italic;color:rgba(237,232,245,0.45);}
+#bd .h-sub{font-family:'DM Mono',monospace;font-size:11px;color:rgba(237,232,245,0.2);letter-spacing:0.12em;text-transform:uppercase;margin-top:24px;}
+#bd .board-page{background:#F7F5FB;}
+#bd .sec-label{color:#7060A8;}
+#bd .sec-label::before{background:#7060A8;}
+#bd .pillar{background:#FFFFFF;border-color:rgba(45,44,56,0.08);}
+#bd .pillar:nth-child(2){background:#EDE8F5;}
+#bd .pillar:nth-child(3){background:#2D2C38;}
+#bd .pillar-tag{color:#7060A8;}
+#bd .pillar:nth-child(3) .pillar-tag{color:#B2A6D9;}
+#bd .pillar-title{font-family:'Libre Baskerville',serif;font-style:italic;font-weight:400;color:#1A1714;}
+#bd .pillar:nth-child(3) .pillar-title{color:#EDE8F5;}
+#bd .pillar-desc{color:#7A7268;}
+#bd .pillar:nth-child(3) .pillar-desc{color:rgba(237,232,245,0.4);}
+#bd .ptag{border-color:rgba(112,96,168,0.18);color:#7060A8;border-radius:20px;}
+#bd .pillar:nth-child(3) .ptag{border-color:rgba(178,166,217,0.2);color:#B2A6D9;border-radius:20px;}
+#bd .vcard{background:#FFF;border-color:rgba(45,44,56,0.08);}
+#bd .vcard:last-child{background:#EDE8F5;}
+#bd .v-label{color:#7060A8;}
+#bd .vcard:last-child .v-label{color:#9090AA;}
+#bd .vlist li{color:#1A1714;}
+#bd .vlist li::before{content:'·';color:#B2A6D9;font-size:16px;}
+#bd .vcard:last-child .vlist li::before{color:#7060A8;}
+#bd .dontdo{border:1px solid rgba(45,44,56,0.08);}
+#bd .dd{border-color:rgba(45,44,56,0.06);background:#FFF;}
+#bd .dd:last-child{background:#EDE8F5;}
+#bd .dd-hd{color:#7060A8;}
+#bd .dd:last-child .dd-hd{color:#9090AA;}
+#bd .ddlist li{color:#1A1714;}
+#bd .ddlist li span.x{color:#895159;}
+#bd .ddlist li span.c{color:#7060A8;}
+#bd .vis-block{background:#2D2C38;}
+#bd .vis-q{font-family:'Libre Baskerville',serif;font-style:italic;font-weight:400;color:#EDE8F5;letter-spacing:-0.01em;}
+#bd .vis-q strong{font-weight:700;font-style:normal;color:#B2A6D9;}
+#bd footer{background:#EDE8F5;}
+
+@media(max-width:768px){
+  .nav{padding:0 20px;}.selector,.board-page{padding-left:24px;padding-right:24px;}.board-hero{padding:48px 24px 40px;}.sel-grid{grid-template-columns:1fr 1fr;}.palette-row,.pillars,.voice-cols,.dontdo,.type-cols{grid-template-columns:1fr;}.vis-block{padding:40px 24px;}footer{padding:20px 24px;flex-direction:column;gap:8px;align-items:flex-start;}.nav-tabs{gap:1px;}.nav-tab{padding:8px 10px;font-size:8px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">J Curve by Avi <span>×</span> Janhavi Panwar</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="show('sel')">Choose</button>
+    <button class="nav-tab" onclick="show('a')">Option A</button>
+    <button class="nav-tab" onclick="show('b')">Option B</button>
+    <button class="nav-tab" onclick="show('c')">Option C</button>
+    <button class="nav-tab" onclick="show('d')">Option D</button>
+  </div>
+</nav>
+
+<!-- ── SELECTOR ─────────────────────────────────── -->
+<div id="page-sel" class="selector">
+  <div class="sel-kicker">Brand Vision Board v2</div>
+  <h1 class="sel-h1">Four directions.<br><em>One identity.</em></h1>
+  <p class="sel-deck">Built from your references. Each option is a complete system — palette, typography, content architecture. Pick the one that feels most like the brand you want to build.</p>
+  <div class="sel-grid">
+
+    <div class="sel-card" id="card-a" onclick="pick('a')">
+      <div class="chosen-badge">Selected ✓</div>
+      <div class="preview">
+        <div class="pa-hero">
+          <div class="pa-tag">Option A</div>
+          <div class="pa-h">Clean.<br><span>Simple.</span><br>Precise.</div>
+        </div>
+        <div class="pa-swatches">
+          <div style="flex:1;background:#111111;"></div>
+          <div style="flex:1;background:#444444;"></div>
+          <div style="flex:1;background:#888888;"></div>
+          <div style="flex:1;background:#CCCCCC;"></div>
+          <div style="flex:1;background:#F0F0F0;border-top:1px solid rgba(0,0,0,0.06);"></div>
+        </div>
+        <div class="pa-info">
+          <div class="pa-kw">SF Pro</div>
+          <div class="pa-kw" style="font-family:'DM Mono',monospace;font-size:9px;">DM Mono</div>
+        </div>
+      </div>
+      <div class="sel-card-footer">
+        <div class="sel-card-name">Monotone Evolved</div>
+        <div class="sel-card-sub">Black · White · Grey · Apple system UI</div>
+        <button class="sel-choose-btn">View full board →</button>
+      </div>
+    </div>
+
+    <div class="sel-card" id="card-b" onclick="pick('b')">
+      <div class="chosen-badge">Selected ✓</div>
+      <div class="preview">
+        <div class="pb-hero">
+          <div class="pb-tag">Option B</div>
+          <div class="pb-h">Quiet.<br><em>Authority.</em></div>
+        </div>
+        <div class="pb-swatches">
+          <div style="flex:1;background:#1C1C1C;"></div>
+          <div style="flex:1;background:#535366;"></div>
+          <div style="flex:1;background:#EAE6E0;"></div>
+          <div style="flex:1;background:#FFFFFF;border-top:1px solid rgba(0,0,0,0.06);"></div>
+          <div style="flex:1;background:#3A3530;"></div>
+        </div>
+        <div class="pb-info">
+          <div class="pb-kw">Cormorant</div>
+          <div class="pb-kw" style="font-family:'DM Mono',monospace;font-size:9px;">DM Mono</div>
+        </div>
+      </div>
+      <div class="sel-card-footer">
+        <div class="sel-card-name">Charcoal & Slate</div>
+        <div class="sel-card-sub">Charcoal · Canvas · Slate · Serif</div>
+        <button class="sel-choose-btn">View full board →</button>
+      </div>
+    </div>
+
+    <div class="sel-card" id="card-c" onclick="pick('c')">
+      <div class="chosen-badge">Selected ✓</div>
+      <div class="preview">
+        <div class="pc-hero">
+          <div class="pc-tag">Option C</div>
+          <div class="pc-h">Speak with<br><em>confidence.</em></div>
+        </div>
+        <div class="pc-swatches">
+          <div style="flex:1;background:#374375;"></div>
+          <div style="flex:1;background:#BABDE2;"></div>
+          <div style="flex:1;background:#895159;"></div>
+          <div style="flex:1;background:#DFAEA1;"></div>
+          <div style="flex:1;background:#FFFCF5;border-top:1px solid rgba(0,0,0,0.06);"></div>
+        </div>
+        <div class="pc-info">
+          <div class="pc-kw">Playfair</div>
+          <div class="pc-kw" style="font-family:'DM Mono',monospace;font-size:9px;">DM Mono</div>
+        </div>
+      </div>
+      <div class="sel-card-footer">
+        <div class="sel-card-name">Navy & Periwinkle</div>
+        <div class="sel-card-sub">Navy · Periwinkle · Maroon · Playfair</div>
+        <button class="sel-choose-btn">View full board →</button>
+      </div>
+    </div>
+
+    <div class="sel-card" id="card-d" onclick="pick('d')">
+      <div class="chosen-badge">Selected ✓</div>
+      <div class="preview">
+        <div class="pd-hero">
+          <div class="pd-tag">Option D</div>
+          <div class="pd-h"><strong>Wonder</strong><br>Girl,<br>elevated.</div>
+        </div>
+        <div class="pd-swatches">
+          <div style="flex:1;background:#2D2C38;"></div>
+          <div style="flex:1;background:#B2A6D9;"></div>
+          <div style="flex:1;background:#EDE8F5;"></div>
+          <div style="flex:1;background:#708C82;"></div>
+          <div style="flex:1;background:#F5C2C2;"></div>
+        </div>
+        <div class="pd-info">
+          <div class="pd-kw">Baskerville</div>
+          <div class="pd-kw">DM Sans</div>
+        </div>
+      </div>
+      <div class="sel-card-footer">
+        <div class="sel-card-name">Eggplant & Lavender</div>
+        <div class="sel-card-sub">Eggplant · Violet · Lavender · Sprout</div>
+        <button class="sel-choose-btn">View full board →</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BOARD A — MONOTONE EVOLVED
+══════════════════════════════════ -->
+<div id="board-a" class="board" style="background:#F5F5F5;">
+  <div id="ba">
+  <div class="board-hero">
+    <div class="h-kick">Option A — Monotone Evolved</div>
+    <div class="h-hl">Speak.<br>Teach.<br><em>Lead.</em></div>
+    <div class="h-sub">Accent · Motivation · English · Wonder Girl of India</div>
+  </div>
+  <div class="board-page">
+
+    <div class="sec-label">01 — Colour Palette</div>
+    <div class="palette-row" style="border:1px solid rgba(0,0,0,0.1);overflow:hidden;">
+      <div class="sw" style="background:#111111;">
+        <div class="sw-name" style="color:rgba(255,255,255,0.5);">Black</div>
+        <div class="sw-hex" style="color:rgba(255,255,255,0.3);">#111111</div>
+        <div class="sw-role" style="color:rgba(255,255,255,0.3);">Primary canvas</div>
+      </div>
+      <div class="sw" style="background:#444444;">
+        <div class="sw-name" style="color:rgba(255,255,255,0.55);">Dark Grey</div>
+        <div class="sw-hex" style="color:rgba(255,255,255,0.3);">#444444</div>
+        <div class="sw-role" style="color:rgba(255,255,255,0.3);">Secondary</div>
+      </div>
+      <div class="sw" style="background:#888888;">
+        <div class="sw-name" style="color:#FFFFFF;">Mid Grey</div>
+        <div class="sw-hex" style="color:rgba(255,255,255,0.55);">#888888</div>
+        <div class="sw-role" style="color:rgba(255,255,255,0.45);">Muted type</div>
+      </div>
+      <div class="sw" style="background:#CCCCCC;border:1px solid rgba(0,0,0,0.06);">
+        <div class="sw-name" style="color:#333;">Light Grey</div>
+        <div class="sw-hex" style="color:#555;">#CCCCCC</div>
+        <div class="sw-role" style="color:#666;">Surfaces</div>
+      </div>
+      <div class="sw" style="background:#F0F0F0;border:1px solid rgba(0,0,0,0.06);">
+        <div class="sw-name" style="color:#333;">Off White</div>
+        <div class="sw-hex" style="color:#555;">#F0F0F0</div>
+        <div class="sw-role" style="color:#666;">Page background</div>
+      </div>
+    </div>
+
+    <div class="sec-label">02 — Typography</div>
+    <div class="type-cols">
+      <div class="type-box" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.1);">
+        <div class="type-label" style="color:#888;">Display — SF Pro / System UI</div>
+        <div style="font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;font-size:50px;font-weight:700;line-height:0.97;color:#111;letter-spacing:-0.04em;margin-bottom:4px;">Speak<br><span style="color:#888;">clearly.</span></div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:#BBBBBB;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">Semibold 600 · Regular 400</div>
+        <div class="type-scale" style="border-top-color:rgba(0,0,0,0.08);">
+          <div class="type-row"><span class="type-tag" style="color:#BBB;">H1</span><span style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:23px;font-weight:700;color:#111;letter-spacing:-0.025em;">Janhavi Panwar</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#BBB;">H2</span><span style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;font-weight:600;color:#444;letter-spacing:-0.01em;">English with Confidence</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#BBB;">Body</span><span style="font-family:'DM Sans',sans-serif;font-size:13px;color:#555;">DM Sans — readable, friendly</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#BBB;">Label</span><span style="font-family:'DM Mono',monospace;font-size:10px;color:#888;letter-spacing:0.12em;text-transform:uppercase;">Episode 01</span></div>
+        </div>
+      </div>
+      <div class="type-box" style="background:#111111;">
+        <div class="type-label" style="color:rgba(255,255,255,0.25);">Dark variant</div>
+        <div style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:50px;font-weight:700;line-height:0.97;color:#FFF;letter-spacing:-0.04em;margin-bottom:4px;">Wonder<br><span style="color:rgba(255,255,255,0.18);">Girl.</span></div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.15);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">On black backgrounds</div>
+        <div class="type-scale">
+          <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,255,255,0.4);line-height:1.65;">Face and message are the brand. No colour competes. Same system as Apple — the content does all the work.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-label">03 — Content Pillars</div>
+    <div class="pillars" style="border:1px solid rgba(0,0,0,0.08);">
+      <div class="pillar"><div class="pillar-num">01</div><div class="pillar-tag">Pillar One</div><div class="pillar-title">Accent & Language</div><div class="pillar-desc">The technical core that built 2.43M subscribers. Pronunciation, accent training, spoken fluency — delivered with precision.</div><div class="pillar-tags"><span class="ptag">Accent drills</span><span class="ptag">Pronunciation</span><span class="ptag">Before/after</span></div></div>
+      <div class="pillar"><div class="pillar-num">02</div><div class="pillar-tag">Pillar Two</div><div class="pillar-title">Motivation & Confidence</div><div class="pillar-desc">The emotional layer. Personal story, mindset, confidence. Direct and clean — no drama, no noise.</div><div class="pillar-tags"><span class="ptag">Personal story</span><span class="ptag">Line of the day</span><span class="ptag">Wonder Girl</span></div></div>
+      <div class="pillar"><div class="pillar-num">03</div><div class="pillar-tag">Pillar Three</div><div class="pillar-title">English in Real Life</div><div class="pillar-desc">IELTS, interviews, daily professional English. Stripped to what matters — no filler.</div><div class="pillar-tags"><span class="ptag">IELTS</span><span class="ptag">Interviews</span><span class="ptag">Daily vocab</span></div></div>
+    </div>
+
+    <div class="sec-label">04 — Do's & Don'ts</div>
+    <div class="dontdo">
+      <div class="dd"><div class="dd-hd">Never</div><ul class="ddlist"><li><span class="x">✕</span>Any colour — the palette is strict monotone</li><li><span class="x">✕</span>Warm or coloured backgrounds of any kind</li><li><span class="x">✕</span>Decorative elements that don't carry meaning</li><li><span class="x">✕</span>Inconsistent grey shades across posts</li></ul></div>
+      <div class="dd"><div class="dd-hd">Always</div><ul class="ddlist"><li><span class="c">✓</span>Black, white, grey — the only three tones</li><li><span class="c">✓</span>SF Pro / system UI for all display text</li><li><span class="c">✓</span>Maximum contrast — black on white, white on black</li><li><span class="c">✓</span>Face is always the hero — nothing competes</li></ul></div>
+    </div>
+  </div>
+
+  <div class="vis-block">
+    <div class="vis-q">"Janhavi Panwar needs <em>no colour</em> to be remembered. The face, the words, and the <strong>confidence behind them</strong> — that's the entire brand."</div>
+    <div class="vis-attr">Brand Position · Option A · J Curve by Avi</div>
+  </div>
+  <footer style="background:#EEEEEE;"><div class="ft-brand">J Curve by Avi</div><div class="ft-meta">Brand Vision · Option A — Monotone Evolved<br>Confidential · June 2026</div></footer>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BOARD B — CHARCOAL CANVAS SLATE
+══════════════════════════════════ -->
+<div id="board-b" class="board" style="background:#EAE6E0;">
+  <div id="bb">
+  <div class="board-hero">
+    <div class="h-kick">Option B — Charcoal & Slate</div>
+    <div class="h-hl">Quiet.<br><em>Authority.</em><br><strong>Janhavi.</strong></div>
+    <div class="h-sub">Accent · Motivation · English · Wonder Girl of India</div>
+  </div>
+  <div class="board-page">
+
+    <div class="sec-label">01 — Colour Palette</div>
+    <div class="palette-row" style="border:1px solid rgba(28,28,28,0.12);overflow:hidden;">
+      <div class="sw" style="background:#1C1C1C;">
+        <div class="sw-name" style="color:rgba(234,230,224,0.55);">Charcoal</div>
+        <div class="sw-hex" style="color:rgba(234,230,224,0.3);">#1C1C1C</div>
+        <div class="sw-role" style="color:rgba(234,230,224,0.3);">Primary dark</div>
+      </div>
+      <div class="sw" style="background:#535366;">
+        <div class="sw-name" style="color:rgba(234,230,224,0.7);">Slate</div>
+        <div class="sw-hex" style="color:rgba(234,230,224,0.4);">#535366</div>
+        <div class="sw-role" style="color:rgba(234,230,224,0.35);">Accent · depth</div>
+      </div>
+      <div class="sw" style="background:#EAE6E0;border:1px solid rgba(28,28,28,0.08);">
+        <div class="sw-name" style="color:#3A3530;">Canvas</div>
+        <div class="sw-hex" style="color:#7A7268;">#EAE6E0</div>
+        <div class="sw-role" style="color:#888;">Background</div>
+      </div>
+      <div class="sw" style="background:#FFFFFF;border:1px solid rgba(28,28,28,0.06);">
+        <div class="sw-name" style="color:#3A3530;">White</div>
+        <div class="sw-hex" style="color:#888;">#FFFFFF</div>
+        <div class="sw-role" style="color:#AAA;">Card surfaces</div>
+      </div>
+      <div class="sw" style="background:#3A3530;">
+        <div class="sw-name" style="color:rgba(234,230,224,0.55);">Warm Ink</div>
+        <div class="sw-hex" style="color:rgba(234,230,224,0.3);">#3A3530</div>
+        <div class="sw-role" style="color:rgba(234,230,224,0.3);">Body text</div>
+      </div>
+    </div>
+
+    <div class="sec-label">02 — Typography</div>
+    <div class="type-cols">
+      <div class="type-box" style="background:#F2EEE8;border:1px solid rgba(28,28,28,0.1);">
+        <div class="type-label" style="color:#535366;">Display — Cormorant Garamond</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;font-style:italic;line-height:1.05;color:#1C1C1C;margin-bottom:4px;">Speak with<br>authority.</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:#B5AFA6;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">Light italic 300 · Bold 600</div>
+        <div class="type-scale" style="border-top-color:rgba(28,28,28,0.1);">
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">H1</span><span style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;color:#1C1C1C;">Janhavi Panwar</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">H2</span><span style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:#535366;">English with Confidence</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">Body</span><span style="font-family:'DM Sans',sans-serif;font-size:13px;color:#3A3530;">DM Sans — warm, approachable</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">Label</span><span style="font-family:'DM Mono',monospace;font-size:10px;color:#535366;letter-spacing:0.12em;text-transform:uppercase;">Episode 01</span></div>
+        </div>
+      </div>
+      <div class="type-box" style="background:#1C1C1C;">
+        <div class="type-label" style="color:rgba(234,230,224,0.25);">Dark variant</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;font-style:italic;line-height:1.05;color:#EAE6E0;margin-bottom:4px;">Wonder<br>Girl.</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(234,230,224,0.2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">On charcoal backgrounds</div>
+        <div class="type-scale">
+          <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(234,230,224,0.4);line-height:1.65;">Quiet, editorial, authoritative. Charcoal with slate — sophisticated without trying. The typography does the heavy lifting.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-label">03 — Content Pillars</div>
+    <div class="pillars" style="border:1px solid rgba(28,28,28,0.1);">
+      <div class="pillar"><div class="pillar-num">01</div><div class="pillar-tag">Pillar One</div><div class="pillar-title">Accent & Language</div><div class="pillar-desc">The technical core. Pronunciation, accent training, spoken fluency. Delivered with the restraint of real expertise.</div><div class="pillar-tags"><span class="ptag">Accent drills</span><span class="ptag">Pronunciation</span><span class="ptag">Before/after</span></div></div>
+      <div class="pillar"><div class="pillar-num">02</div><div class="pillar-tag">Pillar Two</div><div class="pillar-title">Motivation & Confidence</div><div class="pillar-desc">The emotional layer. Stories told with editorial restraint — not loud, but felt.</div><div class="pillar-tags"><span class="ptag">Personal story</span><span class="ptag">Line of the day</span><span class="ptag">Wonder Girl</span></div></div>
+      <div class="pillar"><div class="pillar-num">03</div><div class="pillar-tag">Pillar Three</div><div class="pillar-title">English in Real Life</div><div class="pillar-desc">Practical English — IELTS, interviews, professional conversations. No filler, no fluff.</div><div class="pillar-tags"><span class="ptag">IELTS</span><span class="ptag">Interviews</span><span class="ptag">Daily vocab</span></div></div>
+    </div>
+
+    <div class="sec-label">04 — Do's & Don'ts</div>
+    <div class="dontdo">
+      <div class="dd"><div class="dd-hd">Never</div><ul class="ddlist"><li><span class="x">✕</span>Bright or warm colours — wrong temperature entirely</li><li><span class="x">✕</span>Heavy, loud headlines — this palette speaks quietly</li><li><span class="x">✕</span>Inconsistent texture across the canvas background</li><li><span class="x">✕</span>Mixing the serif with any other display font</li></ul></div>
+      <div class="dd"><div class="dd-hd">Always</div><ul class="ddlist"><li><span class="c">✓</span>Charcoal + canvas + slate — the three-tone system only</li><li><span class="c">✓</span>Cormorant italic for all display headlines</li><li><span class="c">✓</span>Generous whitespace — silence is part of the design</li><li><span class="c">✓</span>Same restrained palette across YouTube and Instagram</li></ul></div>
+    </div>
+  </div>
+
+  <div class="vis-block">
+    <div class="vis-q">"Janhavi Panwar doesn't need to be loud to be heard. <strong>Charcoal and canvas</strong> — the palette of someone who has already earned the room."</div>
+    <div class="vis-attr">Brand Position · Option B · J Curve by Avi</div>
+  </div>
+  <footer style="background:#E2DDD5;"><div class="ft-brand">J Curve by Avi</div><div class="ft-meta">Brand Vision · Option B — Charcoal & Slate<br>Confidential · June 2026</div></footer>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BOARD C — NAVY PERIWINKLE
+══════════════════════════════════ -->
+<div id="board-c" class="board" style="background:#FFFCF5;">
+  <div id="bc">
+  <div class="board-hero">
+    <div class="h-kick">Option C — Navy & Periwinkle</div>
+    <div class="h-hl">Speak with<br><em>confidence.</em><br><strong>Always.</strong></div>
+    <div class="h-sub">Accent · Motivation · English · Wonder Girl of India</div>
+  </div>
+  <div class="board-page">
+
+    <div class="sec-label">01 — Colour Palette</div>
+    <div class="palette-row" style="border:1px solid rgba(55,67,117,0.15);overflow:hidden;">
+      <div class="sw" style="background:#374375;">
+        <div class="sw-name" style="color:rgba(255,252,245,0.65);">Navy</div>
+        <div class="sw-hex" style="color:rgba(255,252,245,0.35);">#374375</div>
+        <div class="sw-role" style="color:rgba(255,252,245,0.3);">Primary authority</div>
+      </div>
+      <div class="sw" style="background:#BABDE2;">
+        <div class="sw-name" style="color:#374375;">Periwinkle</div>
+        <div class="sw-hex" style="color:rgba(55,67,117,0.6);">#BABDE2</div>
+        <div class="sw-role" style="color:rgba(55,67,117,0.5);">Soft accent</div>
+      </div>
+      <div class="sw" style="background:#895159;">
+        <div class="sw-name" style="color:rgba(255,252,245,0.75);">Maroon</div>
+        <div class="sw-hex" style="color:rgba(255,252,245,0.4);">#895159</div>
+        <div class="sw-role" style="color:rgba(255,252,245,0.35);">Warm CTA</div>
+      </div>
+      <div class="sw" style="background:#DFAEA1;border:1px solid rgba(137,81,89,0.12);">
+        <div class="sw-name" style="color:#5A2D33;">Peach</div>
+        <div class="sw-hex" style="color:rgba(90,45,51,0.55);">#DFAEA1</div>
+        <div class="sw-role" style="color:rgba(90,45,51,0.45);">Highlight</div>
+      </div>
+      <div class="sw" style="background:#FFFCF5;border:1px solid rgba(55,67,117,0.08);">
+        <div class="sw-name" style="color:#374375;">Cloud</div>
+        <div class="sw-hex" style="color:rgba(55,67,117,0.5);">#FFFCF5</div>
+        <div class="sw-role" style="color:rgba(55,67,117,0.4);">Page background</div>
+      </div>
+    </div>
+
+    <div class="sec-label">02 — Typography</div>
+    <div class="type-cols">
+      <div class="type-box" style="background:#FFFCF5;border:1px solid rgba(55,67,117,0.1);">
+        <div class="type-label" style="color:#374375;">Display — Playfair Display</div>
+        <div style="font-family:'Playfair Display',serif;font-size:50px;font-weight:700;line-height:1.0;color:#374375;letter-spacing:-0.02em;margin-bottom:4px;">Speak<br><em style="font-weight:400;color:#BABDE2;">fluently.</em></div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:#B5AFA6;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">Bold 700 · Italic 400</div>
+        <div class="type-scale" style="border-top-color:rgba(55,67,117,0.1);">
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">H1</span><span style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#374375;letter-spacing:-0.02em;">Janhavi Panwar</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">H2</span><span style="font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:#895159;">English with Confidence</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">Body</span><span style="font-family:'DM Sans',sans-serif;font-size:13px;color:#374375;">DM Sans — clear and warm</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">Label</span><span style="font-family:'DM Mono',monospace;font-size:10px;color:#374375;letter-spacing:0.14em;text-transform:uppercase;border:1px solid rgba(55,67,117,0.2);padding:2px 7px;">Episode 01</span></div>
+        </div>
+      </div>
+      <div class="type-box" style="background:#374375;">
+        <div class="type-label" style="color:rgba(255,252,245,0.3);">Dark variant</div>
+        <div style="font-family:'Playfair Display',serif;font-size:50px;font-weight:700;line-height:1.0;color:#FFFCF5;letter-spacing:-0.02em;margin-bottom:4px;">Wonder<br><em style="font-weight:400;color:#BABDE2;">Girl.</em></div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,252,245,0.2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">On navy backgrounds</div>
+        <div class="type-scale">
+          <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(255,252,245,0.45);line-height:1.65;">Navy and periwinkle — the palette of someone intelligent, trustworthy, and quietly confident. Inspired by your own reference palette.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-label">03 — Content Pillars</div>
+    <div class="pillars" style="border:1px solid rgba(55,67,117,0.1);">
+      <div class="pillar"><div class="pillar-num">01</div><div class="pillar-tag">Pillar One</div><div class="pillar-title">Accent & Language</div><div class="pillar-desc">The technical core. Pronunciation, accent training, spoken English fluency. The expertise that earned the audience.</div><div class="pillar-tags"><span class="ptag">Accent drills</span><span class="ptag">Pronunciation</span><span class="ptag">Before/after</span></div></div>
+      <div class="pillar"><div class="pillar-num">02</div><div class="pillar-tag">Pillar Two</div><div class="pillar-title">Motivation & Confidence</div><div class="pillar-desc">The emotional layer. Stories, mindset, confidence — the reason people don't just watch but come back.</div><div class="pillar-tags"><span class="ptag">Personal story</span><span class="ptag">Line of the day</span><span class="ptag">Wonder Girl</span></div></div>
+      <div class="pillar"><div class="pillar-num">03</div><div class="pillar-tag">Pillar Three</div><div class="pillar-title">English in Real Life</div><div class="pillar-desc">IELTS, job interviews, professional English. Practical, approachable, immediately useful.</div><div class="pillar-tags"><span class="ptag">IELTS</span><span class="ptag">Interviews</span><span class="ptag">Daily vocab</span></div></div>
+    </div>
+
+    <div class="sec-label">04 — Do's & Don'ts</div>
+    <div class="dontdo">
+      <div class="dd"><div class="dd-hd">Never</div><ul class="ddlist"><li><span class="x">✕</span>Warm beige or earthy tones — too casual for this palette</li><li><span class="x">✕</span>Bright or neon colours — wrong temperature</li><li><span class="x">✕</span>Sans-serif for headlines — Playfair is the system</li><li><span class="x">✕</span>Mixing navy with green or orange accents</li></ul></div>
+      <div class="dd"><div class="dd-hd">Always</div><ul class="ddlist"><li><span class="c">✓</span>Navy + periwinkle — the two-tone system</li><li><span class="c">✓</span>Playfair Display bold for all headlines</li><li><span class="c">✓</span>Maroon as the one warm accent — CTA only</li><li><span class="c">✓</span>Cloud (#FFFCF5) as background — never stark white</li></ul></div>
+    </div>
+  </div>
+
+  <div class="vis-block">
+    <div class="vis-q">"Janhavi Panwar is the English educator students <strong>trust with their future</strong> — and the voice that made <em>confidence feel possible</em> for a generation."</div>
+    <div class="vis-attr">Brand Position · Option C · J Curve by Avi</div>
+  </div>
+  <footer style="background:#F0F2FA;"><div class="ft-brand">J Curve by Avi</div><div class="ft-meta">Brand Vision · Option C — Navy & Periwinkle<br>Confidential · June 2026</div></footer>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     BOARD D — EGGPLANT LAVENDER
+══════════════════════════════════ -->
+<div id="board-d" class="board" style="background:#F7F5FB;">
+  <div id="bd">
+  <div class="board-hero">
+    <div class="h-kick">Option D — Eggplant & Lavender</div>
+    <div class="h-hl"><strong>Wonder</strong><br>Girl,<br><em>elevated.</em></div>
+    <div class="h-sub">Accent · Motivation · English · Wonder Girl of India</div>
+  </div>
+  <div class="board-page">
+
+    <div class="sec-label">01 — Colour Palette</div>
+    <div class="palette-row" style="border:1px solid rgba(45,44,56,0.12);overflow:hidden;">
+      <div class="sw" style="background:#2D2C38;">
+        <div class="sw-name" style="color:rgba(237,232,245,0.6);">Eggplant</div>
+        <div class="sw-hex" style="color:rgba(237,232,245,0.3);">#2D2C38</div>
+        <div class="sw-role" style="color:rgba(237,232,245,0.3);">Primary dark</div>
+      </div>
+      <div class="sw" style="background:#B2A6D9;">
+        <div class="sw-name" style="color:#1A1730;">Violet</div>
+        <div class="sw-hex" style="color:rgba(26,23,48,0.6);">#B2A6D9</div>
+        <div class="sw-role" style="color:rgba(26,23,48,0.45);">Main accent</div>
+      </div>
+      <div class="sw" style="background:#EDE8F5;border:1px solid rgba(45,44,56,0.08);">
+        <div class="sw-name" style="color:#2D2C38;">Lavender</div>
+        <div class="sw-hex" style="color:rgba(45,44,56,0.55);">#EDE8F5</div>
+        <div class="sw-role" style="color:rgba(45,44,56,0.4);">Background</div>
+      </div>
+      <div class="sw" style="background:#708C82;">
+        <div class="sw-name" style="color:rgba(237,232,245,0.8);">Sprout</div>
+        <div class="sw-hex" style="color:rgba(237,232,245,0.45);">#708C82</div>
+        <div class="sw-role" style="color:rgba(237,232,245,0.35);">Calm accent</div>
+      </div>
+      <div class="sw" style="background:#F5C2C2;border:1px solid rgba(45,44,56,0.06);">
+        <div class="sw-name" style="color:#5A2D2D;">Pink</div>
+        <div class="sw-hex" style="color:rgba(90,45,45,0.55);">#F5C2C2</div>
+        <div class="sw-role" style="color:rgba(90,45,45,0.4);">Warmth</div>
+      </div>
+    </div>
+
+    <div class="sec-label">02 — Typography</div>
+    <div class="type-cols">
+      <div class="type-box" style="background:#FFFFFF;border:1px solid rgba(45,44,56,0.1);">
+        <div class="type-label" style="color:#7060A8;">Display — Libre Baskerville</div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:48px;font-weight:400;font-style:italic;line-height:1.05;color:#2D2C38;margin-bottom:4px;">Speak with<br><em style="color:#B2A6D9;">grace.</em></div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:#B5AFA6;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">Italic 400 · Bold 700</div>
+        <div class="type-scale" style="border-top-color:rgba(45,44,56,0.08);">
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">H1</span><span style="font-family:'Libre Baskerville',serif;font-size:23px;font-style:italic;font-weight:400;color:#2D2C38;">Janhavi Panwar</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">H2</span><span style="font-family:'Libre Baskerville',serif;font-size:16px;font-weight:700;color:#7060A8;">English with Confidence</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">Body</span><span style="font-family:'DM Sans',sans-serif;font-size:13px;color:#2D2C38;">DM Sans — soft, warm</span></div>
+          <div class="type-row"><span class="type-tag" style="color:#B5AFA6;">Label</span><span style="font-family:'DM Sans',sans-serif;font-size:10px;color:#7060A8;font-weight:500;padding:3px 10px;border-radius:20px;border:1px solid rgba(112,96,168,0.25);">Episode 01</span></div>
+        </div>
+      </div>
+      <div class="type-box" style="background:#2D2C38;">
+        <div class="type-label" style="color:rgba(237,232,245,0.25);">Dark variant</div>
+        <div style="font-family:'Libre Baskerville',serif;font-size:48px;font-weight:400;font-style:italic;line-height:1.05;color:#EDE8F5;margin-bottom:4px;">Wonder<br><em style="color:#B2A6D9;">Girl.</em></div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(237,232,245,0.2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">On eggplant backgrounds</div>
+        <div class="type-scale">
+          <div style="font-family:'DM Sans',sans-serif;font-size:13px;color:rgba(237,232,245,0.4);line-height:1.65;">Eggplant and lavender — the palette of someone intelligent, feminine, and deeply sophisticated. Inspired by your own references.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-label">03 — Content Pillars</div>
+    <div class="pillars" style="border:1px solid rgba(45,44,56,0.08);">
+      <div class="pillar"><div class="pillar-num">01</div><div class="pillar-tag">Pillar One</div><div class="pillar-title">Accent & Language</div><div class="pillar-desc">The technical core. Pronunciation, accent training, spoken fluency — delivered with elegance and depth.</div><div class="pillar-tags"><span class="ptag">Accent drills</span><span class="ptag">Pronunciation</span><span class="ptag">Before/after</span></div></div>
+      <div class="pillar"><div class="pillar-num">02</div><div class="pillar-tag">Pillar Two</div><div class="pillar-title">Motivation & Confidence</div><div class="pillar-desc">The emotional layer. Wonder Girl's journey — told with grace, intention, and the wisdom of someone who's lived it.</div><div class="pillar-tags"><span class="ptag">Personal story</span><span class="ptag">Line of the day</span><span class="ptag">Wonder Girl</span></div></div>
+      <div class="pillar"><div class="pillar-num">03</div><div class="pillar-tag">Pillar Three</div><div class="pillar-title">English in Real Life</div><div class="pillar-desc">IELTS, professional English, interviews. Practical, warm, and approachable — never cold or clinical.</div><div class="pillar-tags"><span class="ptag">IELTS</span><span class="ptag">Interviews</span><span class="ptag">Daily vocab</span></div></div>
+    </div>
+
+    <div class="sec-label">04 — Do's & Don'ts</div>
+    <div class="dontdo">
+      <div class="dd"><div class="dd-hd">Never</div><ul class="ddlist"><li><span class="x">✕</span>Bright or neon tones — breaks the palette entirely</li><li><span class="x">✕</span>Sans-serif for display — Baskerville is non-negotiable</li><li><span class="x">✕</span>Heavy geometric shapes — this identity is organic</li><li><span class="x">✕</span>Mixing violet with warm yellows or oranges</li></ul></div>
+      <div class="dd"><div class="dd-hd">Always</div><ul class="ddlist"><li><span class="c">✓</span>Eggplant + lavender — the core two-tone system</li><li><span class="c">✓</span>Libre Baskerville italic for all display headlines</li><li><span class="c">✓</span>Pill-shaped tags with rounded borders throughout</li><li><span class="c">✓</span>Sprout and pink as secondary warmth accents only</li></ul></div>
+    </div>
+  </div>
+
+  <div class="vis-block">
+    <div class="vis-q">"Janhavi Panwar grew up teaching India to speak. <em>Now</em> she's built a brand that shows the world exactly <strong>who she's become</strong>."</div>
+    <div class="vis-attr">Brand Position · Option D · J Curve by Avi</div>
+  </div>
+  <footer style="background:#EDE8F5;"><div class="ft-brand">J Curve by Avi</div><div class="ft-meta">Brand Vision · Option D — Eggplant & Lavender<br>Confidential · June 2026</div></footer>
+  </div>
+</div>
+
+<script>
+let cur = null;
+function show(id){
+  document.getElementById('page-sel').style.display = id==='sel'?'block':'none';
+  ['a','b','c','d'].forEach(b=>{document.getElementById('board-'+b).classList.remove('active');});
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  if(id==='sel'){document.querySelectorAll('.nav-tab')[0].classList.add('active');}
+  else{
+    document.getElementById('board-'+id).classList.add('active');
+    const i={a:1,b:2,c:3,d:4}[id];
+    document.querySelectorAll('.nav-tab')[i].classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+}
+function pick(id){
+  if(cur) document.getElementById('card-'+cur).classList.remove('chosen');
+  cur=id;
+  document.getElementById('card-'+id).classList.add('chosen');
+  setTimeout(()=>show(id),240);
+}
+document.getElementById('page-sel').style.display='block';
+</script>
+</body>
+</html>
