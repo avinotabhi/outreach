@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J Curve × Suprava — Pricing Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:         #0D0D0D;
+    --paper:       #F6F2EA;
+    --paper-dark:  #EDE8DC;
+    --paper-mid:   #F0EBE0;
+    --rule:        rgba(13,13,13,0.12);
+    --rule-strong: rgba(13,13,13,0.30);
+    --accent:      #B8341B;
+    --accent-soft: rgba(184,52,27,0.07);
+    --gold:        #A07828;
+    --gold-soft:   rgba(160,120,40,0.10);
+    --muted:       #7A7268;
+    --white:       #FFFFFF;
+    --green:       #2A6B3C;
+    --green-soft:  rgba(42,107,60,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: var(--ink);
+    padding: 16px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--accent);
+  }
+  .masthead-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--paper);
+    letter-spacing: -0.01em;
+  }
+  .masthead-brand span { color: var(--accent); }
+  .masthead-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: rgba(246,242,234,0.4);
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    padding: 72px 64px 60px;
+    border-bottom: 2px solid var(--ink);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .cover-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .cover-kicker::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule-strong);
+    max-width: 160px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 76px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .cover h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .cover-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 20px;
+    font-weight: 300;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+  .cover-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    padding: 48px 0 0;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 12px;
+    margin-bottom: 32px;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+
+  /* ── PRICING CARD ── */
+  .pricing-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--ink);
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .pricing-card.accent-card {
+    background: var(--ink);
+    border-left: 4px solid var(--accent);
+  }
+  .pricing-card.gold-card {
+    border-left: 4px solid var(--gold);
+    background: var(--gold-soft);
+  }
+  .card-left {}
+  .card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .accent-card .card-label { color: rgba(246,242,234,0.45); }
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .accent-card .card-name { color: var(--paper); }
+  .card-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    font-weight: 300;
+  }
+  .accent-card .card-desc { color: rgba(246,242,234,0.55); }
+  .card-price {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .accent-card .price-amount { color: var(--paper); }
+  .gold-card .price-amount { color: var(--gold); }
+  .price-unit {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .accent-card .price-unit { color: rgba(246,242,234,0.4); }
+
+  /* ── TABLE ── */
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+  }
+  .pricing-table thead tr {
+    background: var(--ink);
+  }
+  .pricing-table thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(246,242,234,0.55);
+    padding: 12px 20px;
+    text-align: left;
+    font-weight: 400;
+  }
+  .pricing-table thead th:last-child { text-align: right; }
+  .pricing-table tbody tr {
+    border-bottom: 1px solid var(--rule);
+    background: var(--white);
+  }
+  .pricing-table tbody tr:last-child { border-bottom: none; }
+  .pricing-table tbody td {
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .pricing-table tbody td:last-child {
+    text-align: right;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .pricing-table tbody td .td-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ── TERMS SECTION ── */
+  .terms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .term-item {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 20px 24px;
+  }
+  .term-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .term-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .term-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--ink);
+    border-top: 3px solid var(--accent);
+    padding: 32px 64px;
+    margin-top: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--paper);
+  }
+  .footer-brand span { color: var(--accent); }
+  .footer-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: rgba(246,242,234,0.35);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--rule);
+    margin: 40px 0;
+  }
+
+  .note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    padding: 16px 20px;
+    background: var(--paper-dark);
+    border-left: 3px solid var(--rule-strong);
+    margin-top: 12px;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+
+  @media print {
+    .masthead, .footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pricing-card, .pricing-table thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-brand">J Curve <span>by Avi</span></div>
+  <div class="masthead-meta">
+    Content Services Proposal<br>
+    Prepared for Suprava Sabat · June 2026
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-kicker">Pricing Proposal</div>
+  <h1>J Curve<br><em>× Suprava</em></h1>
+  <p class="cover-sub">A full breakdown of services, packages, and terms — built around your content needs across Instagram and YouTube.</p>
+  <div class="cover-date">June 2026 &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; jcurvebyavi.com</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- SECTION 01: INSTAGRAM REELS -->
+  <div class="section-header">
+    <span class="section-num">01 —</span>
+    <span class="section-title">Instagram Reels · Main Channel</span>
+  </div>
+
+  <div class="pricing-card accent-card">
+    <div class="card-left">
+      <div class="card-label">Monthly Retainer · Confirmed</div>
+      <div class="card-name">22 Reels / Month</div>
+      <div class="card-desc">Dedicated editor · all formats including brand collabs · reviewed before delivery</div>
+    </div>
+    <div class="card-price">
+      <div class="price-amount">₹65,000</div>
+      <div class="price-unit">Per Month</div>
+    </div>
+  </div>
+
+  <div class="note">± 2 videos flexibility included. Volume stays 20–24, price stays fixed.</div>
+
+  <!-- SECTION 02: YOUTUBE EDITING -->
+  <div class="section-header">
+    <span class="section-num">02 —</span>
+    <span class="section-title">YouTube Editing · Brand Client Work</span>
+  </div>
+
+  <table class="pricing-table">
+    <thead>
+      <tr>
+        <th>Video Length</th>
+        <th>Format</th>
+        <th>Price per Video</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <span class="td-label">Short</span>
+          2 – 3 Minutes
+        </td>
+        <td style="color:var(--muted); font-size:12px;">B-roll · captions · graphics</td>
+        <td>₹3,500</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="td-label">Mid</span>
+          5 – 7 Minutes
+        </td>
+        <td style="color:var(--muted); font-size:12px;">B-roll · captions · graphics</td>
+        <td>₹4,000</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="td-label">Long</span>
+          7 – 10 Minutes
+        </td>
+        <td style="color:var(--muted); font-size:12px;">B-roll · captions · graphics</td>
+        <td>₹5,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">Billed per project / per brand client. Raw files to be provided by your team. No thumbnails or SEO included — handled by your existing setup.</div>
+
+  <!-- SECTION 03: SECONDARY IG -->
+  <div class="section-header">
+    <span class="section-num">03 —</span>
+    <span class="section-title">Secondary Instagram Account · Mindset Content</span>
+  </div>
+
+  <div class="pricing-card gold-card">
+    <div class="card-left">
+      <div class="card-label">Per Video · Flexible Volume</div>
+      <div class="card-name">Mindset Reels</div>
+      <div class="card-desc">Simple format · billed as you shoot · no minimum commitment</div>
+    </div>
+    <div class="card-price">
+      <div class="price-amount">₹2,500</div>
+      <div class="price-unit">Per Video</div>
+    </div>
+  </div>
+
+  <div class="note">No fixed monthly volume needed. Send us the footage, we turn it around.</div>
+
+  <!-- SECTION 04: SCRIPTING ADD-ON -->
+  <div class="section-header">
+    <span class="section-num">04 —</span>
+    <span class="section-title">Content Scripting · Add-On</span>
+  </div>
+
+  <div class="pricing-card">
+    <div class="card-left">
+      <div class="card-label">Monthly Add-On · Strategy + Writing</div>
+      <div class="card-name">8 Reel Scripts / Month</div>
+      <div class="card-desc">Content ideas + full scripts · handled personally by Avi · performance-focused architecture</div>
+    </div>
+    <div class="card-price">
+      <div class="price-amount">₹18,000</div>
+      <div class="price-unit">Per Month</div>
+    </div>
+  </div>
+
+  <div class="note">Not a ghostwriter. Scripts are built around what's already working on your profile — low-production, high-retention formats.</div>
+
+  <!-- TERMS -->
+  <div class="section-header">
+    <span class="section-num">05 —</span>
+    <span class="section-title">Terms</span>
+  </div>
+
+  <div class="terms-grid">
+    <div class="term-item">
+      <span class="term-icon">50/50</span>
+      <div class="term-title">Payment Structure</div>
+      <div class="term-desc">50% advance to begin. 50% on delivery of the month's content or project completion.</div>
+    </div>
+    <div class="term-item">
+      <span class="term-icon">⌖</span>
+      <div class="term-title">Dedicated Editor</div>
+      <div class="term-desc">One editor assigned solely to your work. No juggling. Fast turnarounds.</div>
+    </div>
+    <div class="term-item">
+      <span class="term-icon">◈</span>
+      <div class="term-title">Communication</div>
+      <div class="term-desc">We work on Slack. You'll have direct access to Avi and the assigned editor.</div>
+    </div>
+    <div class="term-item">
+      <span class="term-icon">→</span>
+      <div class="term-title">Getting Started</div>
+      <div class="term-desc">Contract sent separately for the 22-reel retainer. YouTube billed per project.</div>
+    </div>
+  </div>
+
+  <div style="padding-bottom: 16px;"></div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-brand">J Curve <span>by Avi</span></div>
+  <div class="footer-meta">
+    jcurvebyavi.com<br>
+    Questions? Let's hop on a quick call.
+  </div>
+</div>
+
+</body>
+</html>
