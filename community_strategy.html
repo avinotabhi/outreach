@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Speaking Community — Strategy & Execution Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --eggplant-950:#1E1130;
+    --eggplant-900:#2A1A40;
+    --eggplant-700:#4A2E68;
+    --eggplant-500:#6E4A93;
+    --lavender-400:#B39BD6;
+    --lavender-200:#DCCEEE;
+    --lavender-100:#F1EAF9;
+    --cream:#FBF9FC;
+    --coral:#FF6A52;
+    --coral-dark:#E14F39;
+    --ink:#231533;
+    --muted:#6C5D80;
+    --line:#E4D9F0;
+    --white:#FFFFFF;
+    --radius:18px;
+    --max:1100px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--eggplant-950);
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{ font-family:'DM Mono', monospace; }
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 32px; }
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+
+  /* Scroll progress */
+  #progress{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--coral), var(--lavender-400));
+    z-index:999; transition:width .1s linear;
+  }
+
+  /* NAV */
+  header.top{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,249,252,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav{
+    max-width:var(--max); margin:0 auto; padding:16px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brandmark{ display:flex; align-items:center; gap:10px; font-family:'Fraunces',serif; font-weight:600; font-size:16px; color:var(--eggplant-950); }
+  .brandmark .dot{ width:8px; height:8px; border-radius:50%; background:var(--coral); }
+  .topnav .tag{ font-family:'DM Mono',monospace; font-size:12px; color:var(--muted); letter-spacing:0.02em; }
+
+  /* HERO */
+  .hero{
+    position:relative; overflow:hidden;
+    background:radial-gradient(ellipse at top left, var(--lavender-100), var(--cream) 60%);
+    padding:96px 0 64px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'DM Mono',monospace; font-size:13px; letter-spacing:0.12em;
+    color:var(--coral-dark); text-transform:uppercase; margin-bottom:18px; display:inline-block;
+  }
+  .hero h1{ font-size:clamp(40px,6vw,72px); line-height:1.02; max-width:820px; }
+  .hero p.lead{
+    font-size:19px; color:var(--muted); max-width:560px; margin-top:22px;
+  }
+  .hero-meta{
+    margin-top:34px; display:flex; gap:28px; flex-wrap:wrap;
+    font-family:'DM Mono',monospace; font-size:13px; color:var(--muted);
+  }
+  .hero-meta span b{ color:var(--eggplant-950); }
+
+  /* Waveform */
+  .waveform{
+    display:flex; align-items:flex-end; gap:4px; height:64px; margin-top:48px;
+  }
+  .waveform .bar{
+    width:5px; border-radius:3px;
+    background:linear-gradient(180deg, var(--coral), var(--lavender-400));
+    animation:speak 1.6s ease-in-out infinite;
+    transform-origin:bottom;
+  }
+  @keyframes speak{
+    0%,100%{ transform:scaleY(0.25); }
+    50%{ transform:scaleY(1); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .waveform .bar{ animation:none; transform:scaleY(0.6); }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* SECTIONS */
+  section{ padding:88px 0; border-bottom:1px solid var(--line); }
+  section.dark{
+    background:var(--eggplant-950); color:var(--lavender-100); border-bottom:none;
+  }
+  section.dark h2, section.dark h3{ color:var(--white); }
+  section.dark .muted{ color:var(--lavender-200); }
+
+  .section-head{ max-width:640px; margin-bottom:48px; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(28px,4vw,40px); }
+  .section-head p{ color:var(--muted); font-size:17px; margin-top:14px; }
+  section.dark .section-head p{ color:var(--lavender-200); }
+
+  .muted{ color:var(--muted); }
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* Stat cards */
+  .stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .stat-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 22px;
+  }
+  .stat-card .num{ font-family:'Fraunces',serif; font-size:34px; font-weight:600; color:var(--eggplant-950); }
+  .stat-card .lbl{ font-size:14px; color:var(--muted); margin-top:6px; }
+
+  /* Two col */
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+  .card-soft{
+    background:var(--lavender-100); border-radius:var(--radius); padding:30px;
+  }
+  .card-soft h3{ font-size:20px; margin-bottom:12px; }
+  .card-soft p{ color:var(--muted); font-size:15.5px; }
+
+  /* Pricing */
+  .pricing-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .price-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px 26px; position:relative; display:flex; flex-direction:column; height:100%;
+  }
+  .price-card.featured{
+    background:var(--eggplant-950); color:var(--white); border-color:var(--eggplant-950);
+    transform:translateY(-8px);
+  }
+  .price-card .badge{
+    position:absolute; top:-12px; right:22px;
+    background:var(--coral); color:white; font-size:11px; font-family:'DM Mono',monospace;
+    padding:5px 10px; border-radius:20px; letter-spacing:0.04em; text-transform:uppercase;
+  }
+  .price-card .tier{ font-size:14px; font-family:'DM Mono',monospace; letter-spacing:0.06em; text-transform:uppercase; color:var(--coral-dark); }
+  .price-card.featured .tier{ color:var(--lavender-400); }
+  .price-card .amount{ font-family:'Fraunces',serif; font-size:42px; font-weight:600; margin:10px 0 4px; }
+  .price-card .per{ font-size:13px; color:var(--muted); }
+  .price-card.featured .per{ color:var(--lavender-200); }
+  .price-card p.desc{ margin-top:16px; font-size:14.5px; color:var(--muted); flex-grow:1; }
+  .price-card.featured p.desc{ color:var(--lavender-200); }
+
+  /* Revenue bars */
+  .rev-bars{ margin-top:20px; display:flex; flex-direction:column; gap:16px; }
+  .rev-row{ display:grid; grid-template-columns:140px 1fr 200px; align-items:center; gap:16px; }
+  .rev-row .pct{ font-family:'DM Mono',monospace; font-size:14px; color:var(--muted); }
+  .rev-track{ background:var(--lavender-100); border-radius:8px; height:14px; overflow:hidden; }
+  .rev-fill{ height:100%; background:linear-gradient(90deg, var(--lavender-400), var(--coral)); border-radius:8px; width:0; transition:width 1.1s ease; }
+  .rev-row .val{ font-family:'DM Mono',monospace; font-size:13.5px; text-align:right; color:var(--eggplant-950); }
+
+  /* Feature grid */
+  .feature-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .feature-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .feature-card:hover{ transform:translateY(-4px); box-shadow:0 16px 32px -20px rgba(42,26,64,0.35); }
+  .feature-icon{
+    width:40px; height:40px; border-radius:10px; background:var(--lavender-100);
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .feature-icon svg{ width:20px; height:20px; stroke:var(--eggplant-700); }
+  .feature-card h3{ font-size:17px; margin-bottom:8px; }
+  .feature-card p{ font-size:14.5px; color:var(--muted); }
+
+  /* Stepper */
+  .stepper{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative; margin-top:20px;}
+  .step{ position:relative; padding:0 16px 0 0; }
+  .step .stepnum{
+    font-family:'Fraunces',serif; font-size:15px; font-weight:600;
+    width:36px; height:36px; border-radius:50%; border:2px solid var(--coral);
+    display:flex; align-items:center; justify-content:center; color:var(--coral-dark);
+    background:var(--white); position:relative; z-index:2;
+  }
+  .step .steplabel{ font-size:14px; font-family:'DM Mono',monospace; color:var(--coral-dark); margin-top:14px; text-transform:uppercase; letter-spacing:0.04em;}
+  .step h3{ font-size:17px; margin-top:6px; }
+  .step p{ font-size:14px; color:var(--muted); margin-top:6px; }
+  .step::after{
+    content:''; position:absolute; top:18px; left:36px; right:-16px; height:2px;
+    background:var(--line);
+  }
+  .step:last-child::after{ display:none; }
+
+  /* Platform grid */
+  .plat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  .plat-item{ display:flex; flex-direction:column; gap:12px; }
+  .plat-icon{ width:44px; height:44px; border-radius:12px; background:var(--eggplant-700); display:flex; align-items:center; justify-content:center; }
+  .plat-icon svg{ width:22px; height:22px; stroke:var(--lavender-200); }
+  .plat-item h3{ font-size:15.5px; color:var(--white); }
+  .plat-item p{ font-size:14px; color:var(--lavender-200); }
+
+  /* Timeline */
+  .timeline{ position:relative; padding-left:32px; margin-top:10px; }
+  .timeline::before{ content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line); }
+  .tl-item{ position:relative; padding-bottom:40px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:''; position:absolute; left:-32px; top:4px; width:14px; height:14px; border-radius:50%;
+    background:var(--coral); border:3px solid var(--cream);
+  }
+  section.dark .tl-item::before{ border-color:var(--eggplant-950); }
+  .tl-item .tl-phase{ font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; color:var(--coral-dark); }
+  section.dark .tl-item .tl-phase{ color:var(--lavender-400); }
+  .tl-item h3{ font-size:19px; margin-top:6px; }
+  .tl-item p{ font-size:15px; color:var(--muted); margin-top:8px; max-width:620px; }
+  section.dark .tl-item p{ color:var(--lavender-200); }
+  .tl-item .tl-week{ font-family:'DM Mono',monospace; font-size:13px; color:var(--muted); margin-top:4px; }
+  section.dark .tl-item .tl-week{ color:var(--lavender-200); }
+
+  /* Retention list */
+  .retain-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .retain-card{ background:var(--lavender-100); border-radius:var(--radius); padding:26px; }
+  .retain-card h3{ font-size:16.5px; margin-bottom:8px; }
+  .retain-card p{ font-size:14.5px; color:var(--muted); }
+
+  /* KPI table */
+  table.kpi{ width:100%; border-collapse:collapse; margin-top:10px; }
+  table.kpi th{
+    text-align:left; font-family:'DM Mono',monospace; font-size:12px; text-transform:uppercase;
+    letter-spacing:0.05em; color:var(--muted); padding:12px 16px; border-bottom:2px solid var(--eggplant-950);
+  }
+  table.kpi td{ padding:16px; border-bottom:1px solid var(--line); font-size:15px; }
+  table.kpi tr:hover td{ background:var(--lavender-100); }
+  table.kpi td.metric{ font-weight:600; color:var(--eggplant-950); }
+  table.kpi td.target{ font-family:'DM Mono',monospace; color:var(--coral-dark); }
+
+  /* Next steps */
+  .steps-list{ counter-reset:step; display:flex; flex-direction:column; gap:0; margin-top:10px; }
+  .steps-list .sitem{
+    counter-increment:step; display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--line);
+  }
+  .steps-list .sitem:last-child{ border-bottom:none; }
+  .steps-list .sitem::before{
+    content:counter(step,decimal-leading-zero);
+    font-family:'DM Mono',monospace; font-size:14px; color:var(--coral); flex-shrink:0; padding-top:2px;
+  }
+  .steps-list .sitem h3{ font-size:16.5px; }
+  .steps-list .sitem p{ font-size:14.5px; color:var(--muted); margin-top:4px; }
+
+  /* Footer / CTA */
+  footer{
+    background:var(--eggplant-950); color:var(--lavender-100); padding:72px 0 40px;
+  }
+  .cta-box{
+    background:linear-gradient(120deg, var(--eggplant-700), var(--eggplant-900));
+    border-radius:24px; padding:48px; text-align:center; margin-bottom:56px;
+  }
+  .cta-box h2{ color:var(--white); font-size:clamp(26px,4vw,34px); }
+  .cta-box p{ color:var(--lavender-200); margin-top:12px; }
+  .foot-meta{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+    font-size:13px; color:var(--lavender-400); font-family:'DM Mono',monospace;
+    border-top:1px solid rgba(255,255,255,0.1); padding-top:28px;
+  }
+
+  @media (max-width:920px){
+    .stat-grid, .feature-grid, .pricing-grid, .stepper, .plat-grid, .retain-grid{ grid-template-columns:repeat(2,1fr); }
+    .two-col{ grid-template-columns:1fr; }
+    .price-card.featured{ transform:none; }
+    .step::after{ display:none; }
+  }
+  @media (max-width:640px){
+    .wrap{ padding:0 20px; }
+    .stat-grid, .feature-grid, .pricing-grid, .stepper, .plat-grid, .retain-grid{ grid-template-columns:1fr; }
+    .rev-row{ grid-template-columns:1fr; gap:6px; }
+    .hero{ padding:72px 0 48px; }
+    section{ padding:64px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="top">
+  <div class="topnav">
+    <div class="brandmark"><span class="dot"></span> J Curve by Avi</div>
+    <div class="tag">PREPARED FOR JANHAVI PANWAR · JULY 2026</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">A new recurring revenue layer</span>
+    <h1>The Speaking<br>Community</h1>
+    <p class="lead">A daily speaking-practice membership built for the 20,000&ndash;30,000 people who wanted your course, but weren't ready to say yes at ₹4,000+.</p>
+    <div class="hero-meta">
+      <span><b>₹699&ndash;₹999</b>/month</span>
+      <span><b>25,000</b> warm leads to activate</span>
+      <span><b>₹0</b> incremental ad spend to launch</span>
+    </div>
+    <div class="waveform" aria-hidden="true">
+      <!-- bars generated by JS -->
+    </div>
+  </div>
+</section>
+
+<section id="vision">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">01 · The Vision</span>
+      <h2>The funnel stops in one place. This is what comes after.</h2>
+      <p>Right now, a webinar sells a ₹4,000&ndash;6,000 course, and everyone who doesn't buy on that call simply disappears. The Speaking Community is the missing layer &mdash; a low-priced, high-engagement monthly membership built on one idea: people don't get fluent by watching more videos. They get fluent by speaking out loud, getting corrected, and doing it again the next day.</p>
+    </div>
+    <div class="two-col reveal">
+      <div class="card-soft">
+        <h3>Not a replacement</h3>
+        <p>This isn't competing with the high-ticket courses &mdash; it's a feeder. It re-engages the audience that already said "not yet" at ₹4,000+, and gives them a lower-risk way to start.</p>
+      </div>
+      <div class="card-soft">
+        <h3>A proof engine</h3>
+        <p>Members who get real results in the community become your best upsell candidates for the premium courses &mdash; motivated, proven, and already inside your world.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="opportunity">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">02 · Why This, Why Now</span>
+      <h2>The audience already exists. It's just idle.</h2>
+    </div>
+    <div class="stat-grid reveal">
+      <div class="stat-card">
+        <div class="num">25K</div>
+        <div class="lbl">Webinar registrants who didn't buy &mdash; warm, already-qualified, sitting idle</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">2</div>
+        <div class="lbl">Organic channels (YouTube + Instagram) that can promote this at zero ad spend</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">₹0&rarr;₹4K</div>
+        <div class="lbl">The gap in the market &mdash; nothing between free content and the high-ticket course</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">MRR</div>
+        <div class="lbl">Converts one-time marketing cost into predictable monthly revenue</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">03 · Pricing</span>
+      <h2>Reward the first believers. Sustain the rest.</h2>
+      <p>Designed to pull in annual cash flow from day one, while keeping the founding cohort's price low enough that saying yes feels close to free.</p>
+    </div>
+    <div class="pricing-grid reveal">
+      <div class="price-card">
+        <span class="badge">First 100</span>
+        <span class="tier">Founding Member</span>
+        <div class="amount">₹699</div>
+        <div class="per">per month, locked for life</div>
+        <p class="desc">Only for the first 100 members. Creates urgency and rewards the people who join before there's public proof.</p>
+      </div>
+      <div class="price-card featured">
+        <span class="tier">Standard</span>
+        <div class="amount">₹999</div>
+        <div class="per">per month</div>
+        <p class="desc">Opens once the founding cohort is filled. Full access to every feature &mdash; feed, live sessions, buddy system, all of it.</p>
+      </div>
+      <div class="price-card">
+        <span class="tier">Annual</span>
+        <div class="amount">₹7,999</div>
+        <div class="per">per year &middot; ~₹666/mo</div>
+        <p class="desc">Roughly 33% off the standard rate. Offered to both founding and standard members to strengthen upfront cash flow.</p>
+      </div>
+    </div>
+
+    <div class="card-soft reveal" style="margin-top:40px;">
+      <h3>Revenue potential &mdash; from the existing list alone</h3>
+      <p>Before a single new lead comes from organic content, here's what conversion of the 25,000-person warm list looks like:</p>
+      <div class="rev-bars">
+        <div class="rev-row">
+          <span class="pct">1% convert</span>
+          <div class="rev-track"><div class="rev-fill" data-w="35"></div></div>
+          <span class="val">~250 members · ₹1.75L/mo</span>
+        </div>
+        <div class="rev-row">
+          <span class="pct">2% convert</span>
+          <div class="rev-track"><div class="rev-fill" data-w="65"></div></div>
+          <span class="val">~500 members · ₹3.5L/mo</span>
+        </div>
+        <div class="rev-row">
+          <span class="pct">3% + organic</span>
+          <div class="rev-track"><div class="rev-fill" data-w="100"></div></div>
+          <span class="val">750+ members · ₹5L+/mo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">04 · Core Features</span>
+      <h2>Built as a daily practice habit, not a content library.</h2>
+      <p>Every feature exists to get members speaking, getting feedback, and coming back tomorrow.</p>
+    </div>
+    <div class="feature-grid reveal">
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Buddy System</h3>
+        <p>Every new member is paired with an accountability partner on day one &mdash; nobody shows up to an empty room.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <h3>Daily Speaking Feed</h3>
+        <p>A topic is posted daily; members record a 60&ndash;90 second response and get structured peer feedback.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5L12 2z"/></svg></div>
+        <h3>Trainer's Pick</h3>
+        <p>One submitted video is highlighted daily &mdash; every member is implicitly competing to be featured.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+        <h3>Streaks & Levels</h3>
+        <p>Consecutive-day streaks plus a 4-stage progression so members always know where they stand.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <h3>Word of the Day</h3>
+        <p>A daily vocabulary drop, tied to the feed &mdash; use today's word in tomorrow's spoken video.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 9l4-3v12l-4-3"/></svg></div>
+        <h3>Weekly Live Session</h3>
+        <p>A hired trainer runs roleplay simulations &mdash; interviews, calls, presentations &mdash; not lectures.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>Doubt Resolution</h3>
+        <p>An always-on thread for quick grammar and vocabulary questions, answered fast.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12"/></svg></div>
+        <h3>Certificates</h3>
+        <p>Brandable milestone certificates designed to be posted on Instagram and LinkedIn &mdash; free marketing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a3 3 0 1 0-2.83-4H15a3 3 0 0 0 0 6c.35 0 .68-.07 1-.18"/><path d="M6 15a3 3 0 1 0 2.83 4H9a3 3 0 0 0 0-6c-.35 0-.68.07-1 .18"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
+        <h3>Referral Rewards</h3>
+        <p>One free month for every friend referred who stays active 30+ days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="path">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">05 · The Progression Path</span>
+      <h2>A clear stage-based journey, not an overwhelming library.</h2>
+    </div>
+    <div class="stepper reveal">
+      <div class="step">
+        <div class="stepnum">1</div>
+        <div class="steplabel">Stage 1</div>
+        <h3>Confidence</h3>
+        <p>Build the daily speaking habit, get comfortable on camera, meet your buddy.</p>
+      </div>
+      <div class="step">
+        <div class="stepnum">2</div>
+        <div class="steplabel">Stage 2</div>
+        <h3>Conversational</h3>
+        <p>Structured practice, weekly live roleplay, first vocabulary milestones.</p>
+      </div>
+      <div class="step">
+        <div class="stepnum">3</div>
+        <div class="steplabel">Stage 3</div>
+        <h3>Fluent</h3>
+        <p>Extended speaking, idiom and accent refinement, consistent streaks.</p>
+      </div>
+      <div class="step">
+        <div class="stepnum">4</div>
+        <div class="steplabel">Stage 4</div>
+        <h3>Interview-Ready</h3>
+        <p>Interview simulations, certificate of completion, eligible to mentor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="platform">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">06 · Platform Approach</span>
+      <h2>Custom-built, kept lean for v1.</h2>
+      <p class="muted">Tailored exactly to the feed-and-practice model above, not assembled from off-the-shelf tools.</p>
+    </div>
+    <div class="plat-grid reveal">
+      <div class="plat-item">
+        <div class="plat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+        <h3>Upload-based video</h3>
+        <p>Record elsewhere, upload here &mdash; keeps the build lean for v1.</p>
+      </div>
+      <div class="plat-item">
+        <div class="plat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <h3>Phone-number login</h3>
+        <p>OTP-based, since the audience is WhatsApp-native.</p>
+      </div>
+      <div class="plat-item">
+        <div class="plat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 9l4-3v12l-4-3"/></svg></div>
+        <h3>Zoom/Meet integration</h3>
+        <p>For live sessions, instead of custom video infrastructure.</p>
+      </div>
+      <div class="plat-item">
+        <div class="plat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        <h3>WhatsApp notifications</h3>
+        <p>Daily prompts and reminders don't rely on opening the app.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gtm">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">07 · Go-to-Market</span>
+      <h2>Three phases, in order.</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-phase">Phase 1 &middot; Weeks 1&ndash;4</div>
+        <h3>Activate the warm list</h3>
+        <p>The 25,000 webinar registrants are the fastest, cheapest path to the first paying cohort. Runs as a Founding Member launch: share the idea &rarr; cast the vision &rarr; invitation (100 spots at ₹699) &rarr; one clear CTA &rarr; 7&ndash;10 day follow-up sequence.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 2 &middot; Weeks 5&ndash;12</div>
+        <h3>Organic layer</h3>
+        <p>Founding member wins &mdash; speaking transformations, certificates, streaks &mdash; become YouTube/Instagram content, with a soft CTA at the end of relevant videos. Kept separate from the paid course funnel to avoid channel conflict.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 3 &middot; Ongoing</div>
+        <h3>Closed-cohort scaling</h3>
+        <p>Enrollment reopens at ₹999/month on a quarterly cycle rather than staying open indefinitely &mdash; preserves scarcity, keeps cohorts cohesive, and gives a natural rhythm for fresh promotional pushes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="retention">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">08 · Retention</span>
+      <h2>Acquisition gets people in. This is what keeps them.</h2>
+    </div>
+    <div class="retain-grid reveal">
+      <div class="retain-card">
+        <h3>Guided first 30 days</h3>
+        <p>Welcome video, buddy pairing, and a first speaking post all within 48 hours &mdash; no time to go quiet before engaging once.</p>
+      </div>
+      <div class="retain-card">
+        <h3>Predictable rhythm</h3>
+        <p>The feed, streaks, and weekly live sessions create a daily reason to open the app, not a library to explore whenever.</p>
+      </div>
+      <div class="retain-card">
+        <h3>At-risk outreach</h3>
+        <p>Members inactive for 5+ days get a personal nudge, not just an automated blast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kpi">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">09 · Success Metrics</span>
+      <h2>How we'll know it's working.</h2>
+    </div>
+    <div class="reveal">
+      <table class="kpi">
+        <thead>
+          <tr><th>Metric</th><th>Target</th><th>Timeframe</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric">Founding cohort fill rate</td><td class="target">100 spots filled</td><td>Within 10 days of launch</td></tr>
+          <tr><td class="metric">Member activation rate</td><td class="target">70%+ post in week 1</td><td>First 30 days</td></tr>
+          <tr><td class="metric">Weekly active engagement</td><td class="target">60%+ post/comment</td><td>Ongoing</td></tr>
+          <tr><td class="metric">Monthly churn</td><td class="target">Under 8&ndash;10%</td><td>By month 3</td></tr>
+          <tr><td class="metric">Referral-driven signups</td><td class="target">15&ndash;20% of new members</td><td>By month 4</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">10 · Execution Roadmap</span>
+      <h2>Week by week, from build to scale.</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-week">Weeks 1&ndash;3</div>
+        <h3>Build & Prep</h3>
+        <p>Platform build (buddy matching, feed, gamification, live-session integration, payments). Trainer hired and briefed. First 4 weeks of topics, words, and roleplay scenarios pre-planned.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Week 4</div>
+        <h3>Founding Member Launch</h3>
+        <p>Warm-list activation to the ~25,000 non-converted webinar registrants, using the Phase 1 sequence above.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Weeks 5&ndash;8</div>
+        <h3>Onboarding & Early Retention</h3>
+        <p>Guided 30-day onboarding: welcome + buddy pairing (day 1), first speaking win (week 1), first live session (week 2), first milestone (weeks 3&ndash;4). Collect early testimonials.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Weeks 9&ndash;12</div>
+        <h3>Organic Layer & Reopen</h3>
+        <p>Testimonials repurposed into content. Enrollment reopens publicly at ₹999/month with proof already in hand. Referral program activated.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">Ongoing</div>
+        <h3>Closed-Cohort Cycle</h3>
+        <p>Enrollment closes and reopens quarterly, with new themed content seasons and a review of churn, engagement, and pricing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <h2>Let's build this together.</h2>
+      <p>Next: sign off on the strategy, finalize the build scope, hire the trainer, and set a launch date for the ₹699 founding cohort of 100.</p>
+    </div>
+    <div class="section-head" style="margin-bottom:24px;">
+      <span class="eyebrow" style="color:var(--lavender-400);">11 · Next Steps</span>
+    </div>
+    <div class="steps-list reveal">
+      <div class="sitem">
+        <div>
+          <h3>Sign off on this strategy</h3>
+          <p>Lock in the exact feature list for v1 vs. later phases.</p>
+        </div>
+      </div>
+      <div class="sitem">
+        <div>
+          <h3>Finalize platform build scope</h3>
+          <p>With the development partner, using the feature list above.</p>
+        </div>
+      </div>
+      <div class="sitem">
+        <div>
+          <h3>Hire and brief the trainer</h3>
+          <p>For the weekly live roleplay sessions.</p>
+        </div>
+      </div>
+      <div class="sitem">
+        <div>
+          <h3>Prepare the founding member launch sequence</h3>
+          <p>Pre-plan the first 4 weeks of topics, words, and roleplay scenarios.</p>
+        </div>
+      </div>
+      <div class="sitem">
+        <div>
+          <h3>Set a launch date</h3>
+          <p>For the ₹699 founding cohort of 100.</p>
+        </div>
+      </div>
+    </div>
+    <div class="foot-meta">
+      <span>Confidential &middot; Prepared for Janhavi Panwar</span>
+      <span>J Curve by Avi &middot; July 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll progress bar
+  const progress = document.getElementById('progress');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progress.style.width = scrolled + '%';
+  }
+  document.addEventListener('scroll', updateProgress);
+  updateProgress();
+
+  // Waveform bars generation
+  const waveform = document.querySelector('.waveform');
+  if (waveform) {
+    const barCount = 48;
+    for (let i = 0; i < barCount; i++) {
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const h = 14 + Math.round(Math.abs(Math.sin(i * 0.5)) * 50);
+      bar.style.height = h + 'px';
+      bar.style.animationDelay = (i * 0.045) + 's';
+      waveform.appendChild(bar);
+    }
+  }
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Revenue bar fill on scroll into view
+  const revFills = document.querySelectorAll('.rev-fill');
+  const io2 = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const w = e.target.getAttribute('data-w');
+        e.target.style.width = w + '%';
+        io2.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  revFills.forEach(el => io2.observe(el));
+</script>
+
+</body>
+</html>
