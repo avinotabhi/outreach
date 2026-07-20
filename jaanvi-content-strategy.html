@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trial Strategy - Dr. Jaanvi Taneja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #D4724A;
+    --green: #1B7B6E;
+    --white: #FFFFFF;
+    --offwhite: #F5F0EB;
+    --grey: #6B7280;
+    --black: #1C1E21;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+  }
+
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 100px 8vw 90px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,114,74,0.35), transparent 70%);
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -160px;
+    left: -100px;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(27,123,110,0.30), transparent 70%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 780px; }
+  .hero .label { color: var(--orange); margin-bottom: 22px; display: inline-block; }
+  .hero h1 {
+    font-size: clamp(34px, 5vw, 54px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .hero h1 span { color: var(--orange); }
+  .hero p.sub {
+    font-size: 18px;
+    color: #D8D8D5;
+    max-width: 560px;
+    font-weight: 400;
+  }
+  .brandline {
+    margin-top: 42px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-style: italic;
+    font-size: 16px;
+    color: #B8B8B4;
+  }
+
+  /* SECTION SHELL */
+  section {
+    padding: 76px 8vw;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .section-head { margin-bottom: 44px; max-width: 640px; }
+  .section-head .label { color: var(--green); margin-bottom: 12px; display: block; }
+  .section-head h2 {
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .section-head p { color: var(--grey); font-size: 16px; }
+
+  /* WHY IT WORKS STRIP */
+  .why-strip {
+    background: var(--offwhite);
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 8px;
+  }
+  .why-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 30px 32px;
+    border: 1px solid #EAE3D8;
+  }
+  .why-card .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .why-card.pos .tag { background: rgba(27,123,110,0.12); color: var(--green); }
+  .why-card.watch .tag { background: rgba(212,114,74,0.12); color: var(--orange); }
+  .why-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .why-card p { color: var(--grey); font-size: 15px; }
+
+  /* SPLIT VISUAL */
+  .split-visual {
+    display: flex;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 36px;
+    border: 1px solid #EAE3D8;
+  }
+  .split-block {
+    padding: 40px 34px;
+    flex: 1;
+  }
+  .split-block.big { background: var(--offwhite); flex: 4; }
+  .split-block.small { background: var(--black); color: var(--white); flex: 1; min-width: 160px; }
+  .split-pct { font-family: 'DM Mono', monospace; font-size: 42px; font-weight: 500; }
+  .split-block.big .split-pct { color: var(--orange); }
+  .split-block.small .split-pct { color: var(--green); }
+  .split-block h4 { font-size: 17px; font-weight: 700; margin: 10px 0 8px; }
+  .split-block p { font-size: 14.5px; }
+  .split-block.big p { color: var(--grey); }
+  .split-block.small p { color: #C9C9C6; }
+
+  /* FORMAT CARDS */
+  .format-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 8px;
+  }
+  .format-card {
+    border: 1px solid #EDEDED;
+    border-radius: 14px;
+    padding: 28px;
+    position: relative;
+  }
+  .format-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--orange);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .format-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .format-card p { font-size: 14.5px; color: var(--grey); margin-bottom: 14px; }
+  .format-example {
+    background: var(--offwhite);
+    border-left: 3px solid var(--green);
+    padding: 12px 16px;
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--black);
+    border-radius: 0 8px 8px 0;
+  }
+
+  /* CALENDAR TABLE */
+  .cal-wrap { margin-top: 8px; overflow-x: auto; }
+  table.cal { width: 100%; border-collapse: collapse; min-width: 560px; }
+  table.cal th {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--grey);
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--black);
+    font-weight: 500;
+  }
+  table.cal td {
+    padding: 16px;
+    border-bottom: 1px solid #EDEDED;
+    font-size: 14.5px;
+  }
+  table.cal td.day { font-weight: 700; }
+  table.cal tr:last-child td { border-bottom: none; background: var(--offwhite); }
+  .pill {
+    display: inline-block;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(212,114,74,0.1);
+    color: var(--orange);
+    font-weight: 600;
+  }
+
+  /* HOOK SECTION */
+  .hook-strip { background: var(--black); color: var(--white); }
+  .hook-strip .section-head .label { color: var(--orange); }
+  .hook-strip .section-head p { color: #C9C9C6; }
+  .hook-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .hook-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .hook-item .hquote { font-size: 15.5px; font-weight: 600; margin-bottom: 6px; }
+  .hook-item .hnote { font-size: 13px; color: #A8A8A4; }
+
+  /* THRESHOLD BOX */
+  .threshold-box {
+    background: var(--offwhite);
+    border-radius: 16px;
+    padding: 36px 38px;
+    margin-top: 8px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .threshold-box .tleft { flex: 1; min-width: 240px; }
+  .threshold-box .tleft h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+  .threshold-box .tleft p { color: var(--grey); font-size: 15px; }
+  .thresholds { flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 10px; }
+  .threshold-row {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--white); padding: 12px 16px; border-radius: 10px;
+    border: 1px solid #EAE3D8;
+  }
+  .threshold-row .check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--green); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0; font-weight: 700;
+  }
+  .threshold-row span.txt { font-size: 14.5px; }
+
+  /* TRACKING */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .metric-card {
+    text-align: center;
+    padding: 30px 16px;
+    border-radius: 14px;
+    background: var(--offwhite);
+  }
+  .metric-card .mnum {
+    font-family: 'DM Mono', monospace;
+    font-size: 24px;
+    color: var(--green);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .metric-card h4 { font-size: 14.5px; font-weight: 700; margin-bottom: 6px; }
+  .metric-card p { font-size: 12.5px; color: var(--grey); }
+
+  footer {
+    background: var(--black);
+    color: #A8A8A4;
+    text-align: center;
+    padding: 48px 8vw;
+    font-size: 13.5px;
+  }
+  footer strong { color: var(--white); }
+
+  @media (max-width: 720px) {
+    .why-grid, .format-grid, .hook-list { grid-template-columns: 1fr; }
+    .metric-grid { grid-template-columns: 1fr 1fr; }
+    .split-visual { flex-direction: column; }
+    .hero { padding: 70px 6vw 60px; }
+    section { padding: 56px 6vw; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="label">Trial Strategy · August 2026</span>
+    <h1>One low-effort reel a day, aimed only at <span>non-followers</span>.</h1>
+    <p class="sub">Posted through Instagram's Trial feature. Your main feed stays exactly as it is, high production, followers-only. This is a separate testing lane that never touches it.</p>
+    <div class="brandline">"English is the tool. Confidence is the goal."</div>
+  </div>
+</div>
+
+<section>
+  <div class="section-head">
+    <span class="label">Structure</span>
+    <h2>Two lanes</h2>
+  </div>
+  <div class="split-visual">
+    <div class="split-block big">
+      <h4 style="margin-top:0;">Main feed</h4>
+      <p>Unchanged. High production, your regular schedule, followers only.</p>
+    </div>
+    <div class="split-block small">
+      <h4 style="margin-top:0; color:var(--white);">Trial lane</h4>
+      <p>One reel a day, posted with the Trial toggle on. Shown to non-followers only.</p>
+    </div>
+  </div>
+  <div class="why-card pos" style="margin-top:24px;">
+    <span class="tag">The mechanic</span>
+    <h3>Instagram's Trial feature</h3>
+    <p>A reel posted as a Trial is shown only to non-followers for 72 hours. It does not appear on your grid or in followers' feeds. We do not graduate these to the main feed. Production quality is intentionally below your feed bar, so it stays out of follower view by design, not just by algorithm.</p>
+  </div>
+</section>
+
+<section class="why-strip" style="max-width:100%;">
+  <div style="max-width:1120px; margin:0 auto;">
+    <div class="section-head">
+      <span class="label">Why this format</span>
+      <h2>The logic</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card pos">
+        <span class="tag">Works for us</span>
+        <h3>Format carries the value</h3>
+        <p>In English-learning, a clean text card teaching one phrase performs on par with a produced talking head. Clarity beats polish here.</p>
+      </div>
+      <div class="why-card pos">
+        <span class="tag">Works for us</span>
+        <h3>Non-followers only</h3>
+        <p>Trial reels never risk your brand perception. Zero downside to testing aggressively.</p>
+      </div>
+      <div class="why-card watch">
+        <span class="tag">Constraint</span>
+        <h3>No feed graduation</h3>
+        <p>Trial content stays in the trial lane permanently. The upside we take is data, not the video itself.</p>
+      </div>
+      <div class="why-card watch">
+        <span class="tag">Constraint</span>
+        <h3>Face stays optional</h3>
+        <p>Since nothing here reaches followers, camera time is only where it helps discovery, not brand consistency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <span class="label">Formats</span>
+    <h2>Four templates, on rotation</h2>
+  </div>
+  <div class="format-grid">
+    <div class="format-card">
+      <div class="format-num">01</div>
+      <h3>Text overlay on b-roll</h3>
+      <p>Hook, teaching point, CTA in on-screen text over stock footage. Fully faceless.</p>
+      <div class="format-example">"Stop saying 'I have a doubt.' Say 'I have a question.'"</div>
+    </div>
+    <div class="format-card">
+      <div class="format-num">02</div>
+      <h3>B-roll + voiceover</h3>
+      <p>A 20 to 30 second voice note over b-roll, key words highlighted on screen.</p>
+      <div class="format-example">Voice note on "borrow" vs "lend," no camera needed.</div>
+    </div>
+    <div class="format-card">
+      <div class="format-num">03</div>
+      <h3>Question hook, check caption</h3>
+      <p>A bold on-screen question, answer sits in the caption. Drives comments and caption reads.</p>
+      <div class="format-example">"Do you know the difference between 'much' and 'many'? Check caption."</div>
+    </div>
+    <div class="format-card">
+      <div class="format-num">04</div>
+      <h3>Common mistake cards</h3>
+      <p>Mistake shown first, correction second. Pure text, high save rate.</p>
+      <div class="format-example">"90% of people get this wrong."</div>
+    </div>
+  </div>
+</section>
+
+<section class="why-strip" style="max-width:100%;">
+  <div style="max-width:1120px; margin:0 auto;">
+    <div class="section-head">
+      <span class="label">Weekly rhythm</span>
+      <h2>Trial calendar</h2>
+      <p>One trial a day. Sunday repeats whatever performed best that week.</p>
+    </div>
+    <div class="cal-wrap">
+      <table class="cal">
+        <tr><th>Day</th><th>Format</th></tr>
+        <tr><td class="day">Monday</td><td>Say This, Not That correction</td></tr>
+        <tr><td class="day">Tuesday</td><td>Text overlay on b-roll</td></tr>
+        <tr><td class="day">Wednesday</td><td>Trending audio + text overlay</td></tr>
+        <tr><td class="day">Thursday</td><td>B-roll + voiceover lesson</td></tr>
+        <tr><td class="day">Friday</td><td>Question hook, check caption</td></tr>
+        <tr><td class="day">Saturday</td><td>Common mistake text card</td></tr>
+        <tr><td class="day">Sunday</td><td>Repeat the week's top performer</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="hook-strip" style="max-width:100%;">
+  <div style="max-width:1120px; margin:0 auto;">
+    <div class="section-head">
+      <span class="label">Opening line</span>
+      <h2>Hook rotation</h2>
+    </div>
+    <div class="hook-list">
+      <div class="hook-item"><div class="hquote">"Stop saying [X]"</div><div class="hnote">Pattern interrupt</div></div>
+      <div class="hook-item"><div class="hquote">"Most people get this wrong"</div><div class="hnote">Curiosity + ego challenge</div></div>
+      <div class="hook-item"><div class="hquote">"English speakers never say [X]"</div><div class="hnote">Authority + correction</div></div>
+      <div class="hook-item"><div class="hquote">"Use this word instead of [X]"</div><div class="hnote">Direct value promise</div></div>
+      <div class="hook-item"><div class="hquote">"The word you're looking for is..."</div><div class="hnote">Search-intent, saveable</div></div>
+      <div class="hook-item"><div class="hquote">"90% of people say this wrong"</div><div class="hnote">Social proof + curiosity</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <span class="label">Feedback loop</span>
+    <h2>What actually moves to the main feed</h2>
+    <p>Not the videos. The insight.</p>
+  </div>
+  <div class="threshold-box">
+    <div class="tleft">
+      <h3>Winning trials tell us:</h3>
+      <p>Any of the three below, and that hook, topic, or format gets rebuilt at full production for the main feed.</p>
+    </div>
+    <div class="thresholds">
+      <div class="threshold-row"><div class="check">✓</div><span class="txt">Which hooks stop the scroll</span></div>
+      <div class="threshold-row"><div class="check">✓</div><span class="txt">Which topics save and share best</span></div>
+      <div class="threshold-row"><div class="check">✓</div><span class="txt">Which formats reach non-followers fastest</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="why-strip" style="max-width:100%;">
+  <div style="max-width:1120px; margin:0 auto;">
+    <div class="section-head">
+      <span class="label">Every Sunday</span>
+      <h2>What we track</h2>
+    </div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="mnum">01</div><h4>Total trial views</h4><p>Trending week over week</p></div>
+      <div class="metric-card"><div class="mnum">02</div><h4>New reach</h4><p>Unique non-follower views</p></div>
+      <div class="metric-card"><div class="mnum">03</div><h4>Top trial of the week</h4><p>Which format and hook won</p></div>
+      <div class="metric-card"><div class="mnum">04</div><h4>Save + share rate</h4><p>On the top 3 performers</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Prepared for <strong>Dr. Jaanvi Taneja</strong> by J Curve by Avi
+</footer>
+
+</body>
+</html>
