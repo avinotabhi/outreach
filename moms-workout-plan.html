@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steady &amp; Strong — Your 4-Day Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #E9EDE4;
+    --surface: #FFFEFA;
+    --surface-soft: #F3F1E7;
+    --text: #23301F;
+    --text-muted: #5C6A54;
+    --primary: #3D5C3A;
+    --primary-dark: #2A4028;
+    --accent: #D6A339;
+    --accent-soft: #F3E4BE;
+    --alert: #8B3A4A;
+    --alert-soft: #F3DEE1;
+    --border: #D6DCC9;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 9px;
+    --shadow: 0 2px 10px rgba(35,48,31,0.07);
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .app{
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  /* ---------- Header ---------- */
+  .app-header{
+    text-align:center;
+    padding: 8px 4px 20px;
+  }
+  .eyebrow{
+    margin:0 0 6px;
+    font-weight:800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--primary);
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size: 2.1rem;
+    margin: 0 0 8px;
+    color: var(--primary-dark);
+  }
+  .subtitle{
+    margin:0;
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Rules band ---------- */
+  .rules-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    margin: 20px 0;
+    box-shadow: var(--shadow);
+  }
+  .rules-card h2{
+    margin: 0 0 10px;
+    font-size: 15px;
+    font-family:'Nunito';
+    font-weight: 800;
+    color: var(--primary-dark);
+  }
+  .rules-card ul{
+    margin:0;
+    padding-left: 20px;
+    font-size: 14.5px;
+    color: var(--text);
+  }
+  .rules-card li{ margin-bottom: 6px; }
+  .rules-card li:last-child{ margin-bottom:0; }
+  .rules-card strong{ color: var(--alert); }
+
+  /* ---------- Week path (signature element) ---------- */
+  .week-path{
+    position:relative;
+    display:flex;
+    justify-content: space-between;
+    align-items:flex-start;
+    margin: 26px 0 8px;
+    padding: 0 6px;
+  }
+  .week-path::before{
+    content:'';
+    position:absolute;
+    top: 22px;
+    left: 12%;
+    right: 12%;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--border) 0 8px, transparent 8px 14px);
+    z-index:0;
+  }
+  .day-stone{
+    position:relative;
+    z-index:1;
+    background:none;
+    border:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    cursor:pointer;
+    font-family:'Nunito';
+    padding: 4px 2px;
+    width: 25%;
+  }
+  .day-stone .circle{
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--text-muted);
+    transition: background .2s, border-color .2s, color .2s, transform .2s;
+  }
+  .day-stone .label{
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align:center;
+    line-height:1.2;
+  }
+  .day-stone.active .circle{
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+    transform: scale(1.08);
+  }
+  .day-stone.active .label{ color: var(--primary-dark); }
+  .day-stone.complete .circle{
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .day-stone:focus-visible{ outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 12px; }
+
+  /* ---------- Day content ---------- */
+  .day-head{
+    text-align:center;
+    margin: 22px 0 6px;
+  }
+  .day-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size: 1.6rem;
+    margin: 0 0 4px;
+    color: var(--primary-dark);
+  }
+  .day-head .focus{
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .day-head .time-est{
+    margin-top: 6px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+  }
+
+  .progress-line{
+    text-align:center;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 6px 0 18px;
+  }
+
+  .section-title{
+    font-weight: 800;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin: 26px 2px 10px;
+  }
+
+  /* ---------- Warm up / cool down list ---------- */
+  .simple-list{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    box-shadow: var(--shadow);
+  }
+  .simple-list ul{ margin:0; padding-left: 18px; }
+  .simple-list li{ margin-bottom: 8px; font-size: 15px; }
+  .simple-list li:last-child{ margin-bottom:0; }
+  .simple-list .li-time{ color: var(--text-muted); font-size: 13.5px; }
+
+  /* ---------- Exercise cards ---------- */
+  .exercise-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+  .exercise-head{
+    display:flex;
+    align-items:flex-start;
+    gap: 12px;
+  }
+  .check{
+    flex-shrink:0;
+    display:inline-flex;
+    margin-top: 3px;
+    cursor:pointer;
+  }
+  .check input{
+    width: 22px;
+    height: 22px;
+    accent-color: var(--primary);
+    cursor:pointer;
+  }
+  .exercise-card h3{
+    margin: 0 0 3px;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .exercise-card .sets{
+    margin:0;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--surface-soft);
+    display:inline-block;
+    padding: 2px 9px;
+    border-radius: 20px;
+  }
+  .exercise-card .tip{
+    margin: 10px 0 0;
+    font-size: 14.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .exercise-card.done{
+    background: var(--surface-soft);
+  }
+  .exercise-card.done h3{
+    text-decoration: line-through;
+    text-decoration-color: var(--primary);
+    text-decoration-thickness: 2px;
+  }
+
+  .video-btn{
+    margin-top: 12px;
+    background: var(--accent-soft);
+    color: var(--primary-dark);
+    border: none;
+    font-family:'Nunito';
+    font-weight: 800;
+    font-size: 13.5px;
+    padding: 9px 14px;
+    border-radius: 20px;
+    cursor:pointer;
+    transition: background .15s;
+  }
+  .video-btn:hover{ background: var(--accent); color:#fff; }
+  .video-btn:focus-visible{ outline: 3px solid var(--primary); outline-offset: 2px; }
+
+  .video-slot:empty{ margin:0; }
+  .video-wrap{
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    margin-top: 12px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background:#000;
+  }
+  .video-wrap iframe{
+    position:absolute; top:0; left:0; width:100%; height:100%; border:0;
+  }
+
+  /* ---------- Cardio card ---------- */
+  .cardio-card{
+    background: var(--primary);
+    color: #fff;
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .cardio-card .exercise-head .check input{ accent-color: #fff; }
+  .cardio-card h3{ color:#fff; margin:0 0 3px; font-size: 18px; font-weight:800; }
+  .cardio-card .sets{ background: rgba(255,255,255,0.18); color:#fff; }
+  .cardio-card .tip{ color: rgba(255,255,255,0.85); }
+
+  /* ---------- Done banner ---------- */
+  .done-banner{
+    display:none;
+    text-align:center;
+    background: var(--accent-soft);
+    color: var(--primary-dark);
+    font-weight: 800;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    margin-top: 20px;
+  }
+  .done-banner.show{ display:block; }
+
+  /* ---------- Safety footer ---------- */
+  .safety-band{
+    margin-top: 34px;
+    background: var(--alert-soft);
+    border: 1px solid #E3C3C9;
+    color: var(--alert);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    font-size: 14px;
+    text-align:center;
+  }
+  .safety-band strong{ display:block; margin-bottom:2px; font-size: 15px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; }
+  }
+
+  a{ color: var(--primary); }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <header class="app-header">
+    <p class="eyebrow">A Steady Start</p>
+    <h1>Steady &amp; Strong</h1>
+    <p class="subtitle">Your 4-day plan. Machines with back support, no squats, no deadlifts, about an hour a day.</p>
+  </header>
+
+  <div class="rules-card">
+    <h2>Before you start, every day</h2>
+    <ul>
+      <li>Breathe out when you push or pull. Never hold your breath.</li>
+      <li>Move slow and controlled. No rushing, no jerking the weight.</li>
+      <li><strong>Stop and rest</strong> if you feel sharp pain, numbness, or dizziness. Feeling tired is normal — pain is not.</li>
+    </ul>
+  </div>
+
+  <nav class="week-path" id="weekPath" aria-label="Choose a day"></nav>
+
+  <main id="dayContent"></main>
+
+  <footer class="safety-band">
+    <strong>When in doubt, stop.</strong>
+    A little stiffness is okay. Sharp back or leg pain is your sign to rest and check in with your doctor.
+  </footer>
+
+</div>
+
+<script>
+const DAYS = [
+  {
+    id: 1,
+    focus: "Legs & Glutes",
+    warmup: [
+      ["Easy walk", "3 to 5 minutes"],
+      ["March in place", "20 steps"],
+      ["Arm circles", "10 forward, 10 back"]
+    ],
+    strength: [
+      {name:"Leg Press Machine", sets:"3 rounds", reps:"12 to 15 each round",
+       tip:"Sit back with your whole back flat against the pad. Push the platform away slowly with your feet, then bring it back slow — don't let it drop.",
+       videoId:"8nm863C0c60"},
+      {name:"Leg Extension Machine", sets:"3 rounds", reps:"12 each round",
+       tip:"Sit tall with your back against the pad. Lift your legs up slowly until they're almost straight, then lower slowly.",
+       videoId:"2lvdnQg04PM"},
+      {name:"Seated Leg Curl Machine", sets:"3 rounds", reps:"12 each round",
+       tip:"Sit with your back straight against the pad. Pull your heels down and back slowly. This works the back of your legs.",
+       videoId:"t9sTSr-JYSs"},
+      {name:"Hip Abduction & Adduction Machine", sets:"2 rounds", reps:"15 each round, both directions",
+       tip:"Sit with your back against the pad. Push your legs open, then bring them back together, slowly. Easy on the back, great for the hips.",
+       videoId:"MwXtApoiVEc"},
+      {name:"Seated Calf Raise Machine", sets:"2 rounds", reps:"15 each round",
+       tip:"Sit tall, balls of your feet on the platform. Push up onto your toes, then lower slowly.",
+       videoId:"ORY-ke6vcgk"}
+    ],
+    cardio: {name:"Recumbent Bike", duration:"15 minutes",
+      tip:"This bike has a backrest, so your back stays supported the whole time. Pedal at a pace where you could still talk."}
+  },
+  {
+    id: 2,
+    focus: "Chest, Shoulders & Arms",
+    warmup: [
+      ["Easy walk", "3 to 5 minutes"],
+      ["Arm circles", "10 forward, 10 back"],
+      ["Shoulder rolls", "10 each direction"]
+    ],
+    strength: [
+      {name:"Chest Press Machine", sets:"3 rounds", reps:"12 each round",
+       tip:"Sit back so your whole back touches the pad. Push the handles forward slowly, then bring them back with control.",
+       videoId:"gNBU7hmW2EU"},
+      {name:"Shoulder Press Machine", sets:"3 rounds", reps:"12 each round",
+       tip:"Sit with your back flat against the pad. Push the handles straight up, then lower slowly. Don't arch your back to push.",
+       videoId:"BAZkFGeUy5U"},
+      {name:"Pec Deck / Chest Fly Machine", sets:"2 rounds", reps:"12 each round",
+       tip:"Sit back against the pad. Bring your arms together slowly in front of your chest, then open back up with control.",
+       videoId:"j-CTn08oE9w"},
+      {name:"Triceps Pushdown (Cable)", sets:"2 rounds", reps:"12 each round",
+       tip:"Stand tall, elbows tucked at your sides. Push the bar down slowly, then let it rise with control. Keep your back straight, don't lean forward.",
+       videoId:"IoAP0xQtROk"},
+      {name:"Dead Bug — Back-Safe Core Move", sets:"2 rounds", reps:"8 each side",
+       tip:"Lie on your back, knees bent up. Slowly lower one arm and the opposite leg toward the floor, then bring them back. Keep your lower back pressed into the floor the whole time.",
+       videoId:"bxn9FBrt4-A"}
+    ],
+    cardio: {name:"Treadmill — Incline Walk", duration:"15 minutes",
+      tip:"Walk at an easy pace with a small incline. You should be able to talk in short sentences, not gasping for air."}
+  },
+  {
+    id: 3,
+    focus: "Legs & Hips (Different Angle)",
+    warmup: [
+      ["Easy walk", "3 to 5 minutes"],
+      ["March in place", "20 steps"],
+      ["Hip circles, gentle", "10 each direction"]
+    ],
+    strength: [
+      {name:"Leg Press Machine (feet a little higher)", sets:"3 rounds", reps:"12 to 15 each round",
+       tip:"Same machine as Day 1, but place your feet a little higher on the platform. This shifts more work to your glutes and hamstrings.",
+       videoId:"8nm863C0c60"},
+      {name:"Hip Abduction & Adduction Machine", sets:"3 rounds", reps:"15 each round, both directions",
+       tip:"Same move as Day 1. Sit tall, back against the pad, push your legs open and closed slowly.",
+       videoId:"MwXtApoiVEc"},
+      {name:"Seated Calf Raise Machine", sets:"2 rounds", reps:"15 each round",
+       tip:"Sit tall, push up onto your toes, then lower slowly.",
+       videoId:"ORY-ke6vcgk"},
+      {name:"Glute Bridge — Back-Safe Core Move", sets:"2 rounds", reps:"15 each round",
+       tip:"Lie on your back, knees bent, feet flat on the floor. Squeeze your glutes and lift your hips up, then lower slowly. One of the best moves for a healthy back.",
+       videoId:"wPM8icPu6H8"},
+      {name:"Bird Dog — Back-Safe Core Move", sets:"2 rounds", reps:"8 each side",
+       tip:"Start on your hands and knees. Slowly stretch one arm forward and the opposite leg back. Keep your back still and level, like balancing a cup of water on it.",
+       videoId:"ZdAHe9_HeEw"}
+    ],
+    cardio: {name:"Elliptical Machine", duration:"15 minutes",
+      tip:"Hold the handles lightly, move at an easy, steady pace. Low impact, easy on the joints and back."}
+  },
+  {
+    id: 4,
+    focus: "Back & Arms",
+    warmup: [
+      ["Easy walk", "3 to 5 minutes"],
+      ["Arm circles", "10 forward, 10 back"],
+      ["Shoulder rolls", "10 each direction"]
+    ],
+    strength: [
+      {name:"Lat Pulldown Machine", sets:"3 rounds", reps:"12 each round",
+       tip:"Sit tall with your thighs locked under the pad. Pull the bar down to your chest slowly, then let it rise back up with control.",
+       videoId:"AOpi-p0cJkc"},
+      {name:"Seated Row Machine", sets:"3 rounds", reps:"12 each round",
+       tip:"Sit tall, chest against the pad if there is one. Pull the handles toward you, squeeze your shoulder blades together, then return slowly.",
+       videoId:"OeLb503NZHk"},
+      {name:"Reverse Pec Deck (Rear Shoulder)", sets:"2 rounds", reps:"12 each round",
+       tip:"Sit facing into the machine, chest against the pad. Open your arms out to the sides slowly, then bring them back with control.",
+       videoId:"v0CxZlWX9zQ"},
+      {name:"Bicep Curl Machine", sets:"2 rounds", reps:"12 each round",
+       tip:"Sit with your arms resting on the pad. Curl the handles up slowly, then lower with control.",
+       videoId:"MAAd2MYz5i8"},
+      {name:"Modified Plank on Knees — Back-Safe Core Move", sets:"2 rounds", reps:"Hold 20 to 30 seconds",
+       tip:"Rest on your forearms and knees. Keep a straight line from your head to your knees. Breathe steadily, don't hold your breath.",
+       videoId:"0Vaj1yJb1r4"}
+    ],
+    cardio: {name:"Recumbent Bike or Treadmill", duration:"15 minutes",
+      tip:"Pick whichever feels best today. Easy, steady pace — you should be able to talk."}
+  }
+];
+
+const COOLDOWN = [
+  ["Standing quad stretch (hold a machine for balance)", "20 to 30 sec each leg"],
+  ["Standing calf stretch against a wall or machine", "20 to 30 sec each leg"],
+  ["Shoulder rolls", "10 each direction"],
+  ["Slow deep breaths, in through the nose, out through the mouth", "5 breaths"]
+];
+
+let currentDay = 1;
+
+function renderWeekPath(){
+  const nav = document.getElementById('weekPath');
+  nav.innerHTML = DAYS.map(d => `
+    <button class="day-stone ${d.id===currentDay?'active':''}" data-day="${d.id}" aria-current="${d.id===currentDay}">
+      <span class="circle">${d.id}</span>
+      <span class="label">Day ${d.id}</span>
+    </button>
+  `).join('');
+  nav.querySelectorAll('.day-stone').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      currentDay = parseInt(btn.dataset.day);
+      renderWeekPath();
+      renderDay();
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+}
+
+function exerciseCard(ex, idx){
+  return `
+    <article class="exercise-card" id="ex-${idx}">
+      <div class="exercise-head">
+        <label class="check">
+          <input type="checkbox" onchange="toggleDone(${idx})">
+        </label>
+        <div>
+          <h3>${ex.name}</h3>
+          <p class="sets">${ex.sets} • ${ex.reps}</p>
+        </div>
+      </div>
+      <p class="tip">${ex.tip}</p>
+      <button class="video-btn" onclick="toggleVideo(this,'${ex.videoId}')">▶ Watch how to do this</button>
+      <div class="video-slot"></div>
+    </article>
+  `;
+}
+
+function renderDay(){
+  const day = DAYS.find(d=>d.id===currentDay);
+  const totalItems = day.strength.length + 1; // +1 for cardio
+  let html = `
+    <div class="day-head">
+      <h2>Day ${day.id} of the Week</h2>
+      <p class="focus">${day.focus}</p>
+      <p class="time-est">About 55 to 60 minutes total</p>
+    </div>
+    <p class="progress-line" id="progressLine">0 of ${totalItems} done</p>
+
+    <p class="section-title">Warm Up (5 minutes)</p>
+    <div class="simple-list">
+      <ul>
+        ${day.warmup.map(w=>`<li>${w[0]} <span class="li-time">— ${w[1]}</span></li>`).join('')}
+      </ul>
+    </div>
+
+    <p class="section-title">Strength — Machines Only</p>
+    ${day.strength.map((ex,i)=>exerciseCard(ex,i)).join('')}
+
+    <p class="section-title">Cardio</p>
+    <article class="exercise-card cardio-card" id="ex-cardio">
+      <div class="exercise-head">
+        <label class="check">
+          <input type="checkbox" onchange="toggleDone('cardio')">
+        </label>
+        <div>
+          <h3>${day.cardio.name}</h3>
+          <p class="sets">${day.cardio.duration}</p>
+        </div>
+      </div>
+      <p class="tip">${day.cardio.tip}</p>
+    </article>
+
+    <p class="section-title">Cool Down (5 minutes)</p>
+    <div class="simple-list">
+      <ul>
+        ${COOLDOWN.map(c=>`<li>${c[0]} <span class="li-time">— ${c[1]}</span></li>`).join('')}
+      </ul>
+    </div>
+
+    <div class="done-banner" id="doneBanner">Nice work — Day ${day.id} is complete! 🎉</div>
+  `;
+  document.getElementById('dayContent').innerHTML = html;
+}
+
+function toggleVideo(btn, id){
+  const slot = btn.nextElementSibling;
+  if(slot.innerHTML){
+    slot.innerHTML = '';
+    btn.textContent = '▶ Watch how to do this';
+    return;
+  }
+  slot.innerHTML = `<div class="video-wrap"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="Exercise video" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+  btn.textContent = '▲ Hide video';
+}
+
+function toggleDone(idx){
+  const card = document.getElementById('ex-' + idx);
+  card.classList.toggle('done');
+  updateProgress();
+}
+
+function updateProgress(){
+  const day = DAYS.find(d=>d.id===currentDay);
+  const total = day.strength.length + 1;
+  const done = document.querySelectorAll('#dayContent .exercise-card.done').length;
+  document.getElementById('progressLine').textContent = done + ' of ' + total + ' done';
+  const banner = document.getElementById('doneBanner');
+  if(done === total){
+    banner.classList.add('show');
+  } else {
+    banner.classList.remove('show');
+  }
+}
+
+renderWeekPath();
+renderDay();
+</script>
+
+</body>
+</html>
