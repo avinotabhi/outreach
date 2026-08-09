@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Founder Brand Onboarding, Sahil Dhull</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EC;
+    --paper-panel: #FFFFFF;
+    --ink: #1A1A1A;
+    --muted: #6B6B6B;
+    --accent: #0071E3;
+    --rule: #E3DCCF;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 90px;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 36px;
+  }
+
+  .topbar span {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.15;
+    margin: 0 0 10px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0 0 26px;
+  }
+
+  .purpose {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 26px;
+    margin-bottom: 8px;
+  }
+
+  section.block {
+    padding-top: 34px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .section-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 23px;
+    margin: 0;
+  }
+
+  .frame {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 14.5px;
+    margin: 0 0 18px;
+  }
+
+  .field {
+    margin-bottom: 22px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 15.5px;
+    margin-bottom: 8px;
+  }
+
+  .q-num {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    color: var(--accent);
+    margin-right: 4px;
+  }
+
+  .q-note {
+    display: block;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 13px;
+    margin: -4px 0 8px;
+  }
+
+  textarea, input[type="text"], input[type="email"] {
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--paper-panel);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 12px 14px;
+    resize: vertical;
+  }
+
+  textarea:focus, input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .intro-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 24px;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 560px) {
+    .intro-fields { grid-template-columns: 1fr; }
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    opacity: 0;
+    height: 0;
+  }
+
+  .submit-row {
+    margin-top: 44px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  button.submit-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFFFFF;
+    background: var(--accent);
+    border: none;
+    border-radius: 4px;
+    padding: 14px 30px;
+    cursor: pointer;
+  }
+
+  button.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .status-msg {
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .status-msg.error { color: #B3261E; }
+
+  #thankYou {
+    display: none;
+    text-align: center;
+    padding: 80px 10px;
+  }
+
+  #thankYou h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    margin-bottom: 12px;
+  }
+
+  #thankYou p {
+    color: var(--muted);
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 56px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar"><span>J CURVE BY AVI</span></div>
+
+  <div id="formWrap">
+    <p class="eyebrow">FOUNDER BRAND ONBOARDING</p>
+    <h1>Tell us about you and the company</h1>
+    <p class="subtitle">For Sahil Dhull, ahead of our kickoff call</p>
+
+    <p class="purpose">
+      Before we build your content system, we want to actually understand you and the startup, not fit you into a template. Take your time. More detail is more useful than a short, safe answer. Nothing here is graded.
+    </p>
+
+    <form id="onboardingForm">
+
+      <div class="intro-fields">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Your email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+
+      <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off">
+
+      <section class="block">
+        <div class="section-head"><span class="section-num">01</span><h2>Founder Story &amp; Origin</h2></div>
+        <p class="frame">This is the raw material for your origin story, the thing that makes you a person, not a LinkedIn headline.</p>
+
+        <div class="field">
+          <label><span class="q-num">Q1.</span>Walk us through your career up to this point. What were you doing right before this startup?</label>
+          <textarea name="s1q1" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q2.</span>What was the specific moment or frustration that made you decide to start this company?</label>
+          <textarea name="s1q2" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q3.</span>Did you experience the problem firsthand, or did you spot it from the outside?</label>
+          <textarea name="s1q3" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q4.</span>What's the hardest part of the journey so far that you haven't talked about publicly?</label>
+          <textarea name="s1q4" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q5.</span>If someone only read one paragraph about your story, what would you want it to say?</label>
+          <textarea name="s1q5" rows="3" required></textarea>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="section-head"><span class="section-num">02</span><h2>The Startup: Business Context</h2></div>
+        <p class="frame">Enough working knowledge of the business that content doesn't have to be run through you line by line.</p>
+
+        <div class="field">
+          <label><span class="q-num">Q1.</span>In one sentence, what does the company do and who is it for?</label>
+          <textarea name="s2q1" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q2.</span>What stage are you at right now: pre-seed, seed, Series A, revenue, users?</label>
+          <textarea name="s2q2" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q3.</span>Who are your main competitors or alternatives, and what do you do differently?</label>
+          <textarea name="s2q3" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q4.</span>What's the biggest misconception people have about your industry or product?</label>
+          <textarea name="s2q4" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q5.</span>What milestones are coming up in the next 6 to 12 months (fundraise, launch, hiring) that content should build toward?</label>
+          <textarea name="s2q5" rows="3" required></textarea>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="section-head"><span class="section-num">03</span><h2>Why a Personal Brand: Goals &amp; Success Metrics</h2></div>
+        <p class="frame">This decides everything downstream: platform choice, tone, how much of the company shows up in the content.</p>
+
+        <div class="field">
+          <label><span class="q-num">Q1.</span>What's the number one outcome you want from this: fundraising, hiring, sales/demand gen, recruiting talent, or something else?</label>
+          <span class="q-note">Rank these if more than one applies, don't just list them.</span>
+          <textarea name="s3q1" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q2.</span>Should this brand support the company brand directly, or stand somewhat apart from it?</label>
+          <textarea name="s3q2" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q3.</span>Who do you most want reading your content: investors, customers, future employees, other founders, press?</label>
+          <textarea name="s3q3" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q4.</span>Six months from now, what result would make you say this was worth the time?</label>
+          <textarea name="s3q4" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q5.</span>Are there founders whose personal brand you admire? What specifically about their tone or approach, not their content, do you want to borrow?</label>
+          <textarea name="s3q5" rows="3" required></textarea>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="section-head"><span class="section-num">04</span><h2>Positioning &amp; Voice</h2></div>
+        <p class="frame">The point of view you're willing to actually defend in public. This is what separates a founder brand from a company newsletter.</p>
+
+        <div class="field">
+          <label><span class="q-num">Q1.</span>What do you want to be known for: a topic, a point of view, an industry lens?</label>
+          <textarea name="s4q1" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q2.</span>Do you have any strong or contrarian opinions about your industry you're comfortable sharing publicly?</label>
+          <textarea name="s4q2" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q3.</span>How do you naturally talk when you're excited about something: technical, story-driven, blunt, funny?</label>
+          <textarea name="s4q3" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q4.</span>Are there topics that are off-limits: competitors, politics, a past company, funding numbers?</label>
+          <textarea name="s4q4" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q5.</span>How much "building in public" are you comfortable with: metrics, failures, internal decisions?</label>
+          <textarea name="s4q5" rows="2" required></textarea>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="section-head"><span class="section-num">05</span><h2>Audience &amp; Content Direction</h2></div>
+        <p class="frame">Where you already have attention, and where the content actually needs to travel.</p>
+
+        <div class="field">
+          <label><span class="q-num">Q1.</span>Where does your ideal audience actually spend time: LinkedIn, X/Twitter, YouTube, newsletters?</label>
+          <textarea name="s5q1" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q2.</span>Do you already have any following, list, or community built up anywhere?</label>
+          <textarea name="s5q2" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q3.</span>What have you posted before, if anything, and how did it perform?</label>
+          <textarea name="s5q3" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q4.</span>Are there specific narratives you want to plant ahead of a raise or a launch?</label>
+          <textarea name="s5q4" rows="3" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q5.</span>What's the right balance between company updates and personal opinion/story content?</label>
+          <textarea name="s5q5" rows="2" required></textarea>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="section-head"><span class="section-num">06</span><h2>Production &amp; Logistics</h2></div>
+        <p class="frame">What's actually sustainable given your calendar. This sets the content cadence we promise.</p>
+
+        <div class="field">
+          <label><span class="q-num">Q1.</span>How much time can you realistically give this each week: writing, recording, review?</label>
+          <textarea name="s6q1" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q2.</span>Are you comfortable on camera, or should we lean into written/text-first content initially?</label>
+          <textarea name="s6q2" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q3.</span>Who else on your team should be looped in for review or approvals?</label>
+          <textarea name="s6q3" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q4.</span>How comfortable are you with us drafting in your voice versus you writing first drafts for us to shape?</label>
+          <textarea name="s6q4" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q5.</span>What does a typical week look like (talks, demos, meetings) so we can find natural capture windows?</label>
+          <textarea name="s6q5" rows="3" required></textarea>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="section-head"><span class="section-num">07</span><h2>Aesthetic &amp; References</h2></div>
+        <p class="frame">Quick gut check on taste before we design anything.</p>
+
+        <div class="field">
+          <label><span class="q-num">Q1.</span>Any founders, creators, or brands whose visual style or content format you like?</label>
+          <textarea name="s7q1" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q2.</span>Any hard no's: visual styles, formats, or platforms you don't want to touch?</label>
+          <textarea name="s7q2" rows="2" required></textarea>
+        </div>
+        <div class="field">
+          <label><span class="q-num">Q3.</span>Does the company have existing brand guidelines (colors, logo, tone) we should stay consistent with?</label>
+          <textarea name="s7q3" rows="2" required></textarea>
+        </div>
+      </section>
+
+      <div class="submit-row">
+        <button type="submit" class="submit-btn" id="submitBtn">Submit answers</button>
+        <span class="status-msg" id="statusMsg"></span>
+      </div>
+
+    </form>
+  </div>
+
+  <div id="thankYou">
+    <h2>Got it, thank you.</h2>
+    <p>Your answers are in. We'll use these to put together your founder brand brief before we talk next.</p>
+  </div>
+
+  <p class="footer">J CURVE BY AVI, FOUNDER BRAND ONBOARDING</p>
+
+</div>
+
+<script>
+  // Paste the URL you get after deploying the Google Apps Script web app here.
+  // It will look like: https://script.google.com/macros/s/XXXXXXXXXXXX/exec
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbygl-RmmLgZxDQjso5C38dRJSiEjcAIoz08B-vf0r_WR-fO_C-WLgZbyM4dJCqjxIf8cw/exec";
+
+  const form = document.getElementById('onboardingForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusMsg = document.getElementById('statusMsg');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Basic spam trap, if the hidden field got filled, quietly stop.
+    if (form.website.value) {
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+    statusMsg.textContent = "";
+    statusMsg.classList.remove('error');
+
+    const formData = new FormData(form);
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    })
+      .then(function () {
+        document.getElementById('formWrap').style.display = 'none';
+        document.getElementById('thankYou').style.display = 'block';
+        window.scrollTo(0, 0);
+      })
+      .catch(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit answers";
+        statusMsg.textContent = "Something went wrong sending this. Please try again.";
+        statusMsg.classList.add('error');
+      });
+  });
+</script>
+
+</body>
+</html>
