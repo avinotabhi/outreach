@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J Curve by Avi, Proposal for Sahil Dhull</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF6EC;
+    --panel: #FFFFFF;
+    --ink: #1A1714;
+    --muted: #736A5E;
+    --accent: #0071E3;
+    --rule: #E3DCCF;
+    --dark: #1A1714;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  .masthead {
+    background: var(--dark);
+    padding: 16px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .masthead-brand { font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 0.12em; color: #FFFFFF; }
+  .masthead-brand span { color: var(--accent); }
+  .masthead-meta { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); }
+  @media (max-width: 680px) { .masthead-meta { display: none; } }
+
+  .page { max-width: 820px; margin: 0 auto; padding: 0 48px 100px; }
+  @media (max-width: 680px) { .page { padding: 0 22px 80px; } .masthead { padding: 16px 22px; } }
+
+  .hero { text-align: center; padding: 70px 0 50px; border-bottom: 1px solid var(--rule); margin-bottom: 50px; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 16px; text-transform: uppercase; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 46px; line-height: 1.2; margin-bottom: 18px; }
+  @media (max-width: 680px) { .hero h1 { font-size: 32px; } }
+  .hero p { color: var(--muted); font-size: 16px; max-width: 520px; margin: 0 auto 8px; }
+  .hero-meta { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); margin-top: 18px; letter-spacing: 0.03em; }
+
+  section.sec { margin-bottom: 56px; }
+  .sec-label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; display: block; }
+  .sec h2 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; margin-bottom: 10px; }
+  .sec-sub { color: var(--muted); font-size: 15px; margin-bottom: 24px; max-width: 560px; }
+  .sec-rule { border: none; border-top: 1px solid var(--rule); margin: 56px 0 0; }
+
+  p.body-text { font-size: 15.5px; margin-bottom: 14px; max-width: 620px; }
+
+  .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 680px) { .scope-grid { grid-template-columns: 1fr; } }
+  .scope-item {
+    background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 16px 18px; display: flex; align-items: flex-start; gap: 12px;
+  }
+  .scope-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex-shrink: 0; }
+  .scope-text .t { font-weight: 700; font-size: 14.5px; margin-bottom: 2px; }
+  .scope-text .d { font-size: 13px; color: var(--muted); }
+
+  /* Pricing table */
+  .platform-block { margin-bottom: 26px; }
+  .platform-name {
+    font-family: 'DM Mono', monospace; font-size: 12.5px; letter-spacing: 0.08em;
+    color: var(--ink); background: var(--rule); display: inline-block; padding: 4px 10px; border-radius: 3px; margin-bottom: 10px;
+  }
+  .price-row {
+    display: grid; grid-template-columns: 1fr auto; gap: 8px;
+    padding: 10px 0; border-bottom: 1px solid var(--rule);
+    font-size: 14.5px; align-items: baseline;
+  }
+  .price-row .item { color: var(--ink); }
+  .price-row .calc { font-family: 'DM Mono', monospace; font-size: 12.5px; color: var(--muted); }
+  .price-row .amt { font-family: 'DM Mono', monospace; font-weight: 500; text-align: right; white-space: nowrap; }
+  .price-row.subtotal { border-bottom: none; border-top: 1px solid var(--ink); font-weight: 700; padding-top: 12px; }
+  .price-row.subtotal .amt { font-size: 15px; }
+
+  /* DIY comparison */
+  .diy-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 20px; }
+  @media (max-width: 680px) { .diy-grid { grid-template-columns: 1fr; } }
+  .diy-card {
+    background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 20px 22px;
+  }
+  .diy-role { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 17px; margin-bottom: 4px; }
+  .diy-desc { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .diy-cost { font-family: 'DM Mono', monospace; font-size: 15px; font-weight: 500; color: var(--accent); }
+  .diy-total {
+    background: var(--dark); color: #FFFFFF; border-radius: 8px; padding: 20px 24px;
+    display: flex; justify-content: space-between; align-items: center; margin-top: 4px;
+  }
+  .diy-total .label { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: rgba(255,255,255,0.6); }
+  .diy-total .amt { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; }
+  .diy-note { font-size: 13.5px; color: var(--muted); font-style: italic; margin-top: 14px; }
+
+  /* Investment summary */
+  .invest-panel {
+    background: var(--dark); color: #F6F2EA; border-radius: 10px; padding: 40px 36px; text-align: center;
+  }
+  .invest-market { font-family: 'DM Mono', monospace; font-size: 15px; color: rgba(246,242,234,0.45); text-decoration: line-through; margin-bottom: 10px; }
+  .invest-retainer { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 44px; color: #FFFFFF; margin-bottom: 6px; }
+  .invest-retainer span { font-size: 16px; font-weight: 400; color: rgba(246,242,234,0.6); }
+  .invest-save { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--accent); letter-spacing: 0.04em; }
+  .invest-sub { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(246,242,234,0.35); margin-top: 18px; letter-spacing: 0.08em; }
+
+  /* Terms */
+  .term-row { display: flex; gap: 18px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+  .term-row .k { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); min-width: 150px; letter-spacing: 0.04em; }
+  .term-row .v { font-size: 14.5px; }
+
+  .footer { text-align: center; padding-top: 30px; margin-top: 20px; }
+  .footer p { font-family: 'DM Mono', monospace; font-size: 11.5px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-brand">J CURVE <span>BY AVI</span></div>
+  <div class="masthead-meta">PROPOSAL &middot; SAHIL DHULL &middot; AUGUST 2026</div>
+</div>
+
+<div class="page">
+
+  <div class="hero">
+    <p class="hero-eyebrow">Content Partnership Proposal</p>
+    <h1>Running your founder brand shouldn't take a team of four.</h1>
+    <p>Instagram, LinkedIn, and X, strategy through to posting, handled as one retainer instead of four separate hires.</p>
+    <p class="hero-meta">Prepared for Sahil Dhull &middot; Effective August 14, 2026</p>
+  </div>
+
+  <section class="sec">
+    <span class="sec-label">01 / SCOPE OF SERVICES</span>
+    <h2>What's covered</h2>
+    <p class="sec-sub">Everything needed to run the founder brand we scoped in the vision board, in one engagement</p>
+    <div class="scope-grid">
+      <div class="scope-item"><span class="scope-dot"></span><div class="scope-text"><p class="t">Instagram Reels</p><p class="d">4 to 5 reels a month, scripted, edited, posted</p></div></div>
+      <div class="scope-item"><span class="scope-dot"></span><div class="scope-text"><p class="t">Reel Scripting</p><p class="d">Written in your voice, pulled from real build updates</p></div></div>
+      <div class="scope-item"><span class="scope-dot"></span><div class="scope-text"><p class="t">Reel Posting</p><p class="d">Scheduled and published, no back and forth needed</p></div></div>
+      <div class="scope-item"><span class="scope-dot"></span><div class="scope-text"><p class="t">LinkedIn Posting</p><p class="d">Regular posts written, scheduled, and published</p></div></div>
+      <div class="scope-item"><span class="scope-dot"></span><div class="scope-text"><p class="t">Carousel Creation</p><p class="d">Designed carousels for LinkedIn, on brand every time</p></div></div>
+      <div class="scope-item"><span class="scope-dot"></span><div class="scope-text"><p class="t">X Management</p><p class="d">Daily posts, threads, and real time reaction content</p></div></div>
+      <div class="scope-item"><span class="scope-dot"></span><div class="scope-text"><p class="t">Overall Strategy</p><p class="d">Pillars, cadence, and positioning kept current as the company moves</p></div></div>
+      <div class="scope-item"><span class="scope-dot"></span><div class="scope-text"><p class="t">Strategy Calls</p><p class="d">2 calls a month to capture updates and re-align direction</p></div></div>
+    </div>
+  </section>
+
+  <hr class="sec-rule">
+
+  <section class="sec" style="margin-top: 56px;">
+    <span class="sec-label">02 / MARKET RATE BREAKDOWN</span>
+    <h2>What each piece costs on its own</h2>
+    <p class="sec-sub">Priced the way a founder would actually get quoted, service by service, platform by platform</p>
+
+    <div class="platform-block">
+      <span class="platform-name">INSTAGRAM, 5 REELS/MONTH</span>
+      <div class="price-row"><div><div class="item">Reel Scripting</div><div class="calc">5 scripts &times; &#8377;3,000</div></div><div class="amt">&#8377;15,000</div></div>
+      <div class="price-row"><div><div class="item">Reel Editing</div><div class="calc">5 reels &times; &#8377;3,000</div></div><div class="amt">&#8377;15,000</div></div>
+      <div class="price-row"><div><div class="item">Posting &amp; Scheduling</div><div class="calc">Flat</div></div><div class="amt">&#8377;4,000</div></div>
+      <div class="price-row subtotal"><div>Instagram Subtotal</div><div class="amt">&#8377;34,000</div></div>
+    </div>
+
+    <div class="platform-block">
+      <span class="platform-name">LINKEDIN, 14 POSTS + 4 CAROUSELS/MONTH</span>
+      <div class="price-row"><div><div class="item">Post Writing</div><div class="calc">14 posts &times; &#8377;2,000</div></div><div class="amt">&#8377;28,000</div></div>
+      <div class="price-row"><div><div class="item">Carousel Creation</div><div class="calc">4 carousels &times; &#8377;1,500</div></div><div class="amt">&#8377;6,000</div></div>
+      <div class="price-row"><div><div class="item">Posting &amp; Scheduling</div><div class="calc">Flat</div></div><div class="amt">&#8377;3,500</div></div>
+      <div class="price-row subtotal"><div>LinkedIn Subtotal</div><div class="amt">&#8377;37,500</div></div>
+    </div>
+
+    <div class="platform-block">
+      <span class="platform-name">X, DAILY MANAGEMENT</span>
+      <div class="price-row"><div><div class="item">Content, Threads &amp; Engagement</div><div class="calc">Flat monthly</div></div><div class="amt">&#8377;25,000</div></div>
+      <div class="price-row subtotal"><div>X Subtotal</div><div class="amt">&#8377;25,000</div></div>
+    </div>
+
+    <div class="platform-block">
+      <span class="platform-name">STRATEGY</span>
+      <div class="price-row"><div><div class="item">Content Strategy &amp; Brand Direction</div><div class="calc">Flat monthly</div></div><div class="amt">&#8377;15,000</div></div>
+      <div class="price-row"><div><div class="item">Strategy Calls</div><div class="calc">2 calls &times; &#8377;3,500</div></div><div class="amt">&#8377;7,000</div></div>
+      <div class="price-row subtotal"><div>Strategy Subtotal</div><div class="amt">&#8377;22,000</div></div>
+    </div>
+
+    <div class="diy-total" style="margin-top: 24px;">
+      <span class="label">MARKET RATE, ALL PLATFORMS COMBINED</span>
+      <span class="amt">&#8377;1,18,500/mo</span>
+    </div>
+  </section>
+
+  <hr class="sec-rule">
+
+  <section class="sec" style="margin-top: 56px;">
+    <span class="sec-label">03 / WHAT THIS REPLACES</span>
+    <h2>The alternative is four hires, not one</h2>
+    <p class="sec-sub">Even at freelance rates, replicating this scope in house means finding, briefing, and managing four different people, each with only part of the picture</p>
+
+    <div class="diy-grid">
+      <div class="diy-card">
+        <p class="diy-role">Content Writer</p>
+        <p class="diy-desc">Scripts, LinkedIn posts, carousel copy</p>
+        <p class="diy-cost">&#8377;35,000/mo</p>
+      </div>
+      <div class="diy-card">
+        <p class="diy-role">Video Editor</p>
+        <p class="diy-desc">Reel editing, captions, cuts</p>
+        <p class="diy-cost">&#8377;35,000/mo</p>
+      </div>
+      <div class="diy-card">
+        <p class="diy-role">Social Media Manager</p>
+        <p class="diy-desc">Posting and scheduling across 3 platforms, plus X engagement</p>
+        <p class="diy-cost">&#8377;40,000/mo</p>
+      </div>
+      <div class="diy-card">
+        <p class="diy-role">Strategy Consultant</p>
+        <p class="diy-desc">Pillars, positioning, monthly direction</p>
+        <p class="diy-cost">&#8377;25,000/mo</p>
+      </div>
+    </div>
+
+    <div class="diy-total">
+      <span class="label">FOUR PEOPLE, MANAGED SEPARATELY</span>
+      <span class="amt">&#8377;1,35,000/mo</span>
+    </div>
+    <p class="diy-note">That figure doesn't include the time spent finding and briefing each of them, or the drift that shows up when four different people are each working from a partial version of your voice. One team holding the full context, the vision board, the pillars, the tone, costs less and drifts less.</p>
+  </section>
+
+  <hr class="sec-rule">
+
+  <section class="sec" style="margin-top: 56px;">
+    <span class="sec-label">04 / THE INVESTMENT</span>
+    <h2>One retainer, everything included</h2>
+    <p class="sec-sub">&nbsp;</p>
+    <div class="invest-panel">
+      <p class="invest-market">Market Rate: &#8377;1,18,500 / month</p>
+      <p class="invest-retainer">&#8377;89,999 <span>/ month</span></p>
+      <p class="invest-save">You save &#8377;28,501 a month against market rate</p>
+      <p class="invest-sub">RETAINER SUBJECT TO REVISION AFTER PRE-SEED CLOSES</p>
+    </div>
+  </section>
+
+  <hr class="sec-rule">
+
+  <section class="sec" style="margin-top: 56px;">
+    <span class="sec-label">05 / TERMS</span>
+    <h2>Working together</h2>
+    <div class="term-row"><div class="k">PAYMENT</div><div class="v">50% advance on signing, 50% on completion of Month 1. From Month 2, full payment on the 1st of each month.</div></div>
+    <div class="term-row"><div class="k">CONTRACT TERM</div><div class="v">Month to month, either side can end the engagement with 30 days notice.</div></div>
+    <div class="term-row"><div class="k">TURNAROUND</div><div class="v">1 to 2 business days for reels and LinkedIn posts, 2 rounds of revisions included per deliverable.</div></div>
+    <div class="term-row"><div class="k">RATE REVISION</div><div class="v">Retainer is subject to increase once the pre-seed round closes, to be discussed before any change.</div></div>
+  </section>
+
+  <div class="footer">
+    <p>J CURVE BY AVI</p>
+    <p>+91 63861 70227 &middot; avisharma1401@gmail.com</p>
+  </div>
+
+</div>
+</body>
+</html>
