@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Vision Board, Sahil Dhull</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,600&family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #262220;
+    --offwhite: #F5F1E8;
+    --white: #FFFFFF;
+    --sage: #9CAF93;
+    --sage-deep: #5F7657;
+    --beige: #D8CBB0;
+    --beige-deep: #A98F63;
+    --burgundy: #6B2C39;
+    --burgundy-deep: #4A1E27;
+    --muted: #837A6E;
+    --rule: rgba(38,34,32,0.12);
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'Sora', system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .nav-brand span { color: var(--sage-deep); }
+  .nav-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+  }
+  @media (max-width: 680px) { .nav-label { display: none; } }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    background: var(--offwhite);
+    padding: 100px 48px 90px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 260px;
+    color: var(--sage);
+    opacity: 0.08;
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: -0.02em;
+  }
+  @media (max-width: 680px) { .hero-bg-text { font-size: 120px; } }
+  .hero-inner { position: relative; max-width: 640px; margin: 0 auto; }
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--sage-deep); margin-bottom: 18px;
+  }
+  .hero-title {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 50px; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.01em;
+  }
+  .hero-title em { font-style: italic; color: var(--sage-deep); }
+  @media (max-width: 680px) { .hero-title { font-size: 34px; } }
+  .hero-sub { font-size: 16.5px; color: var(--muted); margin-bottom: 28px; }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .pill {
+    font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+    padding: 7px 14px; border-radius: 20px; letter-spacing: 0.02em;
+    background: var(--white); border: 1px solid var(--rule); color: var(--ink);
+  }
+  .pill.sage { background: var(--sage); color: var(--white); border-color: var(--sage); }
+  .pill.beige { background: var(--beige); color: var(--ink); border-color: var(--beige); }
+  .pill.burgundy { background: var(--burgundy); color: var(--white); border-color: var(--burgundy); }
+
+  /* PAGE / ZONES */
+  .page { max-width: 920px; margin: 0 auto; padding: 0 48px; }
+  @media (max-width: 680px) { .page { padding: 0 20px; } nav, .hero { padding-left: 20px; padding-right: 20px; } }
+
+  section.zone { padding: 64px 0; border-bottom: 1px solid var(--rule); }
+  section.zone:last-of-type { border-bottom: none; }
+  .zone-head { margin-bottom: 30px; }
+  .zone-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--sage-deep);
+    letter-spacing: 0.1em; margin-bottom: 8px; display: block;
+  }
+  .zone-head h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 30px; margin-bottom: 8px; }
+  .zone-head p { color: var(--muted); font-size: 15px; max-width: 560px; }
+
+  p.lead { font-size: 16.5px; max-width: 640px; margin-bottom: 16px; }
+  p.lead strong { color: var(--sage-deep); }
+
+  /* GOALS */
+  .goal-card {
+    background: var(--offwhite); border: 1px solid var(--rule); border-radius: var(--radius);
+    padding: 18px 20px; display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px;
+  }
+  .goal-dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .dot-sage { background: var(--sage-deep); }
+  .dot-beige { background: var(--beige-deep); }
+  .dot-burgundy { background: var(--burgundy); }
+  .goal-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 3px;
+  }
+  .goal-text { font-size: 14.5px; font-weight: 600; }
+
+  /* COLOUR */
+  .swatch-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  @media (max-width: 680px) { .swatch-grid { grid-template-columns: repeat(2, 1fr); } }
+  .swatch { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--rule); }
+  .swatch-color { height: 96px; }
+  .swatch-label { padding: 12px 14px; background: var(--white); }
+  .swatch-name { font-weight: 700; font-size: 13.5px; margin-bottom: 2px; }
+  .swatch-hex { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--muted); margin-bottom: 4px; }
+  .swatch-use { font-size: 11.5px; color: var(--muted); }
+  .note { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 16px; }
+  .ratio-bar { display: flex; height: 30px; border-radius: 6px; overflow: hidden; margin: 20px 0 4px; border: 1px solid var(--rule); }
+
+  /* TYPE */
+  .type-card { background: var(--offwhite); border: 1px solid var(--rule); border-radius: var(--radius); padding: 26px 28px; margin-bottom: 14px; }
+  .type-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--sage-deep); letter-spacing: 0.06em; display: block; margin-bottom: 10px; }
+  .type-display { font-family: 'Fraunces', serif; font-weight: 700; font-size: 32px; margin-bottom: 8px; }
+  .type-body { font-size: 15.5px; max-width: 540px; margin-bottom: 8px; }
+  .type-mono { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; background: var(--white); display: inline-block; padding: 6px 10px; border-radius: 4px; }
+  .type-meta { font-size: 12.5px; color: var(--muted); margin-top: 10px; }
+
+  /* VOICE */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 680px) { .voice-grid { grid-template-columns: 1fr; } }
+  .voice-card { border-radius: var(--radius); padding: 22px 24px; background: var(--offwhite); }
+  .voice-card.do { border: 1px solid var(--sage); }
+  .voice-card.dont { border: 1px solid var(--rule); }
+  .voice-card h3 { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; margin-bottom: 14px; }
+  .voice-card.do h3 { color: var(--sage-deep); }
+  .voice-card.dont h3 { color: var(--burgundy); }
+  .voice-card p { font-size: 14.5px; margin-bottom: 12px; padding-left: 13px; border-left: 2px solid var(--rule); }
+  .voice-card.do p { border-left-color: var(--sage); }
+  .voice-card.dont p { border-left-color: var(--burgundy); opacity: 0.7; }
+
+  /* PILLARS */
+  .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 14px; }
+  .pillar-card { background: var(--white); border: 1px solid var(--rule); border-radius: var(--radius); padding: 20px 18px; text-align: center; }
+  .pillar-card .n { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--sage-deep); display: block; margin-bottom: 6px; }
+  .pillar-card .t { font-family: 'Fraunces', serif; font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+  .pillar-card .d { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+  .pillar-card .hook { font-style: italic; font-size: 11.5px; color: var(--ink); border-left: 2px solid var(--sage); padding-left: 8px; margin-top: 12px; text-align: left; line-height: 1.4; }
+
+  /* MOOD */
+  .mood-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  @media (max-width: 680px) { .mood-grid { grid-template-columns: repeat(2, 1fr); } }
+  .mood-panel { border-radius: var(--radius); height: 110px; display: flex; align-items: flex-end; padding: 16px; }
+  .mood-panel span { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--white); letter-spacing: 0.04em; }
+  .mood-1 { background: linear-gradient(135deg, var(--sage), var(--sage-deep)); }
+  .mood-2 { background: linear-gradient(135deg, var(--beige), var(--beige-deep)); }
+  .mood-3 { background: linear-gradient(135deg, var(--ink), #46392F); }
+  .mood-4 { background: linear-gradient(135deg, var(--burgundy), var(--burgundy-deep)); }
+  .dd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 680px) { .dd-grid { grid-template-columns: 1fr; } }
+  .dd-grid h4 { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .dd-grid.lean h4 { color: var(--sage-deep); }
+  .dd-grid .avoid h4 { color: var(--burgundy); }
+  .dd-grid ul { padding-left: 18px; }
+  .dd-grid li { font-size: 14px; margin-bottom: 7px; }
+  .shot-notes { margin-top: 24px; }
+  .shot-notes h4 { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; color: var(--sage-deep); margin-bottom: 10px; }
+  .shot-notes ul { padding-left: 18px; }
+  .shot-notes li { font-size: 14px; margin-bottom: 8px; }
+
+  /* SOUND */
+  .sound-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  @media (max-width: 680px) { .sound-grid { grid-template-columns: 1fr; } }
+  .sound-card { border-radius: var(--radius); padding: 22px 24px; background: var(--offwhite); border: 1px solid var(--rule); }
+  .sound-card .genre { font-family: 'Fraunces', serif; font-weight: 700; font-size: 22px; margin-bottom: 6px; }
+  .sound-card .use { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
+  .sound-card ul { padding-left: 18px; }
+  .sound-card li { font-size: 14px; margin-bottom: 6px; }
+
+  /* REFERENCES */
+  .ref-row { font-size: 15px; color: var(--muted); }
+  .ref-row strong { color: var(--ink); }
+
+  /* FOOTER */
+  .vb-footer {
+    background: var(--ink); padding: 26px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-brand { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.4); }
+  .footer-brand span { color: var(--sage); }
+  .footer-note {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.25);
+  }
+  @media (max-width: 680px) { .vb-footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">J Curve <span>by Avi</span></div>
+  <div class="nav-label">Brand Vision Board &middot; Sahil Dhull &middot; August 2026</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg-text">SAHIL</div>
+  <div class="hero-inner">
+    <p class="hero-tag">Founder Brand, Vision Board</p>
+    <h1 class="hero-title">Building the interface<br><em>after the phone gives up.</em></h1>
+    <p class="hero-sub">This document is the north star for everything we post, every reel, every caption, every frame. It defines how you show up while you build the thing that replaces the notification.</p>
+    <div class="hero-pills">
+      <span class="pill sage">Deep Tech</span>
+      <span class="pill beige">Hardware x Software</span>
+      <span class="pill burgundy">Founder-Led</span>
+      <span class="pill">LinkedIn &middot; X &middot; Instagram</span>
+      <span class="pill">Pre-seed &rarr; Seed</span>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <section class="zone">
+    <div class="zone-head">
+      <span class="zone-num">01 / THE STORY</span>
+      <h2>Close to it once, building it louder now</h2>
+      <p>The throughline that carries across every pillar, not the whole biography</p>
+    </div>
+    <p class="lead">You built a company that raised backing from a16z Speedrun. Investors were lined up. Then a co-founder split ended it before any of that closed. Now you're building a proactive AI wearable and Mac app that fixes the actual problem: your phone treats a meme and an emergency exactly the same way.</p>
+    <div class="goal-card"><span class="goal-dot dot-sage"></span><div><p class="goal-label">Primary goal</p><p class="goal-text">Visibility, feeding fundraising, hiring, sales, and talent, in that cascade</p></div></div>
+    <div class="goal-card"><span class="goal-dot dot-beige"></span><div><p class="goal-label">6 month marker</p><p class="goal-text">5,000+ daily active users matters more to you than the size of the round</p></div></div>
+    <div class="goal-card"><span class="goal-dot dot-burgundy"></span><div><p class="goal-label">Off-limits</p><p class="goal-text">Politics, and any specifics of the last company's ending, that's NDA territory</p></div></div>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <span class="zone-num">02 / COLOUR</span>
+      <h2>Warm, calm, and natural</h2>
+      <p>Straight from your own reference: off-white paired with sage, beige and burgundy held back as accents</p>
+    </div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch-color" style="background:var(--offwhite);"></div><div class="swatch-label"><p class="swatch-name">Off-white</p><p class="swatch-hex">#F5F1E8</p><p class="swatch-use">Base, backgrounds</p></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--sage);"></div><div class="swatch-label"><p class="swatch-name">Sage</p><p class="swatch-hex">#9CAF93</p><p class="swatch-use">Primary accent</p></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--beige);"></div><div class="swatch-label"><p class="swatch-name">Beige</p><p class="swatch-hex">#D8CBB0</p><p class="swatch-use">Secondary, texture</p></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--burgundy);"></div><div class="swatch-label"><p class="swatch-name">Burgundy</p><p class="swatch-hex">#6B2C39</p><p class="swatch-use">Sparingly, key CTAs</p></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--ink);"></div><div class="swatch-label"><p class="swatch-name">Near-black</p><p class="swatch-hex">#262220</p><p class="swatch-use">Text, never pure black</p></div></div>
+    </div>
+    <p class="note">Proposed starting hexes, worth testing against real footage before anyone locks them into templates.</p>
+    <div class="ratio-bar">
+      <div style="flex:55; background:var(--offwhite);"></div>
+      <div style="flex:25; background:var(--sage);"></div>
+      <div style="flex:12; background:var(--beige);"></div>
+      <div style="flex:5; background:var(--burgundy);"></div>
+      <div style="flex:3; background:var(--ink);"></div>
+    </div>
+    <p class="note">Roughly how it should split across a frame: mostly off-white and sage, beige for texture, burgundy held for a single accent, ink reserved for text.</p>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <span class="zone-num">03 / TYPOGRAPHY</span>
+      <h2>A serif for the ideas, mono for the receipts</h2>
+      <p>Three fonts, each doing one job</p>
+    </div>
+    <div class="type-card">
+      <span class="type-tag">DISPLAY, FRAUNCES</span>
+      <p class="type-display">Phones are broken.</p>
+      <p class="type-meta">Hooks, headline text on Reels, the manifesto-style lines. Warm and editorial, not corporate.</p>
+    </div>
+    <div class="type-card">
+      <span class="type-tag">BODY, SORA</span>
+      <p class="type-body">A meme in your group chat and your mom asking where you are look identical on the lock screen. That's the whole problem, and it's the one we're solving first.</p>
+      <p class="type-meta">Captions, on-screen body copy, anything meant to be read at length.</p>
+    </div>
+    <div class="type-card">
+      <span class="type-tag">MONO, JETBRAINS MONO</span>
+      <p class="type-mono">v3 shipped &middot; 6 weeks &middot; 5,000 DAU target</p>
+      <p class="type-meta">Numbers, version tags, build-log labels. This is the font that says "we ship."</p>
+    </div>
+    <div class="type-card">
+      <span class="type-tag">SCALE &amp; USAGE</span>
+      <ul style="padding-left:18px; margin:0;">
+        <li style="font-size:14.5px; margin-bottom:8px;"><strong>Reel hooks</strong>, Fraunces, large and bold, first line on screen within the first second</li>
+        <li style="font-size:14.5px; margin-bottom:8px;"><strong>LinkedIn openers</strong>, Sora bold, one short line before the post breaks into paragraphs</li>
+        <li style="font-size:14.5px; margin-bottom:8px;"><strong>Captions &amp; body</strong>, Sora regular, small enough to sit quietly under the visual</li>
+        <li style="font-size:14.5px;"><strong>Stat overlays &amp; labels</strong>, JetBrains Mono, small, wide letter spacing, always uppercase</li>
+      </ul>
+      <p class="type-meta">Keep the hierarchy consistent across platforms so the account is recognizable before anyone reads a word.</p>
+    </div>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <span class="zone-num">04 / VOICE &amp; TONE</span>
+      <h2>Blunt, technical, unfiltered</h2>
+      <p>Straight from how you actually talk, not a softened version of it</p>
+    </div>
+    <div class="hero-pills" style="justify-content:flex-start; margin-bottom:24px;">
+      <span class="pill sage">Blunt</span>
+      <span class="pill beige">Witty</span>
+      <span class="pill">First-principles</span>
+      <span class="pill">Technical</span>
+      <span class="pill burgundy">Unfiltered</span>
+    </div>
+    <div class="voice-grid">
+      <div class="voice-card do">
+        <h3>SOUNDS LIKE YOU</h3>
+        <p>"Phones are broken. We're fixing that."</p>
+        <p>"Shipped three versions in six weeks. The third one finally works."</p>
+        <p>"I'd rather have 5,000 people open this every day than close a bigger round."</p>
+      </div>
+      <div class="voice-card dont">
+        <h3>DOESN'T SOUND LIKE YOU</h3>
+        <p>"We're thrilled to share an exciting update on our journey!"</p>
+        <p>"Leveraging cutting-edge AI to revolutionize how you connect."</p>
+        <p>"Stay tuned for more amazing things to come!"</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <span class="zone-num">05 / LINKEDIN &amp; X TONALITY</span>
+      <h2>Same voice, different throttle</h2>
+      <p>Blunt and technical everywhere, the platform decides how fast and how formal</p>
+    </div>
+    <p class="lead">The voice doesn't change between platforms, <strong>LinkedIn and X just turn different dials</strong>, formality and speed, on the same underlying bluntness. Nothing here should read like it was written by two different people.</p>
+    <div class="sound-grid">
+      <div class="sound-card">
+        <p class="genre">LinkedIn</p>
+        <p class="use">Blunt with structure, built for people evaluating you, not just entertained by you</p>
+        <ul>
+          <li>Open with the claim or the number, never a warm-up sentence</li>
+          <li>Short paragraphs, line breaks over dense blocks, this gets read at a desk, not scrolled past</li>
+          <li>Story and technical depth both earn their length here, a longer post is fine when it's doing real work</li>
+          <li>No hashtags, no "Thoughts?" or "Agree?" as a closer, the point should generate the comment on its own</li>
+          <li>Founder Diaries and Build Log carry more weight here than pure hot takes</li>
+        </ul>
+      </div>
+      <div class="sound-card">
+        <p class="genre">X</p>
+        <p class="use">The rawest version of you, closer to how you'd text a friend about the industry</p>
+        <ul>
+          <li>Fragments are fine, full sentences are optional</li>
+          <li>The contrarian edge goes furthest here, LinkedIn softens it slightly, X doesn't have to</li>
+          <li>Threads carry the Build Log pillar, one beat per tweet, no throat-clearing</li>
+          <li>React to what's happening in the industry in near real time, the one place pillar-agnostic posts are fine</li>
+          <li>Humor and memes are fair game here in a way they aren't on LinkedIn</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">The Manifesto and The Person pillars travel well on both platforms, adjust the delivery, not the substance.</p>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <span class="zone-num">06 / CONTENT PILLARS</span>
+      <h2>Five lanes, everything sorts into one</h2>
+      <p>Mapped straight back to the visibility goal</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar-card"><span class="n">01</span><p class="t">The Manifesto</p><p class="d">Kill the notification era, the contrarian pillar</p><p class="hook">"Phones are broken. We're fixing that."</p></div>
+      <div class="pillar-card"><span class="n">02</span><p class="t">Build Log</p><p class="d">What shipped, what changed, what's next</p><p class="hook">"Three versions in six weeks, here's what the third one gets right."</p></div>
+      <div class="pillar-card"><span class="n">03</span><p class="t">Founder Diaries</p><p class="d">Real metrics, real failures, the vulnerable pillar</p><p class="hook">"I'd rather have 5,000 daily users than close a bigger round."</p></div>
+      <div class="pillar-card"><span class="n">04</span><p class="t">Team &amp; Culture</p><p class="d">Rishabh, Aayushi, Karan, Shatakshi</p><p class="hook">"Our hardware lead has been building since he was eight. He's 22 now."</p></div>
+      <div class="pillar-card"><span class="n">05</span><p class="t">The Person</p><p class="d">Bay Area, high taste, the personality pillar</p><p class="hook">"I still order food from my Mac, not my phone."</p></div>
+    </div>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <span class="zone-num">07 / MOOD &amp; IMAGERY</span>
+      <h2>Unpolished over produced</h2>
+      <p>The build should look like a build, not a stock photo</p>
+    </div>
+    <div class="mood-grid">
+      <div class="mood-panel mood-1"><span>NATURAL LIGHT, DESK SETUPS</span></div>
+      <div class="mood-panel mood-2"><span>TEXTURE, PAPER, WOOD, LINEN</span></div>
+      <div class="mood-panel mood-3"><span>LATE NIGHT SCREENS, REAL WORK</span></div>
+      <div class="mood-panel mood-4"><span>ONE BOLD ACCENT, USED ONCE</span></div>
+    </div>
+    <div class="dd-grid">
+      <div class="lean">
+        <h4>LEAN INTO</h4>
+        <ul>
+          <li>Real desks, real prototypes, real whiteboards, not staged shots</li>
+          <li>Natural light over studio lighting</li>
+          <li>Screen recordings and raw build footage</li>
+          <li>Team faces, not just your own</li>
+        </ul>
+      </div>
+      <div class="avoid">
+        <h4>AVOID</h4>
+        <ul>
+          <li>Stock photo gloss or generic "startup" imagery</li>
+          <li>Cold blues, greys, anything that reads corporate SaaS</li>
+          <li>Logo animations or branded intros at the start of a video</li>
+          <li>Forced positivity, marketing speak, exclamation points doing the work</li>
+        </ul>
+      </div>
+    </div>
+    <div class="shot-notes">
+      <h4>SHOT NOTES BY PILLAR</h4>
+      <ul>
+        <li><strong>The Manifesto:</strong> straight to camera, tight frame, nothing distracting behind you</li>
+        <li><strong>Build Log:</strong> screen recordings plus a wide desk shot, hands actually on the keyboard</li>
+        <li><strong>Founder Diaries:</strong> natural light, a slightly looser frame, let the pauses stay in</li>
+        <li><strong>Team &amp; Culture:</strong> candid, not posed, catch people mid-conversation</li>
+        <li><strong>The Person:</strong> wherever you actually are, the desk, the drive, the walk to get coffee</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <span class="zone-num">08 / SOUND &amp; MUSIC</span>
+      <h2>Techno or rock, nothing softer</h2>
+      <p>Your own call, direct: techno or rock for edits and videos, matched to the pillar doing the talking</p>
+    </div>
+    <div class="sound-grid">
+      <div class="sound-card">
+        <p class="genre">Techno</p>
+        <p class="use">Motion, momentum, the build actually happening</p>
+        <ul>
+          <li>Build Log cuts, screen recordings, fast product montages</li>
+          <li>The Person pillar, quick personality hits</li>
+          <li>Instrumental only under voiceover, so the track drives without fighting your words</li>
+        </ul>
+      </div>
+      <div class="sound-card">
+        <p class="genre">Rock</p>
+        <p class="use">Edge, defiance, the contrarian and the vulnerable</p>
+        <ul>
+          <li>The Manifesto pillar, anything with a "phones are broken" energy</li>
+          <li>Founder Diaries, a stripped-down or slower rock cut for the heavier beats</li>
+          <li>Full-vocal drops reserved for cut-only montages with no voiceover competing</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Avoid generic corporate lo-fi, acoustic coffee-shop tracks, or anything that reads as stock "epic corporate" music, none of that matches your voice.</p>
+  </section>
+
+  <section class="zone" style="padding-bottom: 40px;">
+    <div class="zone-head">
+      <span class="zone-num">09 / TASTE REFERENCES</span>
+      <h2>Gut check, not a template</h2>
+      <p>Your own reference points, for tone and approach only</p>
+    </div>
+    <p class="ref-row">You named <strong>Suprava</strong> and <strong>Moksh Vasant</strong> as accounts whose style you relate to. Use them to sanity-check taste before something ships, never to trace over.</p>
+  </section>
+
+</div>
+
+<div class="vb-footer">
+  <div class="footer-brand">J Curve <span>by Avi</span></div>
+  <div class="footer-note">Prepared for Sahil Dhull &middot; August 2026</div>
+</div>
+
+</body>
+</html>
