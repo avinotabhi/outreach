@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Month 1 Content Calendar, Sahil Dhull</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #262220;
+    --offwhite: #F5F1E8;
+    --white: #FFFFFF;
+    --sage: #9CAF93;
+    --sage-deep: #5F7657;
+    --beige: #D8CBB0;
+    --beige-deep: #A98F63;
+    --burgundy: #6B2C39;
+    --muted: #837A6E;
+    --rule: rgba(38,34,32,0.12);
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--white); color: var(--ink); font-family: 'Sora', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--rule); padding: 16px 48px; display: flex; justify-content: space-between; align-items: center; }
+  .nav-brand { font-size: 15px; font-weight: 700; }
+  .nav-brand span { color: var(--sage-deep); }
+  .nav-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  @media (max-width: 680px) { .nav-label { display: none; } }
+
+  .hero { background: var(--offwhite); padding: 70px 48px 56px; text-align: center; border-bottom: 1px solid var(--rule); }
+  .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage-deep); margin-bottom: 16px; }
+  .hero h1 { font-family: 'Fraunces', serif; font-weight: 700; font-size: 42px; line-height: 1.2; margin-bottom: 16px; max-width: 640px; margin-left: auto; margin-right: auto; }
+  @media (max-width: 680px) { .hero h1 { font-size: 30px; } }
+  .hero p { color: var(--muted); font-size: 16px; max-width: 560px; margin: 0 auto; }
+
+  .page { max-width: 900px; margin: 0 auto; padding: 0 48px; }
+  @media (max-width: 680px) { .page { padding: 0 20px; } nav, .hero { padding-left: 20px; padding-right: 20px; } }
+
+  section.zone { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+  section.zone:last-of-type { border-bottom: none; }
+  .zone-num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--sage-deep); letter-spacing: 0.1em; margin-bottom: 8px; display: block; }
+  .zone-head h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 28px; margin-bottom: 8px; }
+  .zone-head p { color: var(--muted); font-size: 15px; max-width: 600px; margin-bottom: 24px; }
+
+  /* rhythm table */
+  .rhythm-table { width: 100%; border-collapse: collapse; }
+  .rhythm-table th, .rhythm-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--rule); font-size: 14.5px; vertical-align: top; }
+  .rhythm-table th { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.06em; color: var(--muted); font-weight: 500; text-transform: uppercase; }
+  .rhythm-table .day { font-weight: 700; font-family: 'Fraunces', serif; font-size: 16px; }
+
+  .pill { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.02em; display: inline-block; white-space: nowrap; }
+  .p-buildlog { background: var(--sage); color: #FFF; }
+  .p-manifesto { background: var(--burgundy); color: #FFF; }
+  .p-diaries { background: var(--beige-deep); color: #FFF; }
+  .p-team { background: var(--ink); color: #FFF; }
+  .p-person { background: var(--white); color: var(--ink); border: 1px solid var(--rule); }
+
+  /* week block */
+  .week-block { margin-bottom: 40px; }
+  .week-title { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: 0.08em; color: var(--sage-deep); margin-bottom: 14px; text-transform: uppercase; }
+  .topic-row { display: grid; grid-template-columns: 90px 90px 130px 1fr; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+  @media (max-width: 680px) { .topic-row { grid-template-columns: 1fr; gap: 6px; padding: 16px 0; } }
+  .topic-row .day-lbl { font-family: 'Fraunces', serif; font-weight: 600; font-size: 15px; }
+  .topic-row .plat-lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); align-self: center; }
+  .topic-row .topic-txt { font-size: 14.5px; }
+
+  .note { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 18px; }
+
+  .vb-footer { background: var(--ink); padding: 26px 48px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.4); }
+  .footer-brand span { color: var(--sage); }
+  .footer-note { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+  @media (max-width: 680px) { .vb-footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">J Curve <span>by Avi</span></div>
+  <div class="nav-label">Month 1 Content Calendar &middot; Sahil Dhull</div>
+</nav>
+
+<div class="hero">
+  <p class="hero-tag">LinkedIn &amp; X, Month 1</p>
+  <h1>Here's what you're actually going to be talking about.</h1>
+  <p>Not scripts yet, just the topics, the days, and the rhythm behind them, so you can sanity check the plan before anything gets written.</p>
+</div>
+
+<div class="page">
+
+  <section class="zone">
+    <div class="zone-head">
+      <span class="zone-num">01 / THE WEEKLY RHYTHM</span>
+      <h2>Five weekdays, five pillars</h2>
+      <p>Weekends off on purpose, this runs on your actual bandwidth, not an influencer's. Each day carries one pillar so nothing competes with itself, and the topics underneath rotate between technology, the build, and the self-growth side of running this company.</p>
+    </div>
+    <table class="rhythm-table">
+      <tr><th>Day</th><th>Platform</th><th>Pillar</th><th>What it's for</th></tr>
+      <tr><td class="day">Monday</td><td>LinkedIn + X thread</td><td><span class="pill p-buildlog">Build Log</span></td><td>Technology, what shipped, what changed</td></tr>
+      <tr><td class="day">Tuesday</td><td>X only</td><td><span class="pill p-manifesto">Manifesto</span></td><td>The contrarian take, the argument you're making</td></tr>
+      <tr><td class="day">Wednesday</td><td>LinkedIn carousel + X</td><td><span class="pill p-diaries">Founder Diaries</span></td><td>Self-growth, the real numbers, what you're learning</td></tr>
+      <tr><td class="day">Thursday</td><td>LinkedIn + X</td><td><span class="pill p-team">Team &amp; Culture</span></td><td>Who's actually building this with you</td></tr>
+      <tr><td class="day">Friday</td><td>X only</td><td><span class="pill p-person">The Person</span></td><td>Personality, low lift, easy to batch</td></tr>
+    </table>
+    <p class="note">LinkedIn lands 3 times a week, X runs all 5 weekdays plus whatever real-time reactions come up. That matches the cadence in your proposal without asking for more than the 3 to 4 hours a week you actually have.</p>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <span class="zone-num">02 / WEEK BY WEEK</span>
+      <h2>Twenty topics, not twenty scripts</h2>
+      <p>Each one is a direction to write from, not a finished line. Scripts come once you've signed off on the topics themselves.</p>
+    </div>
+
+    <div class="week-block">
+      <p class="week-title">Week 1</p>
+      <div class="topic-row"><span class="day-lbl">Mon</span><span class="plat-lbl">LI + X</span><span class="pill p-buildlog">Build Log</span><span class="topic-txt">The three versions of the Mac app, what changed and why in six weeks</span></div>
+      <div class="topic-row"><span class="day-lbl">Tue</span><span class="plat-lbl">X</span><span class="pill p-manifesto">Manifesto</span><span class="topic-txt">Why phones fail at the one job that matters, telling you what's actually urgent</span></div>
+      <div class="topic-row"><span class="day-lbl">Wed</span><span class="plat-lbl">LI + X</span><span class="pill p-diaries">Diaries</span><span class="topic-txt">What losing the last company actually taught you, kept to the lesson, not the details</span></div>
+      <div class="topic-row"><span class="day-lbl">Thu</span><span class="plat-lbl">LI + X</span><span class="pill p-team">Team</span><span class="topic-txt">Introducing Karan, building hardware since he was 8, now building your prototype solo</span></div>
+      <div class="topic-row"><span class="day-lbl">Fri</span><span class="plat-lbl">X</span><span class="pill p-person">Person</span><span class="topic-txt">Why you still order food from your Mac, not your phone</span></div>
+    </div>
+
+    <div class="week-block">
+      <p class="week-title">Week 2</p>
+      <div class="topic-row"><span class="day-lbl">Mon</span><span class="plat-lbl">LI + X</span><span class="pill p-buildlog">Build Log</span><span class="topic-txt">This week's build: what shipped, what broke, what's next</span></div>
+      <div class="topic-row"><span class="day-lbl">Tue</span><span class="plat-lbl">X</span><span class="pill p-manifesto">Manifesto</span><span class="topic-txt">Every notification gets treated the same, that's the actual bug you're fixing</span></div>
+      <div class="topic-row"><span class="day-lbl">Wed</span><span class="plat-lbl">LI + X</span><span class="pill p-diaries">Diaries</span><span class="topic-txt">Why 5,000 daily users matters more to you than the size of the round</span></div>
+      <div class="topic-row"><span class="day-lbl">Thu</span><span class="plat-lbl">LI + X</span><span class="pill p-team">Team</span><span class="topic-txt">Introducing Aayushi, 18, no coding background, ships anyway</span></div>
+      <div class="topic-row"><span class="day-lbl">Fri</span><span class="plat-lbl">X</span><span class="pill p-person">Person</span><span class="topic-txt">A day in the life, Bay Area founder edition</span></div>
+    </div>
+
+    <div class="week-block">
+      <p class="week-title">Week 3</p>
+      <div class="topic-row"><span class="day-lbl">Mon</span><span class="plat-lbl">LI + X</span><span class="pill p-buildlog">Build Log</span><span class="topic-txt">Hardware prototype progress, what building hardware and software together actually means</span></div>
+      <div class="topic-row"><span class="day-lbl">Tue</span><span class="plat-lbl">X</span><span class="pill p-manifesto">Manifesto</span><span class="topic-txt">Stop building apps that surface every message, start building ones that decide what matters</span></div>
+      <div class="topic-row"><span class="day-lbl">Wed</span><span class="plat-lbl">LI + X</span><span class="pill p-diaries">Diaries</span><span class="topic-txt">The actual frustration that started this: waking up to ten group chats and no idea what's urgent</span></div>
+      <div class="topic-row"><span class="day-lbl">Thu</span><span class="plat-lbl">LI + X</span><span class="pill p-team">Team</span><span class="topic-txt">Introducing Rishabh, consumer company roots, worked with Dunzo's co-founder</span></div>
+      <div class="topic-row"><span class="day-lbl">Fri</span><span class="plat-lbl">X</span><span class="pill p-person">Person</span><span class="topic-txt">Bay Area, high taste, whatever's actually happening that week</span></div>
+    </div>
+
+    <div class="week-block">
+      <p class="week-title">Week 4</p>
+      <div class="topic-row"><span class="day-lbl">Mon</span><span class="plat-lbl">LI + X</span><span class="pill p-buildlog">Build Log</span><span class="topic-txt">Where the raise stands, and why it's still not the milestone you're actually chasing</span></div>
+      <div class="topic-row"><span class="day-lbl">Tue</span><span class="plat-lbl">X</span><span class="pill p-manifesto">Manifesto</span><span class="topic-txt">You're not selling a wearable, you're selling a future where the phone stops owning your attention</span></div>
+      <div class="topic-row"><span class="day-lbl">Wed</span><span class="plat-lbl">LI + X</span><span class="pill p-diaries">Diaries</span><span class="topic-txt">What you got wrong this month, and what's changing because of it</span></div>
+      <div class="topic-row"><span class="day-lbl">Thu</span><span class="plat-lbl">LI + X</span><span class="pill p-team">Team</span><span class="topic-txt">Introducing Shatakshi, Chief of Staff and the person running GTM alongside you</span></div>
+      <div class="topic-row"><span class="day-lbl">Fri</span><span class="plat-lbl">X</span><span class="pill p-person">Person</span><span class="topic-txt">Closing the month out, open reaction slot for whatever's happening in tech that week</span></div>
+    </div>
+  </section>
+
+  <section class="zone" style="border-bottom: none; padding-bottom: 20px;">
+    <div class="zone-head">
+      <span class="zone-num">03 / WHAT WE NEED FROM YOU</span>
+      <h2>Before any of this gets written</h2>
+      <p>A yes or a redirect on the topics above, plus whatever raw material each one needs, a voice note, a bullet point, or the morning capture session we already scoped. Nothing here gets scripted until you've seen it in this shape first.</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="vb-footer">
+  <div class="footer-brand">J Curve <span>by Avi</span></div>
+  <div class="footer-note">Prepared for Sahil Dhull</div>
+</div>
+
+</body>
+</html>
