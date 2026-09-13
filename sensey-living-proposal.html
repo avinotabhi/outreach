@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>J Curve by Avi — Proposal for Sensey Living</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper:#FAF6EF;
+    --paper-warm:#F3ECDF;
+    --ink:#1C1815;
+    --ink-muted:#5B564E;
+    --line:#DED3BE;
+    --accent:#0071E3;
+    --accent-soft:#E7F1FD;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  body{
+    background:#E8E1D2;
+    font-family:'DM Sans',sans-serif;
+    color:var(--ink);
+    padding:48px 16px;
+  }
+
+  .sheet{
+    max-width:840px;
+    margin:0 auto;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:72px 76px 56px;
+  }
+
+  .kicker{
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:10px;
+  }
+
+  .masthead .kicker{color:var(--ink-muted);}
+
+  h1{
+    font-family:'Playfair Display',serif;
+    font-weight:600;
+    font-size:40px;
+    line-height:1.15;
+    letter-spacing:-0.01em;
+  }
+
+  .masthead .sub{
+    font-family:'DM Sans',sans-serif;
+    font-size:16px;
+    color:var(--ink-muted);
+    margin-top:14px;
+    max-width:480px;
+  }
+
+  .masthead .meta{
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    color:var(--ink-muted);
+    letter-spacing:0.03em;
+    margin-top:28px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+  }
+
+  .rule{
+    height:1px;
+    background:var(--line);
+    margin:48px 0;
+  }
+
+  section{margin-bottom:8px;}
+
+  .section-title{
+    font-family:'Playfair Display',serif;
+    font-weight:600;
+    font-size:24px;
+    margin-bottom:16px;
+  }
+
+  p.body-text{
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink);
+    max-width:640px;
+  }
+
+  p.body-text + p.body-text{margin-top:14px;}
+
+  .tier-card{
+    border:1px solid var(--line);
+    background:var(--paper-warm);
+    padding:32px 36px;
+    margin-top:28px;
+  }
+
+  .tier-card.featured{
+    border:1.5px solid var(--accent);
+    background:var(--accent-soft);
+  }
+
+  .tier-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:18px;
+    padding-bottom:18px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .tier-name{
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--ink-muted);
+    margin-bottom:6px;
+  }
+
+  .tier-title{
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+    font-weight:600;
+  }
+
+  .tier-price{
+    font-family:'Playfair Display',serif;
+    font-size:30px;
+    font-weight:600;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+
+  .tier-price span{
+    font-family:'DM Mono',monospace;
+    font-size:12px;
+    color:var(--ink-muted);
+    font-weight:400;
+  }
+
+  ul.deliverables{
+    list-style:none;
+  }
+
+  ul.deliverables li{
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--ink);
+    padding-left:20px;
+    position:relative;
+    margin-bottom:11px;
+  }
+
+  ul.deliverables li:before{
+    content:"—";
+    position:absolute;
+    left:0;
+    color:var(--accent);
+  }
+
+  ul.deliverables li:last-child{margin-bottom:0;}
+
+  ul.deliverables li.highlight{
+    background:rgba(0,113,227,0.06);
+    margin:0 -10px 11px;
+    padding:8px 10px 8px 28px;
+  }
+
+  ul.deliverables li.highlight:before{left:8px;}
+
+  .addon{
+    border:1px dashed var(--line);
+    padding:26px 32px;
+    margin-top:32px;
+  }
+
+  .addon-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .addon-title{
+    font-family:'Playfair Display',serif;
+    font-size:19px;
+    font-weight:600;
+  }
+
+  .addon-price{
+    font-family:'DM Mono',monospace;
+    font-size:15px;
+    color:var(--accent);
+  }
+
+  .addon p.body-text{margin-top:10px;font-size:14.5px;}
+
+  .process-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px 32px;
+    margin-top:20px;
+  }
+
+  .process-item .num{
+    font-family:'DM Mono',monospace;
+    font-size:11px;
+    color:var(--accent);
+    margin-bottom:6px;
+  }
+
+  .process-item .label{
+    font-family:'DM Sans',sans-serif;
+    font-weight:700;
+    font-size:14.5px;
+    margin-bottom:6px;
+  }
+
+  .process-item p{
+    font-size:13.5px;
+    line-height:1.6;
+    color:var(--ink-muted);
+  }
+
+  .closing{
+    margin-top:52px;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+  }
+
+  .closing p.body-text{font-size:15.5px;}
+
+  .signoff{
+    margin-top:36px;
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:18px;
+  }
+
+  footer{
+    margin-top:48px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-family:'DM Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    color:var(--ink-muted);
+    text-transform:uppercase;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  @media print{
+    body{background:var(--paper);padding:0;}
+    .sheet{border:none;max-width:none;padding:40px;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="masthead">
+    <div class="kicker">J Curve by Avi</div>
+    <h1>A content partnership<br>for Sensey Living</h1>
+    <div class="sub">Short-form editing, carousels, and channel management, built around a show that deserves to look as considered as it sounds.</div>
+    <div class="meta">PREPARED FOR AURORA JUNE &amp; SENSEY LIVING &nbsp;·&nbsp; SEPTEMBER 2026 &nbsp;·&nbsp; CONFIDENTIAL</div>
+  </div>
+
+  <div class="rule"></div>
+
+  <section>
+    <div class="kicker">01 — Where we start</div>
+    <div class="section-title">What we're building toward</div>
+    <p class="body-text">Sensey Living is doing something genuinely uncommon in the sensitivity and wellness space: a produced, two-host conversation, not another solo advice podcast. That format, paired with the warm, minimalist visual language you've already established, gives us real material to work with.</p>
+    <p class="body-text">Our job is to make sure every short and every carousel is recognizable as Sensey before a viewer has read a single word, through consistent speaker layouts, a subtitle system that's yours and no one else's, and pacing that respects how your audience actually watches.</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <section>
+    <div class="kicker">02 — Scope &amp; pricing</div>
+    <div class="section-title">Two ways to work together</div>
+
+    <div class="tier-card">
+      <div class="tier-head">
+        <div>
+          <div class="tier-name">Tier One</div>
+          <div class="tier-title">Core Production</div>
+        </div>
+        <div class="tier-price">$1,200 <span>/ month</span></div>
+      </div>
+      <ul class="deliverables">
+        <li>40 short-form vertical clips per month (10 per episode, 4 episodes)</li>
+        <li>8 carousel posts per month (2 per episode), styled in your warm-yellow palette</li>
+        <li>Dynamic two-person, back-and-forth speaker layouts</li>
+        <li>A minimalist subtitle system built specifically for Sensey, not a template</li>
+        <li>Strong opening hooks, intentional pacing, and selective graphics where they earn their place</li>
+        <li class="highlight">Full clip selection is on us. You don't need to send timestamps or mark up the episode, we review the full recording and pull the strongest moments ourselves. You only need to flag anything you'd rather we leave out entirely.</li>
+        <li>Every video reviewed by a creative director before it reaches you</li>
+      </ul>
+    </div>
+
+    <div class="tier-card featured">
+      <div class="tier-head">
+        <div>
+          <div class="tier-name">Tier Two</div>
+          <div class="tier-title">Core Production + Channel Management</div>
+        </div>
+        <div class="tier-price">$1,500 <span>/ month</span></div>
+      </div>
+      <ul class="deliverables">
+        <li>Everything in Tier One</li>
+        <li>Scheduling and posting across every platform you're active on</li>
+        <li>Thumbnail creation for long-form and YouTube Shorts</li>
+        <li>Platform-specific captions, written in your voice</li>
+        <li>Basic SEO and keyword pass on titles and descriptions</li>
+      </ul>
+    </div>
+
+    <div class="addon">
+      <div class="addon-head">
+        <div class="addon-title">Optional add-on: Full episode edit</div>
+        <div class="addon-price">$200 / episode</div>
+      </div>
+      <p class="body-text">A complete edit of the full 30-60 minute episode across all three cameras (you, your mother, and the two-shot), delivered polished and ready to publish. Because the same editors are already deep in that episode's footage from cutting your shorts, this comes at a meaningfully lower cost than a cold full-podcast edit would. Can be added to either tier, for any or every episode.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section>
+    <div class="kicker">03 — How we work</div>
+    <div class="section-title">Keeping this simple on your end</div>
+    <div class="process-grid">
+      <div class="process-item">
+        <div class="num">01</div>
+        <div class="label">One point of contact</div>
+        <p>You work directly with Avi as creative director. No juggling multiple editors or chasing separate threads.</p>
+      </div>
+      <div class="process-item">
+        <div class="num">02</div>
+        <div class="label">Dedicated editors</div>
+        <p>A team assigned specifically to Sensey Living, so the style stays consistent episode after episode.</p>
+      </div>
+      <div class="process-item">
+        <div class="num">03</div>
+        <div class="label">Reviewed before you see it</div>
+        <p>Every cut passes through internal review first, so the back-and-forth on your end stays minimal.</p>
+      </div>
+      <div class="process-item">
+        <div class="num">04</div>
+        <div class="label">Getting started</div>
+        <p>We'll begin with your recorded backlog to build a running buffer, so a missed filming week never breaks the weekly cadence.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p class="body-text">This is meant to be a starting point, not a finished shape. As the show grows, so can the scope, more volume, more platforms, more of the production handled end to end.</p>
+    <div class="signoff">Looking forward to making something unmistakably Sensey.</div>
+  </div>
+
+  <footer>
+    <span>J Curve by Avi</span>
+    <span>jcurvebyavi.com</span>
+  </footer>
+
+</div>
+</body>
+</html>
