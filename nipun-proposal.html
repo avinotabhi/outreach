@@ -1,0 +1,305 @@
+<title>Nipun Patil Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #FAF7EF;
+    --paper-raised: #FFFFFF;
+    --ink: #211C15;
+    --ink-soft: #6E6656;
+    --line: #E6DFD0;
+    --accent: #0071E3;
+    --accent-soft: #EAF2FD;
+    --shadow: 0 1px 2px rgba(33,28,21,0.04), 0 8px 24px rgba(33,28,21,0.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #17140F;
+      --paper-raised: #201B14;
+      --ink: #F3EEE3;
+      --ink-soft: #A89D89;
+      --line: #33291E;
+      --accent: #5BA2FF;
+      --accent-soft: rgba(91,162,255,0.12);
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17140F;
+    --paper-raised: #201B14;
+    --ink: #F3EEE3;
+    --ink-soft: #A89D89;
+    --line: #33291E;
+    --accent: #5BA2FF;
+    --accent-soft: rgba(91,162,255,0.12);
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sheet {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 20px 72px;
+  }
+  .eyebrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 18px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 600;
+    font-size: clamp(30px, 5vw, 42px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 10px;
+  }
+  .subhead {
+    color: var(--ink-soft);
+    font-size: 16px;
+    margin: 0 0 44px;
+  }
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    margin: 0 0 16px;
+  }
+  section { margin-bottom: 44px; }
+  p { margin: 0 0 14px; max-width: 62ch; }
+  p:last-child { margin-bottom: 0; }
+
+  .spec {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 16px;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .spec-row:last-child { border-bottom: none; }
+  .spec-label {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-top: 2px;
+  }
+  .spec-value { font-size: 15px; }
+  .spec-value strong { font-weight: 700; }
+
+  .invest {
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 30px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .invest-label {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .invest-figure {
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-weight: 500;
+    font-size: clamp(30px, 6vw, 40px);
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .invest-figure span {
+    font-size: 15px;
+    color: var(--ink-soft);
+    font-weight: 400;
+    margin-left: 6px;
+  }
+  .invest-note {
+    font-size: 13px;
+    color: var(--ink-soft);
+    max-width: 30ch;
+    text-align: right;
+  }
+
+  ol.steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  ol.steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+  }
+  ol.steps li::before {
+    content: counter(step);
+    font-family: 'DM Mono', ui-monospace, monospace;
+    font-size: 13px;
+    color: var(--accent);
+    border: 1px solid var(--line);
+    background: var(--paper-raised);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  ol.steps p { margin: 0; padding-top: 3px; }
+
+  .terms {
+    font-size: 14px;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+  }
+  .terms div { margin-bottom: 8px; }
+  .terms div:last-child { margin-bottom: 0; }
+  .terms b { color: var(--ink); font-weight: 500; }
+
+  .sign {
+    display: flex;
+    gap: 40px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+  .sign-line {
+    flex: 1;
+    min-width: 200px;
+    border-top: 1px solid var(--ink-soft);
+    padding-top: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .sign-line strong {
+    display: block;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  @media (max-width: 520px) {
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    .invest { align-items: flex-start; }
+    .invest-note { text-align: left; }
+  }
+</style>
+
+<div class="sheet">
+
+  <div class="eyebrow">
+    <span>Proposal &middot; J Curve by Avi</span>
+    <span>21 September 2026</span>
+  </div>
+
+  <h1>A personal brand built to compound</h1>
+  <p class="subhead">Prepared for Nipun Patil</p>
+
+  <section>
+    <h2>Why this, why now</h2>
+    <p>Your company page proved the format works: raw, honest videos took you to 20k followers in under five months. What it can't do is grow exponentially, and the recent drop in reach even at the same production quality is a sign the page has found its ceiling for now.</p>
+    <p>A personal brand doesn't grow like a page does. One video that resonates with who you are and the problem you're solving can outperform months of page growth in a single post, and it reaches people a company account never will, including the investors and future hires who matter as much as the audience.</p>
+  </section>
+
+  <section>
+    <h2>Scope of work</h2>
+    <div class="spec">
+      <div class="spec-row">
+        <div class="spec-label">Platforms</div>
+        <div class="spec-value">Instagram and YouTube Shorts</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label">Format</div>
+        <div class="spec-value">Personal brand short-form video</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label">Volume</div>
+        <div class="spec-value"><strong>5 reels a week</strong>, 20 a month, cross-posted natively to both platforms</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label">Production</div>
+        <div class="spec-value">Scripting, editing, and posting, handled end to end. You shoot, we do the rest.</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-label">Check-ins</div>
+        <div class="spec-value">2 strategy calls a month to review performance and adjust direction</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Investment</h2>
+    <div class="invest">
+      <div>
+        <div class="invest-label">Monthly retainer</div>
+        <div class="invest-figure">&#8377;80,000<span>/ month</span></div>
+      </div>
+      <div class="invest-note">Plus GST as applicable. Billed monthly.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How we start</h2>
+    <ol class="steps">
+      <li><p>You confirm the scope and this comes back signed.</p></li>
+      <li><p>A short onboarding call, roughly 20 to 30 questions, so your scripts come from your real story rather than a generic template.</p></li>
+      <li><p>A vision board covering tone, pacing, and reference creators, so we're aligned before the first script is written.</p></li>
+      <li><p>First reels go out within 1 to 2 weeks of signing.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>What comes next</h2>
+    <p>At the 15 to 30 day mark, once we can see what's actually working, we sit down and open the next phase together: extending the personal brand onto LinkedIn and X for the investor and founder audience there, and a performance marketing plan for your company page.</p>
+  </section>
+
+  <div class="terms">
+    <div><b>Term.</b> Month to month, with an initial 8-week period to give the cadence room to compound.</div>
+    <div><b>Billing.</b> 50% on signing, the balance on completion of month 1, then monthly in advance from month 2 onward.</div>
+  </div>
+
+  <div class="sign">
+    <div class="sign-line"><strong>Avi Sharma</strong>J Curve by Avi</div>
+    <div class="sign-line"><strong>Nipun Patil</strong>Date</div>
+  </div>
+
+</div>
