@@ -1,0 +1,271 @@
+<title>Nipun Vision Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&family=Anton&family=DM+Sans:wght@400;500;700&family=Bebas+Neue&family=Manrope:wght@400;600;800&family=Unbounded:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #0B0C0E;
+    --surface: #17181B;
+    --surface-2: #1E2023;
+    --text: #F2F1EC;
+    --text-soft: #94938C;
+    --hairline: #2B2C2F;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 56px 20px 90px; }
+
+  .eyebrow {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 18px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  h1 {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 40px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 14px;
+  }
+  .intro {
+    color: var(--text-soft);
+    max-width: 62ch;
+    margin: 0 0 52px;
+    font-size: 15px;
+  }
+  .intro b { color: var(--text); font-weight: 500; }
+
+  .board { margin-bottom: 64px; }
+  .board-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .board-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-soft);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+  .board-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .board-mood {
+    color: var(--text-soft);
+    font-size: 14px;
+    max-width: 58ch;
+    margin: 6px 0 20px;
+  }
+
+  .board-body {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .sample {
+    background: var(--b-bg);
+    color: var(--b-fg);
+    padding: 40px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .sample-headline {
+    font-family: var(--b-font-display);
+    font-weight: var(--b-display-weight, 400);
+    text-transform: var(--b-display-case, none);
+    font-size: var(--b-display-size, 40px);
+    letter-spacing: var(--b-display-tracking, 0);
+    line-height: 1.05;
+    color: var(--b-fg);
+    text-wrap: balance;
+  }
+  .sample-headline .accent { color: var(--b-accent); }
+  .sample-body {
+    font-family: var(--b-font-body);
+    font-size: 14px;
+    color: var(--b-fg-soft);
+    max-width: 46ch;
+  }
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 1px;
+    background: var(--hairline);
+  }
+  .swatch {
+    background: var(--surface);
+    padding: 18px 16px 14px;
+  }
+  .swatch-color {
+    height: 46px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .swatch-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .swatch-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+    margin-top: 2px;
+  }
+
+  .refs {
+    padding: 16px 28px 22px;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  .refs b { color: var(--text); font-weight: 500; }
+
+  .footer-note {
+    border-top: 1px solid var(--hairline);
+    padding-top: 22px;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+
+  @media (max-width: 520px) {
+    .sample { padding: 28px 20px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="eyebrow">
+    <span>Vision Board &middot; J Curve by Avi</span>
+    <span>For Nipun Patil</span>
+  </div>
+
+  <h1>Four directions, one you</h1>
+  <p class="intro">Built off what you told us on the call: <b>black, teal, and royal blue</b>, a saturated look, fast cuts in the style of Parikshit's B-roll instinct, and the energy TechBurner brings to his edits. Each board below takes that same raw material somewhere slightly different. Pick the one whose sample line feels most like something you'd actually say on camera, that's the direction we build from.</p>
+
+  <!-- BOARD A -->
+  <div class="board" style="--b-bg:#0B0D0F; --b-fg:#F4F6F5; --b-fg-soft:#8FA6A3; --b-accent:#1FC7B6; --b-font-display:'Space Grotesk'; --b-font-body:'Space Grotesk'; --b-display-weight:700; --b-display-size:38px;">
+    <div class="board-head">
+      <span class="board-tag">Option A</span>
+      <span class="board-name">Night Mode</span>
+    </div>
+    <p class="board-mood">Black-dominant with a single teal signal. Reads as precise and a little technical, closest to the captioning-tool DNA of the brand. This is the register for when you're explaining something and want to look sharp doing it.</p>
+    <div class="board-body">
+      <div class="sample">
+        <div class="sample-headline">19 SAAL, <span class="accent">2.3 LAKH</span> USERS</div>
+        <div class="sample-body">Space Grotesk carries both the headline and the caption text, so on-screen text and lower-thirds stay in one family. Teal is used sparingly, one word per line, never the whole sentence.</div>
+      </div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#0B0D0F"></div><div class="swatch-label">Base</div><div class="swatch-hex">#0B0D0F</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#16191C"></div><div class="swatch-label">Surface</div><div class="swatch-hex">#16191C</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1FC7B6"></div><div class="swatch-label">Signal</div><div class="swatch-hex">#1FC7B6</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0E2B29"></div><div class="swatch-label">Teal tint</div><div class="swatch-hex">#0E2B29</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F4F6F5"></div><div class="swatch-label">Text</div><div class="swatch-hex">#F4F6F5</div></div>
+      </div>
+      <div class="refs"><b>Feels like:</b> TechBurner's precision, minus the clutter. Best for explainer-style IPs and anything where the captioning product itself is the hook.</div>
+    </div>
+  </div>
+
+  <!-- BOARD B -->
+  <div class="board" style="--b-bg:#0A0A0F; --b-fg:#FFFFFF; --b-fg-soft:#AEB4FF; --b-accent:#3B4DFF; --b-font-display:'Anton'; --b-font-body:'DM Sans'; --b-display-case:uppercase; --b-display-size:46px; --b-display-tracking:0.01em;">
+    <div class="board-head">
+      <span class="board-tag">Option B</span>
+      <span class="board-name">High Voltage</span>
+    </div>
+    <p class="board-mood">Royal blue pushed to full volume against black. Loud, blunt, built for the contrarian lines you're comfortable saying out loud. This is the least guarded of the four.</p>
+    <div class="board-body">
+      <div class="sample">
+        <div class="sample-headline">JOB SE <span class="accent">KUCH NAHI</span> HOGA</div>
+        <div class="sample-body">Anton for the punch line, DM Sans underneath for anything that needs to actually be read. The blue is never a background, it's always type or a single graphic hit.</div>
+      </div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#0A0A0F"></div><div class="swatch-label">Base</div><div class="swatch-hex">#0A0A0F</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3B4DFF"></div><div class="swatch-label">Signal</div><div class="swatch-hex">#3B4DFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#7C8CFF"></div><div class="swatch-label">Blue tint</div><div class="swatch-hex">#7C8CFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1A1B22"></div><div class="swatch-label">Surface</div><div class="swatch-hex">#1A1B22</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-label">Text</div><div class="swatch-hex">#FFFFFF</div></div>
+      </div>
+      <div class="refs"><b>Feels like:</b> the unfiltered, act-first-think-later side of you. Best for hot takes, the "unconventional path" story, and anything you'd want to say on a stage.</div>
+    </div>
+  </div>
+
+  <!-- BOARD C -->
+  <div class="board" style="--b-bg:#08090B; --b-fg:#FFFFFF; --b-fg-soft:#9FE6DC; --b-accent:#0FD9C4; --b-font-display:'Bebas Neue'; --b-font-body:'Manrope'; --b-display-size:52px; --b-display-tracking:0.02em;">
+    <div class="board-head">
+      <span class="board-tag">Option C</span>
+      <span class="board-name">Saturated Signal</span>
+    </div>
+    <p class="board-mood">Teal and royal blue running together against black, the literal "saturated" look you mentioned. The busiest of the four, built for fast cuts and a lot of on-screen motion.</p>
+    <div class="board-body">
+      <div class="sample">
+        <div class="sample-headline" style="color:#0FD9C4;">PEHLE <span style="color:#3457FF;">KAR</span>, BAAD MEIN SOCH</div>
+        <div class="sample-body">Bebas Neue runs condensed and tall, built to survive fast cuts and quick cuts between B-roll. Manrope handles captions and lower text so nothing fights for attention.</div>
+      </div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#08090B"></div><div class="swatch-label">Base</div><div class="swatch-hex">#08090B</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0FD9C4"></div><div class="swatch-label">Teal</div><div class="swatch-hex">#0FD9C4</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3457FF"></div><div class="swatch-label">Blue</div><div class="swatch-hex">#3457FF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#151619"></div><div class="swatch-label">Surface</div><div class="swatch-hex">#151619</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-label">Text</div><div class="swatch-hex">#FFFFFF</div></div>
+      </div>
+      <div class="refs"><b>Feels like:</b> Parikshit's fast-cut B-roll energy. Best for the day-in-the-life and behind-the-scenes IPs, where motion is doing most of the work.</div>
+    </div>
+  </div>
+
+  <!-- BOARD D -->
+  <div class="board" style="--b-bg:#111214; --b-fg:#F5F6F7; --b-fg-soft:#9BA3AD; --b-accent:#3D6CFF; --b-font-display:'Unbounded'; --b-font-body:'IBM Plex Sans'; --b-display-weight:700; --b-display-size:32px;">
+    <div class="board-head">
+      <span class="board-tag">Option D</span>
+      <span class="board-name">Founder Mode</span>
+    </div>
+    <p class="board-mood">The most restrained of the four, black and teal with blue held back for one word at a time. This is the register for the intro video and anything that needs to read as credible in the first three seconds.</p>
+    <div class="board-body">
+      <div class="sample">
+        <div class="sample-headline">UNCONVENTIONAL, <span class="accent">ON PURPOSE</span></div>
+        <div class="sample-body">Unbounded gives the headline weight without shouting, IBM Plex Sans keeps the body text clean and legible. Built to hold up in a thumbnail as well as full screen.</div>
+      </div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#111214"></div><div class="swatch-label">Base</div><div class="swatch-hex">#111214</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0F5C56"></div><div class="swatch-label">Deep teal</div><div class="swatch-hex">#0F5C56</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3D6CFF"></div><div class="swatch-label">Blue accent</div><div class="swatch-hex">#3D6CFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1B1D20"></div><div class="swatch-label">Surface</div><div class="swatch-hex">#1B1D20</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F5F6F7"></div><div class="swatch-label">Text</div><div class="swatch-hex">#F5F6F7</div></div>
+      </div>
+      <div class="refs"><b>Feels like:</b> the credibility half of the infotainment mix. Best for the introduction reel and any video mentioning captec directly.</div>
+    </div>
+  </div>
+
+  <div class="footer-note">Reply with a letter, A through D, or tell us to mix two together, the teal from A with the energy of C works fine too. Once it's picked, this becomes the visual system every script and edit follows.</div>
+
+</div>
