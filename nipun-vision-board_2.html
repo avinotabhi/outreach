@@ -1,0 +1,287 @@
+<title>Nipun Vision Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500&family=Anton&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --bg: #0B0C0E;
+    --surface: #17181B;
+    --text: #F2F1EC;
+    --text-soft: #94938C;
+    --hairline: #2B2C2F;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 56px 20px 90px; }
+
+  .eyebrow {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 18px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .decided {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #AEB4FF;
+    background: rgba(59,77,255,0.12);
+    border: 1px solid rgba(59,77,255,0.35);
+    border-radius: 999px;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-family: 'Anton', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(30px, 5.5vw, 46px);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+    margin: 0 0 14px;
+  }
+  .intro {
+    color: var(--text-soft);
+    max-width: 62ch;
+    margin: 0 0 52px;
+    font-size: 15px;
+  }
+  .intro b { color: var(--text); font-weight: 500; }
+
+  .board { margin-bottom: 64px; }
+  .board-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .board-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-soft);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 3px 10px;
+  }
+  .board-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .board-mood {
+    color: var(--text-soft);
+    font-size: 14px;
+    max-width: 58ch;
+    margin: 6px 0 20px;
+  }
+
+  .board-body {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .sample {
+    background: var(--b-bg);
+    color: var(--b-fg);
+    padding: 44px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .sample-headline {
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    font-size: 46px;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+    color: var(--b-fg);
+    text-wrap: balance;
+  }
+  .sample-headline .accent { color: var(--b-accent); }
+  .sample-headline .accent2 { color: var(--b-accent2, var(--b-accent)); }
+  .sample-body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--b-fg-soft);
+    max-width: 46ch;
+  }
+
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 1px;
+    background: var(--hairline);
+  }
+  .swatch {
+    background: var(--surface);
+    padding: 18px 16px 14px;
+  }
+  .swatch-color {
+    height: 46px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .swatch-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .swatch-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+    margin-top: 2px;
+  }
+
+  .refs {
+    padding: 16px 28px 22px;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  .refs b { color: var(--text); font-weight: 500; }
+
+  .footer-note {
+    border-top: 1px solid var(--hairline);
+    padding-top: 22px;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+
+  @media (max-width: 520px) {
+    .sample { padding: 30px 20px; }
+    .sample-headline { font-size: 34px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="eyebrow">
+    <span>Vision Board &middot; J Curve by Avi</span>
+    <span>For Nipun Patil</span>
+  </div>
+
+  <div class="decided">Direction locked: High Voltage</div>
+
+  <h1>Four shades of loud</h1>
+  <p class="intro">He picked <b>High Voltage</b>, Anton headlines, DM Sans body, black stage, royal blue signal. These four keep that exact pattern and only move the accent, so the choice left is which specific blue (and whether teal joins it) actually feels right once it's on screen.</p>
+
+  <!-- B1 -->
+  <div class="board" style="--b-bg:#0A0A0F; --b-fg:#FFFFFF; --b-fg-soft:#AEB4FF; --b-accent:#3B4DFF;">
+    <div class="board-head">
+      <span class="board-tag">B1</span>
+      <span class="board-name">Royal Rush</span>
+    </div>
+    <p class="board-mood">The original pick, unchanged. A single confident blue against near-black, nothing competing with it.</p>
+    <div class="board-body">
+      <div class="sample">
+        <div class="sample-headline">JOB SE <span class="accent">KUCH NAHI</span> HOGA</div>
+        <div class="sample-body">The safe, proven middle of the direction. Reads clean at thumbnail size and holds up across every IP.</div>
+      </div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#0A0A0F"></div><div class="swatch-label">Base</div><div class="swatch-hex">#0A0A0F</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3B4DFF"></div><div class="swatch-label">Signal</div><div class="swatch-hex">#3B4DFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#7C8CFF"></div><div class="swatch-label">Blue tint</div><div class="swatch-hex">#7C8CFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#1A1B22"></div><div class="swatch-label">Surface</div><div class="swatch-hex">#1A1B22</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-label">Text</div><div class="swatch-hex">#FFFFFF</div></div>
+      </div>
+      <div class="refs"><b>Feels like:</b> the version already approved. The benchmark the other three are measured against.</div>
+    </div>
+  </div>
+
+  <!-- B2 -->
+  <div class="board" style="--b-bg:#07080C; --b-fg:#FFFFFF; --b-fg-soft:#B8C2FF; --b-accent:#5C7CFF;">
+    <div class="board-head">
+      <span class="board-tag">B2</span>
+      <span class="board-name">Blue Steel</span>
+    </div>
+    <p class="board-mood">A cooler, slightly brighter blue with a navy undertone in the surfaces. Less pure primary, more premium, still loud.</p>
+    <div class="board-body">
+      <div class="sample">
+        <div class="sample-headline"><span class="accent">COLLEGE</span> CHOD KE DEKHO</div>
+        <div class="sample-body">Same Anton and DM Sans pairing, but the surrounding panels sit on a deep navy instead of flat black, giving the blue more room to breathe.</div>
+      </div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#07080C"></div><div class="swatch-label">Base</div><div class="swatch-hex">#07080C</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#5C7CFF"></div><div class="swatch-label">Signal</div><div class="swatch-hex">#5C7CFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#141A33"></div><div class="swatch-label">Navy surface</div><div class="swatch-hex">#141A33</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#93A6FF"></div><div class="swatch-label">Steel tint</div><div class="swatch-hex">#93A6FF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-label">Text</div><div class="swatch-hex">#FFFFFF</div></div>
+      </div>
+      <div class="refs"><b>Feels like:</b> the same energy with slightly more polish. Good if B1 reads a touch too flat on camera.</div>
+    </div>
+  </div>
+
+  <!-- B3 -->
+  <div class="board" style="--b-bg:#0A0A0F; --b-fg:#FFFFFF; --b-fg-soft:#9FE6DC; --b-accent:#3B4DFF; --b-accent2:#14E0C8;">
+    <div class="board-head">
+      <span class="board-tag">B3</span>
+      <span class="board-name">Teal Volt</span>
+    </div>
+    <p class="board-mood">Brings the teal back in as a second signal alongside the blue, both loud, both used one word at a time. Closest to the full range of colors he originally named.</p>
+    <div class="board-body">
+      <div class="sample">
+        <div class="sample-headline"><span class="accent2">RISK</span> LO, <span class="accent">REGRET</span> NAHI</div>
+        <div class="sample-body">Two signal colors instead of one, alternated by word so neither reads as the "background" color. More range for thumbnails to feel distinct from each other.</div>
+      </div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#0A0A0F"></div><div class="swatch-label">Base</div><div class="swatch-hex">#0A0A0F</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3B4DFF"></div><div class="swatch-label">Blue</div><div class="swatch-hex">#3B4DFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#14E0C8"></div><div class="swatch-label">Teal</div><div class="swatch-hex">#14E0C8</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#17181D"></div><div class="swatch-label">Surface</div><div class="swatch-hex">#17181D</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-label">Text</div><div class="swatch-hex">#FFFFFF</div></div>
+      </div>
+      <div class="refs"><b>Feels like:</b> High Voltage with a second gear. Useful if every thumbnail in the same blue starts to blur together after a few weeks.</div>
+    </div>
+  </div>
+
+  <!-- B4 -->
+  <div class="board" style="--b-bg:#000000; --b-fg:#FFFFFF; --b-fg-soft:#A6B4FF; --b-accent:#0026FF;">
+    <div class="board-head">
+      <span class="board-tag">B4</span>
+      <span class="board-name">Blackout Neon</span>
+    </div>
+    <p class="board-mood">The starkest version, true black and one pure, almost electric blue, nothing softened. The loudest option of the four.</p>
+    <div class="board-body">
+      <div class="sample">
+        <div class="sample-headline">5 SAAL SE <span class="accent">YEHI</span> KAR RAHA HOON</div>
+        <div class="sample-body">No tints, no secondary surface color, just black and one saturated blue. Highest contrast, hits hardest at a glance, least forgiving if the footage itself is dim.</div>
+      </div>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-color" style="background:#000000"></div><div class="swatch-label">Base</div><div class="swatch-hex">#000000</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0026FF"></div><div class="swatch-label">Signal</div><div class="swatch-hex">#0026FF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-label">Text</div><div class="swatch-hex">#FFFFFF</div></div>
+      </div>
+      <div class="refs"><b>Feels like:</b> maximum volume. Best reserved for the contrarian, stage-worthy lines rather than every single video.</div>
+    </div>
+  </div>
+
+  <div class="footer-note">Reply with B1 through B4, or tell us to mix, teal from B3 used only on the intro reel and B1 everywhere else works fine too. Whichever one is picked becomes the fixed system every thumbnail and caption overlay follows from here.</div>
+
+</div>
